@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "free image compressor",
   ],
     verification: {
-    google: "Ju8gOpzCjdf3p5RCVcNg_LEvUG41_ykazDP2JCdPmys",
+    google: "QHiiT1cFLbXp7paWiZbCCOcMRF551Xzn8jPKyGlvsnM",
   },
   metadataBase: new URL("https://shrinkbox.io"),
   openGraph: {
