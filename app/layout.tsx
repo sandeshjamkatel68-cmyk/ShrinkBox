@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-
+import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -61,7 +61,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-WR9QK5Q510"
           strategy="afterInteractive"
@@ -86,6 +85,7 @@ export default function RootLayout({
           </main>
 
           <Footer />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
