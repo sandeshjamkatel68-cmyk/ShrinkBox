@@ -1,92 +1,298 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — ShrinkBox",
-  description: "ShrinkBox privacy policy. Learn how we handle your files and data.",
+  description:
+    "Read the ShrinkBox privacy policy to learn how we handle uploaded files, analytics, cookies, and website security.",
+  keywords: [
+    "ShrinkBox privacy policy",
+    "ShrinkBox file privacy",
+    "file upload privacy",
+    "online file tool privacy policy",
+    "image compressor privacy",
+    "pdf tool privacy policy",
+  ],
+  alternates: {
+    canonical: "https://shrink-box.com/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy — ShrinkBox",
+    description:
+      "Learn how ShrinkBox handles uploaded files, analytics, cookies, and security.",
+    url: "https://shrink-box.com/privacy",
+    siteName: "ShrinkBox",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy — ShrinkBox",
+    description:
+      "Read the ShrinkBox privacy policy and learn how your files and basic usage data are handled.",
+  },
 };
 
 export default function PrivacyPage() {
+  const lastUpdated = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold mb-2">Privacy Policy</h1>
-      <p className="text-[var(--text-muted)] mb-10">Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
+    <main className="max-w-2xl mx-auto px-4 py-16">
+      <section className="mb-10">
+        <span className="text-xs font-medium text-[var(--brand)] border border-[var(--brand)]/30 rounded-full px-3 py-1">
+          Privacy
+        </span>
+        <h1 className="text-4xl font-bold mt-4 mb-3">Privacy Policy</h1>
+        <p className="text-[var(--text-muted)] text-lg leading-relaxed">
+          Your privacy matters to us. This page explains what ShrinkBox collects, how it is
+          used, and how uploaded files are handled when you use our tools.
+        </p>
+        <p className="text-sm text-[var(--text-muted)] mt-4">
+          Last updated: {lastUpdated}
+        </p>
+      </section>
 
       <div className="space-y-10 text-[var(--text-muted)] leading-relaxed">
-
         <section>
           <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Overview</h2>
-          <p>ShrinkBox ("we", "our", "us") is committed to protecting your privacy. This policy explains what information we collect, how we use it, and what rights you have. By using ShrinkBox, you agree to this policy.</p>
+          <p>
+            ShrinkBox ("we", "our", or "us") is committed to protecting your privacy. This
+            Privacy Policy explains what information we may collect, how we use it, and how
+            we handle files uploaded to our tools. By using ShrinkBox, you agree to this
+            policy.
+          </p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Files you upload</h2>
-          <p>When you upload a file for compression, conversion, or any other operation:</p>
+          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+            Files you upload
+          </h2>
+          <p>
+            When you upload a file for compression, conversion, merging, or other supported
+            processing, the file is transmitted to our systems over a secure connection and
+            processed temporarily in order to provide the requested result.
+          </p>
+
           <ul className="mt-3 space-y-2">
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span>Your file is transmitted securely to our server via HTTPS.</span></li>
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span>It is processed in a temporary location and the output is returned to you.</span></li>
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span>Both the input and output files are deleted automatically within 10 minutes of processing, or immediately after you download the result.</span></li>
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span>We do not read, analyze, index, or store the content of your files.</span></li>
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span>We do not share your files with any third party under any circumstance.</span></li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>Your file is sent securely using HTTPS.</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                Files are processed only for the purpose of completing the requested tool
+                action.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                Uploaded files and generated outputs are stored only temporarily and are
+                automatically removed after processing or after a limited retention period.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                We do not use your files to train models, build profiles, or analyze file
+                contents for advertising purposes.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                We do not intentionally share uploaded file contents with third parties
+                except where needed to operate the service, comply with law, or protect the
+                service from abuse.
+              </span>
+            </li>
+          </ul>
+
+          <p className="mt-3">
+            If you want the policy to state an exact deletion time such as “within 10
+            minutes,” only include that if your infrastructure reliably follows that rule in
+            practice.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+            Information we collect automatically
+          </h2>
+          <p>
+            Like most websites, ShrinkBox may collect limited technical information
+            automatically when you visit or use the service.
+          </p>
+
+          <ul className="mt-3 space-y-2">
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                <strong className="text-[var(--text)]">IP address</strong> — used for
+                security, rate limiting, abuse prevention, and basic operational logging.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                <strong className="text-[var(--text)]">Browser and device data</strong> —
+                such as browser type, operating system, screen size, and device category.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                <strong className="text-[var(--text)]">Usage data</strong> — such as pages
+                visited, tools used, and general interaction events.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                <strong className="text-[var(--text)]">Referral data</strong> — such as the
+                page or source that led you to ShrinkBox.
+              </span>
+            </li>
           </ul>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Information we collect automatically</h2>
-          <p>Like most websites, ShrinkBox collects basic technical information when you visit:</p>
-          <ul className="mt-3 space-y-2">
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span><strong className="text-[var(--text)]">IP address</strong> — used for rate limiting and abuse prevention. Not stored beyond the session.</span></li>
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span><strong className="text-[var(--text)]">Browser and device type</strong> — collected via analytics to understand how the site is used.</span></li>
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span><strong className="text-[var(--text)]">Pages visited</strong> — used to understand which tools are most useful.</span></li>
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span><strong className="text-[var(--text)]">Referring URL</strong> — where you came from before visiting ShrinkBox.</span></li>
-          </ul>
-        </section>
+          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Cookies and local storage</h2>
+          <p>
+            ShrinkBox may use a limited number of cookies or browser storage technologies to
+            keep the service working properly and improve user experience.
+          </p>
 
-        <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Cookies</h2>
-          <p>ShrinkBox uses a minimal number of cookies:</p>
           <ul className="mt-3 space-y-2">
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span><strong className="text-[var(--text)]">Theme preference</strong> — stores your light/dark mode preference in localStorage. This never leaves your browser.</span></li>
-            <li className="flex gap-2"><span className="text-[var(--brand)] shrink-0">→</span><span><strong className="text-[var(--text)]">Analytics cookies</strong> — if analytics is enabled, we use privacy-friendly analytics that does not track personal identifiers.</span></li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                <strong className="text-[var(--text)]">Preference storage</strong> — such as
+                theme selection or interface preferences.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span>
+                <strong className="text-[var(--text)]">Analytics technologies</strong> — if
+                enabled, these help us understand how the website is used and which tools are
+                most useful.
+              </span>
+            </li>
           </ul>
-          <p className="mt-3">We do not use advertising cookies or tracking cookies from social media platforms.</p>
+
+          <p className="mt-3">
+            We do not use cookies to read your uploaded files or personal documents.
+          </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Analytics</h2>
-          <p>We use analytics software to understand site usage — which tools are used, what devices visit, and general traffic patterns. This data is aggregated and anonymized. We do not track individual users across sessions.</p>
+          <p>
+            We may use analytics tools to understand overall traffic, popular pages, tool
+            usage, device types, and general performance of the service. Analytics data helps
+            us improve ShrinkBox, fix issues, and prioritize features.
+          </p>
+          <p className="mt-3">
+            Analytics information is generally used in aggregated form and is not intended to
+            identify you personally.
+          </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Advertising</h2>
-          <p>ShrinkBox may display advertisements provided by Google AdSense or similar networks. These networks may use cookies to show relevant ads based on your browsing history. You can opt out of personalized advertising at <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-[var(--brand)] hover:underline">adssettings.google.com</a>.</p>
+          <p>
+            ShrinkBox may display ads through third-party advertising providers such as
+            Google AdSense or similar services. These providers may use cookies or related
+            technologies to deliver ads, measure ad performance, or personalize content based
+            on their own policies.
+          </p>
+          <p className="mt-3">
+            You can manage ad personalization settings through your Google ad settings or the
+            relevant controls provided by the advertising platform you use.
+          </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Data security</h2>
-          <p>All connections to ShrinkBox use HTTPS encryption. Uploaded files are stored only in server memory or temporary disk storage and are never written to permanent storage or databases. Our servers are hosted on reputable cloud infrastructure with industry-standard security practices.</p>
+          <p>
+            We use reasonable technical and organizational measures to protect ShrinkBox and
+            the data processed through it. This includes HTTPS encryption and access controls
+            designed to reduce unauthorized access, misuse, or abuse.
+          </p>
+          <p className="mt-3">
+            No system can guarantee absolute security, but we work to keep the service as
+            safe and reliable as possible.
+          </p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Children's privacy</h2>
-          <p>ShrinkBox is not directed at children under 13 years of age and we do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us so we can delete it.</p>
+          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Third-party services</h2>
+          <p>
+            ShrinkBox may rely on third-party infrastructure or service providers for
+            hosting, analytics, advertising, monitoring, or other operational needs. These
+            providers may process limited technical data as necessary to operate the service.
+          </p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Your rights</h2>
-          <p>Because we do not store personal data or file content, there is generally nothing to request deletion of. If you have concerns about any data we may hold, contact us at the address below and we will respond within 30 days.</p>
+          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+            Children&apos;s privacy
+          </h2>
+          <p>
+            ShrinkBox is not intended for children under 13, and we do not knowingly collect
+            personal information from children. If you believe a child has provided personal
+            information through the service, please contact us so we can review and address
+            the issue.
+          </p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Changes to this policy</h2>
-          <p>We may update this policy occasionally. We will note the "Last updated" date at the top of this page. Continued use of ShrinkBox after changes constitutes acceptance of the updated policy.</p>
+          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Your choices</h2>
+          <p>
+            You can stop using the service at any time, avoid uploading sensitive files if
+            you are uncomfortable, and control certain browser-level settings such as cookies,
+            storage, and ad personalization.
+          </p>
+          <p className="mt-3">
+            If you contact us with a privacy concern, we will review it and respond within a
+            reasonable time.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+            Changes to this policy
+          </h2>
+          <p>
+            We may update this Privacy Policy from time to time. When we do, we will revise
+            the “Last updated” date at the top of this page. Continued use of ShrinkBox after
+            changes take effect means you accept the updated policy.
+          </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Contact</h2>
-          <p>Questions about this privacy policy? Email us at <a href="mailto:privacy@shrinkbox.io" className="text-[var(--brand)] hover:underline">privacy@shrinkbox.io</a> or use our <a href="/contact" className="text-[var(--brand)] hover:underline">contact form</a>.</p>
+          <p>
+            If you have questions about this Privacy Policy, you can contact us by email at{" "}
+            <a
+              href="mailto:privacy@shrinkbox.io"
+              className="text-[var(--brand)] hover:underline"
+            >
+              privacy@shrinkbox.io
+            </a>{" "}
+            or through our{" "}
+            <Link href="/contact" className="text-[var(--brand)] hover:underline">
+              contact page
+            </Link>
+            .
+          </p>
         </section>
-
       </div>
-    </div>
+    </main>
   );
 }
