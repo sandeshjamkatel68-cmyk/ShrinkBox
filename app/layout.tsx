@@ -32,6 +32,13 @@ export const metadata: Metadata = {
     google: "QHiiT1cFLbXp7paWiZbCCOcMRF551Xzn8jPKyGlvsnM",
   },
   metadataBase: new URL("https://shrink-box.com"),
+
+  icons: {
+    icon: "../favicon.ico",
+    shortcut: "../favicon.ico",
+    apple: "../favicon.ico",
+  },
+
   openGraph: {
     type: "website",
     locale: "en_US",
