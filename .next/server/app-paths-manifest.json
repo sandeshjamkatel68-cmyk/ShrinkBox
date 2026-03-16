@@ -1,6 +1,7 @@
 {
-  "/resize-image/page": "app/resize-image/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
+  "/resize-image/page": "app/resize-image/page.js",
   "/blog/page": "app/blog/page.js",
   "/merge-pdf/page": "app/merge-pdf/page.js"
 }

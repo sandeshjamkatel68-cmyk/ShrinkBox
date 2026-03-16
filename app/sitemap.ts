@@ -1,38 +1,48 @@
-import type { MetadataRoute } from "next";
+import { MetadataRoute } from "next";
+import { BLOG_POSTS } from "@/lib/content/blogPosts";
+
+const BASE_URL = "https://shrink-box.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://shrink-box.vercel.app";
-
-  return [
-    {
-      url: `${baseUrl}/`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/compress-image`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/compress-pdf`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/merge-pdf`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+  const toolPages = [
+    // Image tools
+    "/compress-image",
+    "/compress-webp",
+    "/bulk-compress",
+    "/resize-image",
+    "/crop-image",
+    "/image-to-grayscale",
+    "/reduce-jpg-size",
+    "/reduce-png-size",
+    // Image convert
+    "/convert-jpg-to-webp",
+    "/convert-jpg-to-png",
+    "/convert-png-to-webp",
+    "/convert-png-to-jpg",
+    "/convert-webp-to-jpg",
+    "/images-to-pdf",
+    // PDF tools
+    "/compress-pdf",
+    "/merge-pdf",
+    "/split-pdf",
+    "/rotate-pdf",
+    "/remove-pdf-pages",
+    "/watermark-pdf",
+    "/protect-pdf",
+    "/unlock-pdf",
+    "/add-page-numbers-pdf",
+    "/pdf-to-jpg",
+    "/pdf-to-word",
   ];
+
+  const staticPages = ["/", "/about", "/contact", "/privacy", "/terms", "/blog"];
+  const blogPages   = BLOG_POSTS.map((p) => `/blog/${p.slug}`);
+  const allPages    = [...staticPages, ...toolPages, ...blogPages];
+
+  return allPages.map((path) => ({
+    url:             `${BASE_URL}${path}`,
+    lastModified:    new Date(),
+    changeFrequency: path === "/" ? "weekly" : "monthly",
+    priority:        path === "/" ? 1 : toolPages.includes(path) ? 0.8 : 0.6,
+  }));
 }
