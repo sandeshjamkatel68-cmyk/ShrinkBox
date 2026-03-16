@@ -1,10 +1,27 @@
 import type { Metadata } from "next";
 import ConvertImageWidget from "@/components/tools/ConvertImageWidget";
 import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
+import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Convert JPG to PNG Online — Free JPG to PNG Converter",
-  description: "Convert JPG and JPEG images to PNG format online for free. Lossless output, transparent background support. No signup.",
+  title:       TOOL_META["convert-jpg-to-png"].title,
+  description: TOOL_META["convert-jpg-to-png"].description,
+  keywords:    TOOL_META["convert-jpg-to-png"].keywords,
+  openGraph: {
+    title:       TOOL_META["convert-jpg-to-png"].title,
+    description: TOOL_META["convert-jpg-to-png"].description,
+    url:         `https://shrink-box.comConvert JPG to PNG`,
+    siteName:    "ShrinkBox",
+    type:        "website",
+  },
+  twitter: {
+    card:        "summary_large_image",
+    title:       TOOL_META["convert-jpg-to-png"].title,
+    description: TOOL_META["convert-jpg-to-png"].description,
+  },
+  alternates: {
+    canonical: `https://shrink-box.com/convert-jpg-to-png`,
+  },
 };
 
 const FAQ_ITEMS = [
@@ -16,6 +33,12 @@ const FAQ_ITEMS = [
 export default function JpgToPngPage() {
   return (
     <>
+      <ToolSchema
+        name={TOOL_META["convert-jpg-to-png"].title}
+        description={TOOL_META["convert-jpg-to-png"].description}
+        url={TOOL_META["convert-jpg-to-png"].url}
+        category={TOOL_META["convert-jpg-to-png"].category}
+      />
       <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
         <ToolHero icon="🔄" title="Convert JPG to PNG" description="Upload a JPG or JPEG image and convert it to PNG format instantly. Supports transparency. Free and private." badge="JPG → PNG · Free" />
         <ConvertImageWidget defaultTarget="png" allowedSources=".jpg,.jpeg" />

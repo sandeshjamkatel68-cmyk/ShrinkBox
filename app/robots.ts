@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow:     "/",
       disallow:  ["/api/"],
     },
-    sitemap: "https://shrinkbox.io/sitemap.xml",
+    sitemap: "https://shrink-box.com/sitemap.xml",
+    host:    "https://shrink-box.com",
   };
 }

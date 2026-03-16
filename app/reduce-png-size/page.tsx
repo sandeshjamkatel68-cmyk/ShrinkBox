@@ -1,11 +1,27 @@
 import type { Metadata } from "next";
 import CompressorWidget from "@/components/upload/CompressorWidget";
 import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
+import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Reduce PNG File Size Online — Free PNG Compressor",
-  description:
-    "Reduce PNG file sizes online for free. Compress PNG images by stripping metadata and optimizing the color palette. No signup needed.",
+  title:       TOOL_META["reduce-png-size"].title,
+  description: TOOL_META["reduce-png-size"].description,
+  keywords:    TOOL_META["reduce-png-size"].keywords,
+  openGraph: {
+    title:       TOOL_META["reduce-png-size"].title,
+    description: TOOL_META["reduce-png-size"].description,
+    url:         `https://shrink-box.comReduce PNG Size Online`,
+    siteName:    "ShrinkBox",
+    type:        "website",
+  },
+  twitter: {
+    card:        "summary_large_image",
+    title:       TOOL_META["reduce-png-size"].title,
+    description: TOOL_META["reduce-png-size"].description,
+  },
+  alternates: {
+    canonical: `https://shrink-box.com/reduce-png-size`,
+  },
 };
 
 const PNG_FAQ = [
@@ -26,6 +42,12 @@ const PNG_FAQ = [
 export default function ReducePngPage() {
   return (
     <>
+      <ToolSchema
+        name={TOOL_META["reduce-png-size"].title}
+        description={TOOL_META["reduce-png-size"].description}
+        url={TOOL_META["reduce-png-size"].url}
+        category={TOOL_META["reduce-png-size"].category}
+      />
       <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
         <ToolHero
           icon="🎨"

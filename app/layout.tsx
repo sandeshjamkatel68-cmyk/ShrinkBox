@@ -43,12 +43,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://shrink-box.com",
+    images: [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630, alt: "ShrinkBox" }],
     siteName: "ShrinkBox",
     title: "ShrinkBox — Free File Compression Online",
     description:
       "Compress images and PDFs instantly. No sign-up required.",
   },
   twitter: {
+    images: ["https://shrink-box.com/og-image.png"],
     card: "summary_large_image",
     title: "ShrinkBox — Free File Compression",
     description:
