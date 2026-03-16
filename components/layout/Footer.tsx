@@ -1,65 +1,94 @@
 import Link from "next/link";
 
+const FOOTER_LINKS = {
+  "Image Tools": [
+    { href: "/compress-image",      label: "Compress Image" },
+    { href: "/bulk-compress",       label: "Bulk Compress" },
+    { href: "/resize-image",        label: "Resize Image" },
+    { href: "/crop-image",          label: "Crop Image" },
+    { href: "/image-to-grayscale",  label: "Black & White" },
+    { href: "/convert-jpg-to-webp", label: "JPG → WebP" },
+    { href: "/convert-png-to-jpg",  label: "PNG → JPG" },
+    { href: "/images-to-pdf",       label: "Images → PDF" },
+  ],
+  "PDF Tools": [
+    { href: "/compress-pdf",         label: "Compress PDF" },
+    { href: "/merge-pdf",            label: "Merge PDF" },
+    { href: "/split-pdf",            label: "Split PDF" },
+    { href: "/watermark-pdf",        label: "Watermark PDF" },
+    { href: "/protect-pdf",          label: "Protect PDF" },
+    { href: "/unlock-pdf",           label: "Unlock PDF" },
+    { href: "/pdf-to-jpg",           label: "PDF → JPG" },
+    { href: "/add-page-numbers-pdf", label: "Page Numbers" },
+  ],
+  "Company": [
+    { href: "/about",   label: "About" },
+    { href: "/blog",    label: "Blog" },
+    { href: "/contact", label: "Contact" },
+    { href: "/privacy", label: "Privacy Policy" },
+    { href: "/terms",   label: "Terms of Service" },
+  ],
+};
+
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] mt-16">
-      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-[var(--text-muted)]">
-        <div>
-          <div className="text-[var(--text)] font-semibold mb-3 flex items-center gap-2">
-            <span className="text-[var(--brand)]">⬡</span> ShrinkBox
+    <footer className="border-t border-[var(--border)] bg-[var(--surface)] mt-20">
+      <div className="max-w-[1120px] mx-auto px-6 py-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <Link href="/" className="flex items-center gap-2 no-underline mb-4">
+              <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="8" fill="var(--brand)"/>
+                <path d="M8.5 10h11M8.5 14h8M12 18.5l2 2.5 4.5-5.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className="font-bold text-[15px] text-[var(--text)] tracking-tight">ShrinkBox</span>
+            </Link>
+            <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-5">
+              Free online tools for compressing, converting, and editing images and PDFs. No signup. Files deleted instantly.
+            </p>
+            <div className="flex flex-col gap-2">
+              {[
+                { dot: true, text: "Files deleted after processing" },
+                { dot: true, text: "No account required" },
+                { dot: true, text: "HTTPS encrypted" },
+              ].map(item => (
+                <div key={item.text} className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--brand)] shrink-0" />
+                  {item.text}
+                </div>
+              ))}
+            </div>
           </div>
-          <p className="text-xs leading-relaxed mb-3">
-            Fast, free file compression. No login. No tricks. Files deleted automatically.
-          </p>
-          <p className="text-xs text-[var(--text-subtle)]">
-            Compress images and PDFs online — JPG, PNG, WebP, PDF.
-          </p>
+
+          {/* Link columns */}
+          {Object.entries(FOOTER_LINKS).map(([title, links]) => (
+            <div key={title}>
+              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--text-subtle)] mb-4">{title}</p>
+              <ul className="flex flex-col gap-2.5">
+                {links.map(link => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-sm text-[var(--text-muted)] hover:text-[var(--text)] no-underline transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <div>
-          <div className="font-medium text-[var(--text)] mb-3">Tools</div>
-          <ul className="space-y-2">
-            <li><Link href="/compress-image"      className="hover:text-[var(--text)] transition-colors">Compress Image</Link></li>
-            <li><Link href="/compress-pdf"        className="hover:text-[var(--text)] transition-colors">Compress PDF</Link></li>
-            <li><Link href="/bulk-compress"       className="hover:text-[var(--text)] transition-colors">Bulk Compress</Link></li>
-            <li><Link href="/resize-image"        className="hover:text-[var(--text)] transition-colors">Resize Image</Link></li>
-            <li><Link href="/convert-jpg-to-png"  className="hover:text-[var(--text)] transition-colors">JPG to PNG</Link></li>
-            <li><Link href="/convert-png-to-webp" className="hover:text-[var(--text)] transition-colors">PNG to WebP</Link></li>
-            <li><Link href="/merge-pdf"           className="hover:text-[var(--text)] transition-colors">Merge PDF</Link></li>
-            <li><Link href="/split-pdf"           className="hover:text-[var(--text)] transition-colors">Split PDF</Link></li>
-          </ul>
+        {/* Bottom bar */}
+        <div className="mt-12 pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--text-subtle)]">
+          <span>© {new Date().getFullYear()} ShrinkBox. All rights reserved.</span>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="hover:text-[var(--text-muted)] no-underline transition-colors">Privacy</Link>
+            <Link href="/terms"   className="hover:text-[var(--text-muted)] no-underline transition-colors">Terms</Link>
+            <Link href="/contact" className="hover:text-[var(--text-muted)] no-underline transition-colors">Contact</Link>
+          </div>
         </div>
-
-        <div>
-          <div className="font-medium text-[var(--text)] mb-3">Company</div>
-          <ul className="space-y-2">
-            <li><Link href="/about"   className="hover:text-[var(--text)] transition-colors">About</Link></li>
-            <li><Link href="/blog"    className="hover:text-[var(--text)] transition-colors">Blog</Link></li>
-            <li><Link href="/contact" className="hover:text-[var(--text)] transition-colors">Contact</Link></li>
-            <li><Link href="/privacy" className="hover:text-[var(--text)] transition-colors">Privacy Policy</Link></li>
-            <li><Link href="/terms"   className="hover:text-[var(--text)] transition-colors">Terms of Service</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <div className="font-medium text-[var(--text)] mb-3">Trust</div>
-          <ul className="space-y-2 text-xs leading-relaxed">
-            <li>🔒 Files deleted after processing</li>
-            <li>🚫 No account required</li>
-            <li>⚡ Processed in seconds</li>
-            <li>📱 Works on mobile</li>
-            <li>🔐 HTTPS encrypted</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="border-t border-[var(--border)] py-4 text-center text-xs text-[var(--text-subtle)]">
-        © {new Date().getFullYear()} ShrinkBox. All rights reserved. ·{" "}
-        <Link href="/privacy" className="hover:text-[var(--text-muted)] transition-colors">Privacy</Link> ·{" "}
-        <Link href="/terms"   className="hover:text-[var(--text-muted)] transition-colors">Terms</Link> ·{" "}
-        <Link href="/contact" className="hover:text-[var(--text-muted)] transition-colors">Contact</Link>
       </div>
     </footer>
   );
 }
-

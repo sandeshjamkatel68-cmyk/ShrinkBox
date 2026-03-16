@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/blog/how-to-compress-images-for-web":{},"/blog/reduce-pdf-file-size":{},"/blog/jpg-vs-png-vs-webp":{},"/blog/compress-images-for-email":{},"/blog/what-is-webp":{},"/blog/merge-pdf-guide":{},"/blog/split-pdf-guide":{},"/blog/image-compression-quality-vs-size":{},"/blog/convert-png-to-jpg":{},"/blog/pdf-vs-word-which-to-send":{},"/blog/compress-images-for-social-media":{},"/blog/reduce-image-size-without-losing-quality":{},"/blog/core-web-vitals-images":{},"/blog/batch-compress-images":{},"/blog/pdf-compression-explained":{},"/blog/avif-vs-webp":{}},"dynamicRoutes":{"/blog/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/blog/[slug]","routeRegex":"^\\/blog\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"25b660d4981f10c0924e72bb52810417","previewModeSigningKey":"437faad486d408c5d8229c0e361574ddc859b0316c953a7ffeeb90758adf8926","previewModeEncryptionKey":"f9cfcd8b104117820a93f68d186a038ad15a127e22894e814bb6ea1907fe0e40"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "6f4cb56d68f6786964a975f0c25f8513",
+    "previewModeSigningKey": "4c190db6869aae412009bfe2db37bf87277004aa8701d51446dabbd159085c0f",
+    "previewModeEncryptionKey": "d88077d0c7e24817107996ae45c8a68f9cfcce90172e48eb640d7d85ce1a2b2c"
+  }
+}

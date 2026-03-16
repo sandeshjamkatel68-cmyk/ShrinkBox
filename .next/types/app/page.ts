@@ -1,4 +1,4 @@
-// File: C:\Users\LEGION\Downloads\shrinkbox (3)\shrinkbox\app\page.tsx
+// File: D:\ShrinkBox\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
