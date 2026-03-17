@@ -84,7 +84,7 @@ export default function RootLayout({
           `}
         </Script>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3220445637759521"
-     crossorigin="anonymous"></script>
+     crossorigin="anonymous" strategy="afterInteractive"></script>
       </head>
 
       <body className="min-h-screen flex flex-col">
