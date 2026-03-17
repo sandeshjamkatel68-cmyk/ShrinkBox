@@ -15,11 +15,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "ShrinkBox — Free File Compression Online",
+    default:  "ShrinkBox — Free Image & PDF Tools Online",
     template: "%s | ShrinkBox",
   },
   description:
-    "Compress images and PDFs instantly. No sign-up required. Reduce JPG, PNG, WebP, and PDF file sizes for free.",
+    "Free online tools for compressing, converting, resizing, and editing images and PDFs. No signup. Files deleted instantly. JPG, PNG, WebP, PDF supported.",
   keywords: [
     "compress image online",
     "reduce pdf size",
@@ -27,37 +27,44 @@ export const metadata: Metadata = {
     "compress png",
     "file size reducer",
     "free image compressor",
+    "pdf tools online",
+    "convert jpg to webp",
+    "merge pdf",
+    "resize image online",
   ],
   verification: {
     google: "QHiiT1cFLbXp7paWiZbCCOcMRF551Xzn8jPKyGlvsnM",
   },
   metadataBase: new URL("https://shrink-box.com"),
-
   icons: {
-    icon: "../favicon.ico",
+    icon:     "../favicon.ico",
     shortcut: "../favicon.ico",
-    apple: "../favicon.ico",
+    apple:    "../favicon.ico",
   },
-
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://shrink-box.com",
-    images: [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630, alt: "ShrinkBox" }],
+    type:     "website",
+    locale:   "en_US",
+    url:      "https://shrink-box.com",
     siteName: "ShrinkBox",
-    title: "ShrinkBox — Free File Compression Online",
-    description:
-      "Compress images and PDFs instantly. No sign-up required.",
+    title:    "ShrinkBox — Free Image & PDF Tools Online",
+    description: "Free online tools for compressing, converting, resizing, and editing images and PDFs. No signup required.",
+    images: [
+      {
+        url:    "https://shrink-box.com/og-image.png",
+        width:  1200,
+        height: 630,
+        alt:    "ShrinkBox — Free Image & PDF Tools Online",
+      },
+    ],
   },
   twitter: {
-    images: ["https://shrink-box.com/og-image.png"],
-    card: "summary_large_image",
-    title: "ShrinkBox — Free File Compression",
-    description:
-      "Compress images and PDFs instantly. No sign-up required.",
+    card:        "summary_large_image",
+    title:       "ShrinkBox — Free Image & PDF Tools",
+    description: "Free online tools for compressing and converting images and PDFs. No signup required.",
+    images:      ["https://shrink-box.com/og-image.png"],
   },
   robots: {
-    index: true,
+    index:  true,
     follow: true,
   },
 };
@@ -70,11 +77,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-WR9QK5Q510"
           strategy="afterInteractive"
         />
-
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -83,18 +90,22 @@ export default function RootLayout({
             gtag('config', 'G-WR9QK5Q510');
           `}
         </Script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3220445637759521"
-     crossorigin="anonymous" strategy="afterInteractive"></script>
+
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3220445637759521"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
 
       <body className="min-h-screen flex flex-col">
         <ThemeProvider>
           <Header />
-
           <main className="flex-1">
             {children}
           </main>
-
           <Footer />
           <Analytics />
         </ThemeProvider>
