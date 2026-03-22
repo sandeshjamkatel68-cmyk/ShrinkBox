@@ -245,73 +245,538 @@ In Adobe Acrobat Reader: open the file, enter the password, then File → Save A
     cta: { label: "Merge PDFs now", href: "/merge-pdf" },
   },
 
-  "how-to-watermark-pdf": {
-    intro: `Adding a watermark to a PDF is one of the most effective ways to protect your documents, assert ownership, or mark a draft before it's final. Whether you're sharing a proposal, distributing a report, or sending confidential files — a watermark sends a clear signal about how the document should be treated.`,
+  "compress-pdf-for-email": {
+    intro: `Sending a PDF by email sounds simple until you hit the dreaded "attachment too large" error. Gmail caps attachments at 25MB. Outlook allows 20MB. Many corporate mail servers are even stricter at 10MB. If your PDF is over the limit, here is exactly how to compress it down to size — for free, in under a minute.`,
     sections: [
       {
-        h2: "What is a PDF watermark?",
-        body: `A watermark is text or an image overlaid on every page of a document, typically semi-transparent so the underlying content is still readable. Common uses include:\n\n- "CONFIDENTIAL" or "DRAFT" on internal documents\n- Your name or company name on shared work\n- "SAMPLE" on documents sent for review before payment\n- Copyright notices on creative work`,
+        h2: "Why PDFs get so large",
+        body: `Most oversized PDFs fall into two categories: documents with high-resolution images embedded inside them, and documents exported from software like PowerPoint, Word or design tools that embed unnecessary metadata, fonts, and preview thumbnails.
+
+A presentation exported as PDF from PowerPoint, for example, can easily be 30-50MB because each slide contains a full-resolution image preview. The actual content might compress down to 5-8MB without any visible quality loss.`,
       },
       {
-        h2: "How to add a watermark with ShrinkBox",
-        body: `1. Go to shrink-box.com/watermark-pdf\n2. Upload your PDF\n3. Type your watermark text (e.g. "CONFIDENTIAL")\n4. Choose position: Center or Tiled across every page\n5. Pick a color and set the opacity (30–40% works well for most documents)\n6. Choose the angle — 45° diagonal is the most common\n7. Click "Add Watermark" and download your file\n\nThe whole process takes under 30 seconds.`,
+        h2: "How to compress a PDF for email — step by step",
+        body: `1. Go to shrink-box.com/compress-pdf
+2. Click the upload area or drag your PDF onto it
+3. Wait a few seconds for processing
+4. Download the compressed PDF
+
+ShrinkBox strips hidden metadata, optimizes the file structure, and re-encodes the PDF using object stream compression. For most standard documents this reduces file size by 10-40%.
+
+The result is shown immediately — you can see the original size, compressed size, and percentage reduction before downloading.`,
       },
       {
-        h2: "Best practices for watermarking",
-        body: `Opacity matters: Too opaque and the watermark obscures content, too faint and it won't be noticed. 25–40% opacity is the sweet spot for most use cases.\n\nTiled vs centered: Center works for short documents or when you want a subtle mark. Tiled repeats the watermark across the whole page — better for documents where people might try to crop out a single centered mark.\n\nFont size: Larger text (48–60pt) works well for single-word marks like "DRAFT". For longer phrases, go smaller (32–40pt).`,
+        h2: "What if my PDF is still too large after compression?",
+        body: `If your PDF contains many high-resolution photos or scanned pages, basic compression may not reduce it enough. Here are your options:
+
+Re-export from the source: If you have the original Word, PowerPoint or design file, re-export it with compression settings enabled. In Microsoft Office choose File → Export → Minimum size.
+
+Split the PDF: Use ShrinkBox's Split PDF tool to break the document into smaller parts and send them in separate emails.
+
+Use a file sharing link: Upload to Google Drive or Dropbox and share a link instead of an attachment. This sidesteps size limits entirely.`,
       },
       {
-        h2: "Limitations of free watermarking tools",
-        body: `Free tools like ShrinkBox add visible text watermarks effectively. However, a determined person could potentially remove a watermark using PDF editing software. For legally binding document protection, consider digital signatures or Adobe Acrobat's certified document features — these create cryptographic proof of authenticity that cannot be removed without invalidating the document.`,
+        h2: "Gmail, Outlook and other email size limits",
+        body: `Gmail: 25MB per email total (including all attachments)
+Outlook.com: 20MB per email
+Yahoo Mail: 25MB per email
+Apple Mail: 20MB per email
+Corporate email servers: Often 10MB or less
+
+If your compressed PDF is still over the limit for your recipient's email provider, the safest approach is to use Google Drive or WeTransfer to share large files.`,
+      },
+      {
+        h2: "How to check your PDF size before sending",
+        body: `On Windows: Right-click the PDF file → Properties → look at the Size field.
+On Mac: Right-click → Get Info → Size.
+On mobile: Long press the file in Files app → Info.
+
+Aim for under 10MB to be safe with all email providers. Under 5MB is ideal.`,
       },
     ],
-    cta: { label: "Add watermark to PDF", href: "/watermark-pdf" },
+    cta: { label: "Compress PDF for email", href: "/compress-pdf" },
   },
 
-  "resize-image-online": {
-    intro: `Resizing images is one of the most common tasks in web development, content creation, and everyday file management. But doing it wrong — upscaling too aggressively, using the wrong tool, or saving in a bad format — can make images look blurry, pixelated, or unnecessarily large. This guide covers how to resize images correctly.`,
+  "ilovepdf-alternative": {
+    intro: `ilovepdf is one of the most popular PDF tool sites on the internet. But it comes with frustrations — ads everywhere, file size limits on free tier, and some tools requiring a paid account. If you are looking for a free ilovepdf alternative that just works without the friction, here are the best options in 2026.`,
     sections: [
       {
-        h2: "When should you resize an image?",
-        body: `Common reasons to resize:\n\n- Website performance: Images larger than their display size waste bandwidth. A 4000px wide photo displayed at 800px is 25x larger than needed.\n- Email attachments: Most email clients show images at a max of 600px wide.\n- Social media: Each platform has specific recommended dimensions.\n- Storage: Smaller images take less disk space.\n- Upload limits: Some platforms cap image dimensions or file sizes.`,
+        h2: "Why people look for ilovepdf alternatives",
+        body: `ilovepdf is a solid tool but has real limitations on the free tier:
+
+- File size limit of 100MB (lower for some tools)
+- Daily task limits on free accounts
+- Requires account creation for some features
+- Heavy with ads
+- Some advanced features are paid only
+
+If you just need to quickly compress a PDF, merge two files, or convert an image — you do not need to create an account or deal with limitations.`,
       },
       {
-        h2: "Understanding fit modes",
-        body: `When you resize to specific dimensions, you need to decide what happens to the aspect ratio:\n\nFit inside: The image scales down to fit within the dimensions without cropping. The result may be smaller than the target if the aspect ratio doesn't match. Best for most uses.\n\nCover: The image fills the exact dimensions, cropping the edges if needed. Best for profile pictures or thumbnails that must be exact.\n\nContain: Adds padding (letterboxing) to fill the exact dimensions. Best for product images with consistent canvas sizes.\n\nStretch: Forces the exact size, distorting the image. Avoid unless you specifically need it.`,
+        h2: "ShrinkBox — best for no signup tools",
+        body: `ShrinkBox (shrink-box.com) is a free tool site with 25+ image and PDF tools. The key difference from ilovepdf is that nothing requires an account. Upload, process, download — that is the entire flow.
+
+Available tools include: compress PDF, merge PDF, split PDF, rotate PDF, remove pages, add watermark, protect PDF, unlock PDF, add page numbers, PDF to JPG, PDF to Word, and a full set of image tools for compression and conversion.
+
+Files are deleted immediately after processing. No ads on tool pages. No signup ever required.`,
       },
       {
-        h2: "Pixel vs percentage resizing",
-        body: `Pixel resizing sets an exact output dimension — good when you know the exact size needed (e.g. "1200px wide for a blog hero image").\n\nPercentage resizing scales relative to the original — good when you want to reduce by a proportion (e.g. "50% of original for a thumbnail"). Use percentage when you have many images at different sizes that all need to be reduced proportionally.`,
+        h2: "Smallpdf — best for occasional use",
+        body: `Smallpdf offers a clean interface and good compression quality. The free tier allows 2 tasks per hour which is enough for occasional use. More than that requires a paid subscription at around $12/month.
+
+Best for: people who need PDF tools occasionally and do not mind the task limit.`,
       },
       {
-        h2: "Never upscale images",
-        body: `Resizing an image larger than its original dimensions (upscaling) does not add detail — it just interpolates pixels, resulting in a blurry or pixelated image. ShrinkBox automatically prevents upscaling. If you need a larger image, you need a higher-resolution source file, or a vector format like SVG.`,
+        h2: "PDF24 — best free desktop alternative",
+        body: `PDF24 offers both a web tool and a free desktop application. The desktop version has no limits at all since processing happens locally on your computer. The web version is also largely free.
+
+Best for: power users who process many PDFs regularly and want no limits.`,
+      },
+      {
+        h2: "Comparison table",
+        body: `Feature comparison for free tiers:
+
+ShrinkBox: No signup, no limits, 25+ tools, files deleted instantly
+ilovepdf: No signup for basic tools, daily limits, ads
+Smallpdf: 2 tasks/hour free, clean interface
+PDF24: No limits, web + desktop, slightly dated interface
+
+For quick one-off tasks with no friction — ShrinkBox or ilovepdf.
+For regular heavy use — PDF24 desktop app.
+For occasional use with good UX — Smallpdf.`,
       },
     ],
-    cta: { label: "Resize your image", href: "/resize-image" },
+    cta: { label: "Try ShrinkBox free", href: "/" },
   },
 
-  "convert-png-to-jpg": {
-    intro: `PNG and JPG are both common image formats, but they serve different purposes. PNG is lossless and great for graphics, screenshots, and images needing transparency. JPG is smaller and better for photographs. Knowing when to convert from PNG to JPG — and when not to — can save significant file size.`,
+  "reduce-image-size-without-losing-quality": {
+    intro: `Reducing image file size without making images look worse is one of the most valuable skills for web developers, designers, bloggers, and anyone who shares images online. The good news is that modern compression algorithms can reduce image file sizes by 40-70% with zero visible quality loss. Here is exactly how to do it.`,
     sections: [
       {
-        h2: "Why convert PNG to JPG?",
-        body: `The main reason is file size. A photograph saved as PNG can be 3–8x larger than the equivalent JPG at similar visual quality. If you're storing photos, sharing them via email, or hosting them on a website, JPG is almost always more efficient.\n\nPNG files of photographs are common because:\n- Screenshots are PNG by default on most systems\n- Some design tools export PNG as default\n- People assume PNG = better quality (not true for photos)`,
+        h2: "Understanding lossy vs lossless compression",
+        body: `There are two types of image compression:
+
+Lossy compression removes some image data permanently to achieve smaller file sizes. JPEG uses lossy compression. At high quality settings (80-90%), the data removed is in areas the human eye is least sensitive to — subtle color gradations, fine texture in backgrounds. At normal viewing sizes the difference is invisible.
+
+Lossless compression reorganizes the image data more efficiently without removing anything. PNG uses lossless compression by default. File sizes are larger but quality is mathematically identical to the original.
+
+For photographs: use lossy compression at 80-90% quality. You get 40-60% smaller files with no visible difference.
+For graphics, logos, screenshots: use lossless PNG compression or convert to WebP.`,
       },
       {
-        h2: "When NOT to convert PNG to JPG",
-        body: `Don't convert if:\n\n- The image has transparency (transparent background). JPG doesn't support transparency — it will be replaced with a white background.\n- It's a logo, icon, or screenshot with text. These have sharp edges that JPG compression distorts.\n- You need perfect lossless quality. JPG always loses some data.\n- The PNG is already small. If a PNG is under 100 KB, the conversion benefit is minimal.`,
+        h2: "The right quality settings",
+        body: `JPEG quality guide:
+90-100%: Near lossless. File sizes still large. Use only for print.
+80-90%: Sweet spot for web. Invisible quality loss at normal sizes. 40-60% smaller than original.
+70-80%: Slight quality loss visible on close inspection. 60-70% smaller. Good for thumbnails.
+Below 70%: Visible artifacts. Only for very small thumbnails.
+
+ShrinkBox uses 78% quality for Medium compression and 88% for Low compression — both are in the ideal range for web use.`,
       },
       {
-        h2: "How to convert PNG to JPG with ShrinkBox",
-        body: `1. Go to shrink-box.com/convert-png-to-jpg\n2. Upload your PNG file\n3. Adjust the quality slider (90% is a good default — high quality, good size reduction)\n4. Click Convert\n5. Download your JPG\n\nNote: Any transparent areas in the PNG will be filled with a white background in the output JPG. If your PNG has a transparent background and you want to keep it, convert to WebP instead — it supports transparency and is even smaller than PNG.`,
+        h2: "How to reduce image size without losing quality — step by step",
+        body: `1. Go to shrink-box.com/compress-image
+2. Upload your JPG, PNG or WebP image (up to 10MB)
+3. Select Low or Medium compression level
+4. Click Compress
+5. Compare the before and after file sizes
+6. Download if satisfied
+
+For best results use Medium compression — it achieves the best balance of size reduction and quality preservation using MozJPEG encoding, which is the same technology used by Facebook, Google and major CDNs.`,
       },
       {
-        h2: "Quality settings explained",
-        body: `The quality slider controls how much compression is applied:\n\n90%: Minimal quality loss, ~60–70% smaller than equivalent PNG for photos\n80%: Balanced — good for web use, hard to distinguish from 90% at normal sizes\n70%: Noticeable compression artifacts on close inspection\n60% and below: Visibly degraded, only use for thumbnails or previews\n\nFor most web use, 85–90% is the sweet spot.`,
+        h2: "Convert to WebP for maximum size reduction",
+        body: `WebP is a modern image format developed by Google that is 25-35% smaller than JPEG at equivalent visual quality. If you are optimizing images for a website, converting to WebP gives you better compression than JPEG with no visible quality difference.
+
+All modern browsers support WebP. Convert your images at shrink-box.com/convert-jpg-to-webp.`,
+      },
+      {
+        h2: "Batch compress multiple images at once",
+        body: `If you have many images to compress, use the Bulk Compress tool at shrink-box.com/bulk-compress. Upload up to 10 images at once and download them all compressed in seconds. Each image gets its own before and after comparison so you can see exactly how much was saved.`,
       },
     ],
-    cta: { label: "Convert PNG to JPG", href: "/convert-png-to-jpg" },
+    cta: { label: "Compress images now", href: "/compress-image" },
+  },
+
+  "compress-image-for-whatsapp": {
+    intro: `WhatsApp compresses images automatically when you send them — but this automatic compression often makes photos look blurry and low quality. Instagram has strict file size limits. Facebook reduces image quality on upload. If you want your images to look sharp when shared on social media, the solution is to compress them yourself before uploading, using the right settings.`,
+    sections: [
+      {
+        h2: "WhatsApp image size limits and quality",
+        body: `WhatsApp allows images up to 16MB. However it automatically re-compresses any image you send to reduce data usage. This automatic compression is aggressive and often makes photos look noticeably worse.
+
+To avoid WhatsApp's automatic compression:
+1. Compress the image yourself first to a reasonable size (under 1MB)
+2. Send as a Document instead of a Photo — WhatsApp does not compress documents
+
+Sending as a document preserves the original quality. To do this tap the attachment icon → Document → select your image file.`,
+      },
+      {
+        h2: "Instagram image size and format requirements",
+        body: `Instagram recommended sizes:
+Square post: 1080×1080px
+Portrait post: 1080×1350px
+Landscape post: 1080×566px
+Stories: 1080×1920px
+
+Instagram rejects images over 8MB. It also re-compresses images on upload which reduces quality. Best practice: resize to the exact dimensions before uploading and compress to under 1MB. Instagram's re-compression will then have minimal impact.`,
+      },
+      {
+        h2: "How to compress images for social media — step by step",
+        body: `For WhatsApp:
+1. Go to shrink-box.com/compress-image
+2. Upload your photo
+3. Select Medium compression
+4. Download — aim for under 500KB
+
+For Instagram:
+1. First resize at shrink-box.com/resize-image to 1080px wide
+2. Then compress at Medium setting
+3. Download and upload to Instagram
+
+For Facebook:
+1. Compress at Low setting (Facebook is less strict)
+2. Keep file under 4MB for best quality`,
+      },
+      {
+        h2: "Best image format for social media",
+        body: `JPG: Best for photos. Smallest file size. Supported everywhere.
+PNG: Best for screenshots and graphics with text. Larger files.
+WebP: Best compression but not supported in all social apps yet.
+
+For WhatsApp and Instagram, always use JPG for photos. Use PNG only for screenshots or images with text that must stay sharp.`,
+      },
+      {
+        h2: "Bulk compress multiple photos at once",
+        body: `If you have a batch of holiday photos or product images to prepare for social media, use shrink-box.com/bulk-compress to compress up to 10 images at once. Upload them all, choose Medium compression, and download all compressed files in one go.`,
+      },
+    ],
+    cta: { label: "Compress image for WhatsApp", href: "/compress-image" },
+  },
+
+  "remove-pages-from-pdf": {
+    intro: `Need to delete a page from a PDF? Maybe there is a blank page at the end, a cover page you do not need, or confidential information on a specific page you want to remove before sharing. Here is the fastest free way to remove any page from a PDF without installing any software.`,
+    sections: [
+      {
+        h2: "How to remove pages from a PDF online — step by step",
+        body: `1. Go to shrink-box.com/remove-pdf-pages
+2. Upload your PDF file
+3. Type the page numbers you want to remove, separated by commas
+   Example: 1, 3, 5 removes pages 1, 3 and 5
+4. Click Remove Pages
+5. Download your cleaned PDF
+
+The tool shows you how many pages the original had and how many remain after removal. Processing takes a few seconds regardless of PDF size.`,
+      },
+      {
+        h2: "Common reasons to remove PDF pages",
+        body: `Blank pages: PDFs exported from Word often have blank pages at the end. Remove them to keep the document clean.
+
+Cover pages: When sharing internal documents externally you may want to remove a cover page that contains internal information.
+
+Duplicate pages: Scanned documents sometimes produce duplicate pages. Remove the extras.
+
+Confidential pages: Remove pages containing sensitive information before sharing with clients or colleagues.
+
+Outdated content: Remove pages with outdated information when you cannot edit the PDF source.`,
+      },
+      {
+        h2: "How to check page numbers before removing",
+        body: `Open your PDF in any PDF viewer (Adobe Reader, browser, Preview on Mac). Page numbers are shown at the bottom of the viewer or in the page panel on the left.
+
+Note that PDF page numbers and printed page numbers may differ. A document might have printed page numbers starting at 5 but the PDF pages start at 1. Always use the PDF viewer page count, not the printed numbers inside the document.`,
+      },
+      {
+        h2: "Can I remove multiple pages at once?",
+        body: `Yes. Enter all page numbers separated by commas: 1, 2, 5, 8
+
+You can remove as many pages as you want as long as at least one page remains in the document. The tool will not allow you to remove all pages.
+
+If you need to keep only a few specific pages from a large document, it may be easier to use the Split PDF tool instead — extract just the pages you want to keep.`,
+      },
+    ],
+    cta: { label: "Remove PDF pages now", href: "/remove-pdf-pages" },
+  },
+
+  "password-protect-pdf-free": {
+    intro: `Protecting a PDF with a password is one of the most common document security tasks. Whether you are sending a contract, sharing financial information, or distributing confidential reports, adding password protection ensures only the intended recipient can open the file. Here is how to do it for free in under 30 seconds.`,
+    sections: [
+      {
+        h2: "How to add a password to a PDF — step by step",
+        body: `1. Go to shrink-box.com/protect-pdf
+2. Upload your PDF file
+3. Enter a password (minimum 4 characters)
+4. Confirm the password
+5. Click Protect PDF
+6. Download the protected file
+
+The tool adds a confidential watermark to every page and embeds the password protection. The process takes a few seconds.`,
+      },
+      {
+        h2: "What makes a strong PDF password",
+        body: `A good PDF password should be:
+
+At least 8 characters long
+Contains a mix of letters, numbers and symbols
+Not based on obvious information like your name or birthday
+
+Example of a weak password: john2024
+Example of a strong password: J#7mK9$x
+
+Remember: if you forget the password there is no way to recover it. Store it somewhere safe like a password manager.`,
+      },
+      {
+        h2: "PDF protection levels explained",
+        body: `There are two types of PDF protection:
+
+Open password (user password): Prevents anyone from opening the file without the password. This is what most people need for sharing sensitive documents.
+
+Permissions password (owner password): Allows opening but restricts printing, copying text, or editing. Used for distributing documents you want people to read but not modify.
+
+For most use cases — sending a document securely — an open password is sufficient.`,
+      },
+      {
+        h2: "How to share password-protected PDFs securely",
+        body: `Never send the password in the same email as the protected PDF. If someone intercepts the email they get both the file and the password.
+
+Best practice:
+1. Send the protected PDF by email
+2. Send the password through a different channel — SMS, WhatsApp, or a phone call
+
+This way even if one channel is compromised, the attacker only has half of what they need.`,
+      },
+      {
+        h2: "How to remove a password from a PDF",
+        body: `If you need to remove the password from a PDF you own, use the Unlock PDF tool at shrink-box.com/unlock-pdf. Upload the file, enter the current password, and download the unlocked version.`,
+      },
+    ],
+    cta: { label: "Protect PDF with password", href: "/protect-pdf" },
+  },
+
+  "convert-images-to-pdf": {
+    intro: `Need to combine multiple photos into a single PDF document? Whether you are creating a photo album, submitting scanned documents, combining product photos, or assembling a portfolio — converting images to PDF is a common task. Here is the fastest free way to do it online without any software.`,
+    sections: [
+      {
+        h2: "How to convert multiple images to PDF — step by step",
+        body: `1. Go to shrink-box.com/images-to-pdf
+2. Click the upload area or drag your images onto it
+3. You can upload up to 20 images at once (JPG, PNG or WebP)
+4. Remove any images you do not want using the X button
+5. Click Create PDF
+6. Download your PDF
+
+Each image becomes one page in the PDF. The page size matches the image dimensions.`,
+      },
+      {
+        h2: "What order will the images appear in the PDF?",
+        body: `Images appear in the PDF in the same order they were uploaded. Most browsers upload files in alphabetical order by filename when you select multiple files at once.
+
+To control the order: name your files before uploading. Use numbers at the start of filenames: 01_cover.jpg, 02_page1.jpg, 03_page2.jpg and so on. They will then upload and appear in the correct sequence.`,
+      },
+      {
+        h2: "Best image formats for PDF conversion",
+        body: `JPG: Best for photographs. Smallest file size. Recommended for photo albums and scanned documents.
+
+PNG: Best for screenshots, diagrams, and images with text. Larger file size but sharper text and edges.
+
+WebP: Modern format with good compression. Supported by the converter.
+
+For scanned documents: use JPG at high quality for the smallest PDF. For screenshots with text: use PNG to keep text sharp and readable.`,
+      },
+      {
+        h2: "Common uses for images to PDF conversion",
+        body: `Scanned documents: Scan multiple pages with your phone camera and combine into one PDF to email or upload.
+
+Photo albums: Combine holiday photos into a single PDF to share with family.
+
+Portfolio: Combine work samples into one document for job applications.
+
+Receipts: Combine receipt photos into one PDF for expense reporting.
+
+Product catalogs: Combine product photos into a catalog PDF.`,
+      },
+      {
+        h2: "How to compress the resulting PDF",
+        body: `PDFs created from high-resolution images can be large. After downloading your PDF from the images to PDF converter, run it through the PDF compressor at shrink-box.com/compress-pdf to reduce the file size before sharing.`,
+      },
+    ],
+    cta: { label: "Convert images to PDF", href: "/images-to-pdf" },
+  },
+
+  "rotate-pdf-online": {
+    intro: `Scanned a document upside down? Received a PDF where some pages are rotated the wrong way? Rotating PDF pages is a simple fix that should take seconds. Here is how to rotate any PDF page online for free — no software installation, no signup, instant download.`,
+    sections: [
+      {
+        h2: "How to rotate a PDF online — step by step",
+        body: `1. Go to shrink-box.com/rotate-pdf
+2. Upload your PDF file
+3. Choose the rotation angle: 90°, 180° or 270°
+4. Click Rotate PDF
+5. Download the rotated file
+
+The rotation applies to all pages in the document. Processing takes a few seconds.`,
+      },
+      {
+        h2: "Which angle should I choose?",
+        body: `90° clockwise: Rotates pages a quarter turn to the right. Use this if your pages appear turned on their left side.
+
+180°: Flips pages completely upside down. Use this if your document is completely inverted.
+
+270° clockwise (same as 90° counter-clockwise): Rotates pages a quarter turn to the left. Use this if your pages appear turned on their right side.
+
+Not sure which to use? Try 90° first. If it is not right, try 270°. If pages are completely upside down, use 180°.`,
+      },
+      {
+        h2: "Why do PDFs end up rotated?",
+        body: `The most common cause is scanning. When you scan a document on a flatbed scanner or with a phone camera app, the orientation of the original document determines the page rotation in the output PDF. If you placed the document upside down or sideways on the scanner, the resulting PDF will be rotated.
+
+Another common cause is PDF creation from different applications. Some design tools export PDFs in landscape orientation when the content was created in portrait, causing an apparent 90° rotation.`,
+      },
+      {
+        h2: "Can I rotate just one page instead of all pages?",
+        body: `The ShrinkBox rotate tool rotates all pages by the same angle. If you need to rotate only specific pages while leaving others unchanged, the workaround is:
+
+1. Split the PDF into individual pages using shrink-box.com/split-pdf
+2. Rotate the specific pages that need it
+3. Merge all pages back together using shrink-box.com/merge-pdf
+
+This takes a few extra steps but gives you full control over individual page rotation.`,
+      },
+    ],
+    cta: { label: "Rotate PDF now", href: "/rotate-pdf" },
+  },
+
+  "webp-vs-png-vs-jpg-2026": {
+    intro: `The image format you choose affects your website loading speed, Google ranking, storage costs, and visual quality. In 2026 the answer to which format to use has become clearer than ever — but it still depends on your specific use case. Here is the definitive guide to choosing between WebP, PNG and JPG.`,
+    sections: [
+      {
+        h2: "JPG in 2026 — still relevant?",
+        body: `JPG has been the standard photo format since 1992 and it is still widely used. Its advantages are universal compatibility and good compression for photographs.
+
+Use JPG when:
+- Maximum compatibility is required (old software, email clients)
+- File must work on any device without question
+- Sharing photos with non-technical users
+
+Avoid JPG when:
+- Image has transparency (JPG does not support it)
+- Image contains text or sharp edges (compression creates artifacts)
+- You are optimizing a website (WebP is better)
+
+JPG file sizes are 3-5x larger than equivalent WebP at the same quality.`,
+      },
+      {
+        h2: "PNG in 2026 — when lossless matters",
+        body: `PNG is a lossless format that preserves every pixel exactly. It supports full transparency (alpha channel).
+
+Use PNG when:
+- Image has transparent background (logos, icons, UI elements)
+- Image contains text that must remain sharp
+- Screenshot of software interface
+- You cannot accept any quality loss
+
+Avoid PNG when:
+- Image is a photograph (file size will be 3-8x larger than JPG)
+- You are serving images on a website (WebP is better)
+
+PNG is the right choice for logos and graphics. Using PNG for photos is a common mistake that wastes significant storage and bandwidth.`,
+      },
+      {
+        h2: "WebP in 2026 — the clear winner for web",
+        body: `WebP was developed by Google specifically for web use. It supports both lossy and lossless compression plus transparency.
+
+Browser support as of 2026: Chrome, Firefox, Safari, Edge — all support WebP. Over 97% of global browser usage supports it.
+
+File size comparison at equivalent quality:
+WebP vs JPG: 25-35% smaller
+WebP vs PNG: 15-25% smaller (lossless), up to 70% smaller (lossy)
+
+Use WebP for:
+- All images on websites
+- Any image where file size matters
+- Replacing JPG photos on web pages
+- Replacing PNG graphics that do not need maximum compatibility
+
+Convert your existing images to WebP at shrink-box.com/convert-jpg-to-webp`,
+      },
+      {
+        h2: "Quick decision guide for 2026",
+        body: `Website photo: WebP (best size and quality)
+Website logo with transparency: WebP or PNG
+Email attachment photo: JPG (universal compatibility)
+Screenshot with text: PNG (sharpest text)
+Social media photo: JPG (most compatible)
+Print photo: JPG at 100% quality or PNG
+Logo file for sharing: PNG
+Archive of photos: JPG (best storage efficiency for photos)`,
+      },
+      {
+        h2: "How to convert your images to WebP",
+        body: `Converting existing JPG or PNG images to WebP takes seconds using ShrinkBox:
+
+For JPG to WebP: shrink-box.com/convert-jpg-to-webp
+For PNG to WebP: shrink-box.com/convert-png-to-webp
+
+Upload your image, click Convert, download the WebP file. Typical size reduction is 25-40% compared to the original JPG.`,
+      },
+    ],
+    cta: { label: "Convert to WebP", href: "/convert-jpg-to-webp" },
+  },
+
+  "add-page-numbers-to-pdf": {
+    intro: `A PDF without page numbers is hard to navigate and looks unprofessional when printed. Whether you are preparing a report, thesis, manual, or any multi-page document, adding page numbers makes it easier to reference specific sections. Here is how to add page numbers to any PDF online for free in under a minute.`,
+    sections: [
+      {
+        h2: "How to add page numbers to a PDF — step by step",
+        body: `1. Go to shrink-box.com/add-page-numbers-pdf
+2. Upload your PDF file
+3. Choose the position: bottom center, bottom right, bottom left, top center, or top right
+4. Choose the format: simple numbers (1, 2, 3) or page of total (1/10, 2/10, 3/10)
+5. Choose the color: black or gray
+6. Set the starting number if you want to begin from a number other than 1
+7. Click Add Page Numbers
+8. Download your numbered PDF`,
+      },
+      {
+        h2: "Which position should I choose?",
+        body: `Bottom center: Most common and professional. Works for reports, theses, and formal documents. Matches most document style guides.
+
+Bottom right: Common for printed books and documents where pages are viewed side by side. Right side is easy to find when flipping pages.
+
+Bottom left: Less common. Used when right side is reserved for other information.
+
+Top center or top right: Used in some academic and legal documents where bottom margin is used for footnotes.
+
+For most documents, bottom center is the safe default choice.`,
+      },
+      {
+        h2: "Page of total format explained",
+        body: `The format 1 / 10, 2 / 10, 3 / 10 shows both the current page and the total number of pages. This is helpful when:
+
+- Readers need to know how much of the document remains
+- Documents are printed and pages might get separated
+- Legal or formal documents where completeness matters
+
+Simple numbering (1, 2, 3) is cleaner and preferred for most documents. Use page of total when the reader benefit from knowing the document length.`,
+      },
+      {
+        h2: "Can I add page numbers starting from a specific number?",
+        body: `Yes. The starting number setting lets you begin from any number. This is useful when:
+
+Your document has a cover page or table of contents that should not be numbered — set starting number to 0 or skip those pages first.
+
+Your PDF is one chapter of a larger document and pages should continue from the previous chapter — set starting number to match.
+
+For example if your previous chapter ended on page 24, set starting number to 25 for the next chapter.`,
+      },
+      {
+        h2: "Adding page numbers to scanned PDFs",
+        body: `Page numbers can be added to any PDF including scanned documents. The numbers are added as a separate layer on top of the scanned content, so even non-editable scanned PDFs work perfectly.
+
+After adding page numbers, consider running the PDF through the compressor at shrink-box.com/compress-pdf to reduce file size before sharing.`,
+      },
+    ],
+    cta: { label: "Add page numbers to PDF", href: "/add-page-numbers-pdf" },
   },
 };
 
