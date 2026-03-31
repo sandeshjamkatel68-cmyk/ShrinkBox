@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "77a4632e4029d567b60ca3f46d6cfce7",
-    "previewModeSigningKey": "5a52cec25857e82be9d5b68ba1783daf96af8621132e9440572c34f8f9ac5c64",
-    "previewModeEncryptionKey": "74c1daf08c2075f316ed278bf91f8375883e8f6ab743fe7c5ed3336df7e7f80c"
-  }
-}
+{"version":4,"routes":{"/blog/how-to-compress-images-for-web":{},"/blog/reduce-pdf-file-size":{},"/blog/jpg-vs-png-vs-webp":{},"/blog/compress-images-for-email":{},"/blog/what-is-webp":{},"/blog/merge-pdf-guide":{},"/blog/how-to-watermark-pdf":{},"/blog/resize-image-online":{},"/blog/convert-png-to-jpg":{},"/blog/compress-pdf-for-email":{},"/blog/ilovepdf-alternative":{},"/blog/reduce-image-size-without-losing-quality":{},"/blog/compress-image-for-whatsapp":{},"/blog/remove-pages-from-pdf":{},"/blog/password-protect-pdf-free":{},"/blog/convert-images-to-pdf":{},"/blog/rotate-pdf-online":{},"/blog/webp-vs-png-vs-jpg-2026":{},"/blog/add-page-numbers-to-pdf":{}},"dynamicRoutes":{"/blog/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/blog/[slug]","routeRegex":"^\\/blog\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"77a4632e4029d567b60ca3f46d6cfce7","previewModeSigningKey":"5a52cec25857e82be9d5b68ba1783daf96af8621132e9440572c34f8f9ac5c64","previewModeEncryptionKey":"74c1daf08c2075f316ed278bf91f8375883e8f6ab743fe7c5ed3336df7e7f80c"}}

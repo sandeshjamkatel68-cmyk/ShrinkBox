@@ -1,8 +1,8 @@
 {
   "/page": "app/page.js",
-  "/compress-image-to-size/page": "app/compress-image-to-size/page.js",
-  "/resize-image/page": "app/resize-image/page.js",
-  "/color-picker/page": "app/color-picker/page.js",
-  "/json-formatter/page": "app/json-formatter/page.js",
-  "/privacy-policy-generator/page": "app/privacy-policy-generator/page.js"
+  "/watermark-image/page": "app/watermark-image/page.js",
+  "/blog/[slug]/page": "app/blog/[slug]/page.js",
+  "/protect-pdf/page": "app/protect-pdf/page.js",
+  "/terms/page": "app/terms/page.js",
+  "/reduce-jpg-size/page": "app/reduce-jpg-size/page.js"
 }
