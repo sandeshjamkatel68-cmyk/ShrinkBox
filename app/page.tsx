@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import CompressorWidget from "@/components/upload/CompressorWidget";
 import { TrustSignals, FAQ } from "@/components/seo";
 
@@ -89,29 +90,30 @@ const DEV_DESIGN_TOOLS = [
   { href: "/base64-to-image",      label: "Base64 → Image",      icon: I.Code, badge: "New" },
 ];
 
-type Tool = { href: string; label: string; icon: React.ReactNode; badge?: string };
+type Tool = { href: string; label: string; icon: ReactNode; badge?: string };
 
 function ToolGrid({ tools }: { tools: Tool[] }) {
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2">
-      {tools.map(({ href, label, icon, badge }) => (
+    <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+      {tools.map(({ href, label, icon, badge }, idx) => (
         <Link
           key={href}
           href={href}
-          className="tool-card relative group flex flex-col items-center gap-2.5 px-3 py-4 rounded-xl border border-[var(--border)] bg-[var(--surface)] text-center no-underline transition-all duration-150 hover:-translate-y-0.5 hover:border-[var(--brand)]"
-          style={{ boxShadow: "var(--shadow-xs)" }}
+          className="tool-card group relative flex flex-col items-center gap-4 px-4 py-6 rounded-2xl border border-border bg-surface text-center no-underline transition-all duration-300 hover:-translate-y-1.5 hover:border-brand shadow-sm hover:shadow-xl animate-fade-up"
+          style={{ animationDelay: `${idx * 0.05}s` }}
         >
           {badge && (
-            <span className="absolute top-2 right-2 text-[9px] font-bold bg-[var(--brand)] text-white rounded-full px-1.5 py-0.5 leading-none">
+            <span className="absolute top-3 right-3 text-[10px] font-bold bg-brand text-white rounded-full px-2 py-0.5 leading-none shadow-sm z-10">
               {badge}
             </span>
           )}
-          <div className="w-9 h-9 rounded-lg bg-[var(--surface-muted)] flex items-center justify-center text-[var(--text-muted)] group-hover:bg-[var(--brand-light)] group-hover:text-[var(--brand)] transition-all duration-150">
+          <div className="w-12 h-12 rounded-xl bg-surface-muted flex items-center justify-center text-muted-foreground group-hover:bg-brand-light group-hover:text-brand transition-all duration-300 rotate-0 group-hover:rotate-6">
             {icon}
           </div>
-          <span className="text-[12.5px] font-medium text-[var(--text-muted)] group-hover:text-[var(--text)] leading-tight transition-colors">
+          <span className="text-[14px] font-bold text-muted-foreground group-hover:text-foreground leading-tight transition-colors">
             {label}
           </span>
+          <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand group-hover:w-full transition-all duration-500" />
         </Link>
       ))}
     </div>
@@ -128,65 +130,80 @@ const HOME_FAQ = [
 
 export default function HomePage() {
   return (
-    <>
+    <div className="relative isolate">
+      {/* Background Mesh */}
+      <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+        <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-brand to-accent opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+      </div>
+
       {/* Hero */}
-      <section className="max-w-[640px] mx-auto px-5 pt-14 pb-6 text-center">
-        <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--brand)] bg-[var(--brand-light)] rounded-full px-3 py-1.5 mb-5 border border-[var(--brand-muted)]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand)] inline-block" />
+      <section className="max-w-[800px] mx-auto px-5 pt-20 pb-12 text-center relative">
+        <div className="inline-flex items-center gap-2 text-xs font-bold text-brand bg-brand-light rounded-full px-4 py-2 mb-8 border border-brand/10 animate-fade-up">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
+          </span>
           Free · No login · Instant download
         </div>
 
-        <h1 className="text-[44px] md:text-[56px] font-bold tracking-tight leading-[1.08] mb-4">
+        <h1 className="text-[52px] md:text-[72px] font-extrabold tracking-tight leading-[0.95] mb-6 text-foreground animate-fade-up" style={{ animationDelay: '0.1s' }}>
           Compress files.<br />
-          <span className="text-[var(--brand)]">No friction.</span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand to-accent">No friction.</span>
         </h1>
-        <p className="text-[var(--text-muted)] text-lg mb-10 max-w-[360px] mx-auto leading-relaxed">
-          Upload an image or PDF. We compress it instantly and send it right back.
+        <p className="text-muted-foreground text-xl mb-12 max-w-[480px] mx-auto leading-relaxed font-medium animate-fade-up" style={{ animationDelay: '0.2s' }}>
+          The fastest way to optimize images and PDFs. Instant results, zero registration, and complete privacy.
         </p>
 
-        <CompressorWidget />
+        <div className="animate-fade-up" style={{ animationDelay: '0.3s' }}>
+          <CompressorWidget />
+        </div>
 
-        <div className="mt-5">
+        <div className="mt-8 animate-fade-up" style={{ animationDelay: '0.4s' }}>
           <TrustSignals />
         </div>
       </section>
 
-      {/* Tools */}
-      <section className="max-w-[1100px] mx-auto px-5 py-12" id="tools">
+      {/* Tools Section */}
+      <section className="max-w-[1200px] mx-auto px-5 py-20 relative" id="tools">
+        <div className="flex flex-col items-center mb-16 text-center">
+          <h2 className="text-3xl font-bold tracking-tight mb-4">Powerful tools, zero cost.</h2>
+          <div className="h-1 w-20 bg-brand rounded-full mb-2" />
+        </div>
 
-        <div className="mb-8">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[var(--text-subtle)] mb-3">Image Tools</p>
+
+        <div className="mb-12">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Image Tools</p>
           <ToolGrid tools={IMAGE_TOOLS} />
         </div>
 
-        <div className="mb-8">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[var(--text-subtle)] mb-3">Convert Images</p>
+        <div className="mb-12">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Convert & PDF</p>
           <ToolGrid tools={CONVERT_TOOLS} />
         </div>
         
-        <div className="mb-8">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[var(--text-subtle)] mb-3">Design & Developer Tools</p>
+        <div className="mb-12">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Design & Developer</p>
           <ToolGrid tools={DEV_DESIGN_TOOLS} />
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[var(--text-subtle)] mb-3">PDF Tools</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Advanced PDF</p>
           <ToolGrid tools={PDF_TOOLS} />
         </div>
       </section>
 
       {/* Stats strip */}
-      <div className="border-y border-[var(--border)] bg-[var(--surface)]">
-        <div className="max-w-[1100px] mx-auto px-5 py-5 flex flex-wrap justify-center gap-x-12 gap-y-4">
+      <div className="border-y border-border bg-surface-muted/30">
+        <div className="max-w-[1100px] mx-auto px-5 py-8 flex flex-wrap justify-center gap-x-16 gap-y-6">
           {[
-            { num: "21+",   label: "Free tools" },
+            { num: "50+",   label: "Free online tools" },
             { num: "10 MB", label: "Max file size" },
             { num: "0",     label: "Files stored" },
             { num: "100%",  label: "Free forever" },
           ].map(({ num, label }) => (
-            <div key={label} className="text-center min-w-[64px]">
-              <div className="text-xl font-bold tracking-tight text-[var(--text)]">{num}</div>
-              <div className="text-xs text-[var(--text-muted)] mt-0.5">{label}</div>
+            <div key={label} className="text-center min-w-[100px]">
+              <div className="text-2xl font-black tracking-tight text-foreground">{num}</div>
+              <div className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground mt-1">{label}</div>
             </div>
           ))}
         </div>
@@ -198,11 +215,15 @@ export default function HomePage() {
       </section>
 
       {/* SEO text */}
-      <section className="max-w-[680px] mx-auto px-5 pb-16 space-y-3 text-[15px] text-[var(--text-muted)] leading-relaxed">
-        <h2 className="text-xl font-bold text-[var(--text)]">The fastest way to compress files online</h2>
-        <p>ShrinkBox is a free online file utility built for speed and simplicity. Whether you need to reduce an image for email, shrink a PDF for an upload limit, or convert between formats — we handle it instantly without any sign-up.</p>
-        <p>Our image compression uses Sharp with MozJPEG encoding to reduce JPG, PNG, and WebP files by up to 60% while maintaining visual quality. All processing happens server-side and files are permanently deleted after download.</p>
+      <section className="max-w-[800px] mx-auto px-5 pb-24 space-y-6 text-[16px] text-muted-foreground leading-relaxed">
+        <div className="p-8 rounded-3xl bg-surface-muted/50 border border-border/50">
+          <h2 className="text-2xl font-bold text-foreground mb-4">The fastest way to compress files online</h2>
+          <div className="space-y-4 font-medium">
+            <p>ShrinkBox is a free online file utility built for speed and simplicity. Whether you need to reduce an image for email, shrink a PDF for an upload limit, or convert between formats — we handle it instantly without any sign-up.</p>
+            <p>Our image compression uses Sharp with MozJPEG encoding to reduce JPG, PNG, and WebP files by up to 60% while maintaining visual quality. All processing happens server-side and files are permanently deleted after download.</p>
+          </div>
+        </div>
       </section>
-    </>
+    </div>
   );
 }

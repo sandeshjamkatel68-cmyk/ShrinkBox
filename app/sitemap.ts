@@ -1,10 +1,15 @@
 import { MetadataRoute } from "next";
 import { BLOG_POSTS } from "@/lib/content/blogPosts";
 
+/**
+ * Sitemap generator for ShrinkBox.
+ * Essential for Google to discover all 50+ tools and blog posts.
+ */
+
 const BASE_URL = "https://shrink-box.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const toolPages = [
+  const toolPaths = [
     // Image tools
     "/compress-image",
     "/compress-webp",
@@ -14,13 +19,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/image-to-grayscale",
     "/reduce-jpg-size",
     "/reduce-png-size",
-    // Image convert
-    "/convert-jpg-to-webp",
-    "/convert-jpg-to-png",
-    "/convert-png-to-webp",
-    "/convert-png-to-jpg",
-    "/convert-webp-to-jpg",
-    "/images-to-pdf",
+    "/compress-image-to-size",
+    "/heic-to-jpg",
+    "/image-to-text",
+    "/color-picker",
+    "/svg-to-png",
+    "/watermark-image",
+    "/image-to-base64",
+    "/base64-to-image",
+    "/favicon-generator",
+    "/meme-generator",
+    "/qr-code-generator",
+    "/social-media-resizer",
+    "/json-formatter",
+    
     // PDF tools
     "/compress-pdf",
     "/merge-pdf",
@@ -33,31 +45,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/add-page-numbers-pdf",
     "/pdf-to-jpg",
     "/pdf-to-word",
-    // New Tools
-    "/compress-image-to-size",
-    "/heic-to-jpg",
-    "/image-to-text",
-    "/color-picker",
-    "/svg-to-png",
-    "/watermark-image",
-    "/image-to-base64",
-    "/base64-to-image",
-    "/favicon-generator",
-    "/meme-generator",
-    "/qr-code-generator",
-    "/json-formatter",
-    "/social-media-resizer",
+
+    // Legal / Meta
     "/privacy-policy-generator",
   ];
 
-  const staticPages = ["/", "/about", "/contact", "/privacy", "/terms", "/blog"];
-  const blogPages   = BLOG_POSTS.map((p) => `/blog/${p.slug}`);
-  const allPages    = [...staticPages, ...toolPages, ...blogPages];
+  const staticPaths = ["/", "/about", "/contact", "/privacy", "/terms", "/blog"];
+  const blogPaths   = BLOG_POSTS.map((p) => `/blog/${p.slug}`);
 
-  return allPages.map((path) => ({
-    url:             `${BASE_URL}${path}`,
-    lastModified:    new Date(),
-    changeFrequency: path === "/" ? "weekly" : "monthly",
-    priority:        path === "/" ? 1 : toolPages.includes(path) ? 0.8 : 0.6,
-  }));
+  // Combine all paths
+  const allPaths = [...staticPaths, ...toolPaths, ...blogPaths];
+
+  return allPaths.map((path) => {
+    // Dynamic Priority Logic
+    let priority = 0.5;
+    if (path === "/") priority = 1.0;
+    else if (toolPaths.includes(path)) priority = 0.8;
+    else if (path === "/blog") priority = 0.7;
+    else if (blogPaths.includes(path)) priority = 0.6;
+
+    // Change Frequency
+    let changefreq: "weekly" | "monthly" | "yearly" = "monthly";
+    if (path === "/" || path === "/blog") changefreq = "weekly";
+
+    return ({
+      url:             `${BASE_URL}${path}`,
+      lastModified:    new Date(),
+      changeFrequency: changefreq,
+      priority:        priority,
+    });
+  });
 }

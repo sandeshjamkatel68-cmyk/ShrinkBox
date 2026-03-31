@@ -1,8 +1,4 @@
 {
-  "/page": "app/page.js",
-  "/watermark-image/page": "app/watermark-image/page.js",
-  "/blog/[slug]/page": "app/blog/[slug]/page.js",
-  "/protect-pdf/page": "app/protect-pdf/page.js",
-  "/terms/page": "app/terms/page.js",
-  "/reduce-jpg-size/page": "app/reduce-jpg-size/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js"
 }

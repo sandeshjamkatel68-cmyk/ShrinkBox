@@ -71,18 +71,82 @@ export default function CompressPDFPage() {
         <FAQ items={PDF_FAQ} />
       </section>
 
-      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
-        <h2 className="text-xl font-bold text-[var(--text)]">How PDF compression works</h2>
-        <p>
-          Our PDF compressor uses pdf-lib to parse, clean, and re-pack PDF files. It removes
-          embedded metadata like author information, creation timestamps, and software signatures.
-          It also enables object stream compression, which reduces the size of the PDF's internal
-          structure.
-        </p>
-        <p>
-          This approach works best on PDFs exported from word processors, design tools, or
-          web browsers — files that tend to carry significant metadata overhead.
-        </p>
+      <section className="max-w-4xl mx-auto px-4 pb-20">
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="space-y-6">
+            <h2 className="text-2xl font-extrabold text-foreground tracking-tight">Why Choose ShrinkBox?</h2>
+            <div className="space-y-4">
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center shrink-0">🌐</div>
+                <div>
+                  <p className="font-bold text-foreground">Global Standard Compression</p>
+                  <p className="text-sm text-muted-foreground">We use industry-leading libraries to ensure your PDFs stay sharp while losing weight.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-full bg-accent-light flex items-center justify-center shrink-0">🔒</div>
+                <div>
+                  <p className="font-bold text-foreground">100% Private & Secure</p>
+                  <p className="text-sm text-muted-foreground">Your files never leave the processing memory and are deleted instantly. Zero storage, zero risk.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center shrink-0">⚡</div>
+                <div>
+                  <p className="font-bold text-foreground">Lightning Fast</p>
+                  <p className="text-sm text-muted-foreground">No queues, no signups, no waiting. Just upload and download in seconds.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <h2 className="text-2xl font-extrabold text-foreground tracking-tight">How to Compress PDF (3 Simple Steps)</h2>
+            <ol className="relative border-l border-brand/20 ml-3 space-y-8">
+              <li className="ml-6">
+                <span className="absolute flex items-center justify-center w-8 h-8 bg-brand rounded-full -left-4 ring-4 ring-background text-white font-bold">1</span>
+                <div>
+                  <p className="font-bold text-foreground">Upload your PDF</p>
+                  <p className="text-sm text-muted-foreground">Drag and drop your file into the box above or click to select from your device.</p>
+                </div>
+              </li>
+              <li className="ml-6">
+                <span className="absolute flex items-center justify-center w-8 h-8 bg-brand rounded-full -left-4 ring-4 ring-background text-white font-bold">2</span>
+                <div>
+                  <p className="font-bold text-foreground">Automatic Optimization</p>
+                  <p className="text-sm text-muted-foreground">Our engine immediately strips redundant metadata and cleans internal structures.</p>
+                </div>
+              </li>
+              <li className="ml-6">
+                <span className="absolute flex items-center justify-center w-8 h-8 bg-brand rounded-full -left-4 ring-4 ring-background text-white font-bold">3</span>
+                <div>
+                  <p className="font-bold text-foreground">Download & Save</p>
+                  <p className="text-sm text-muted-foreground">Get your optimized PDF instantly. Check the file size reduction and save to your folder.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section className="max-w-4xl mx-auto px-4 pb-24 text-[16px] text-muted-foreground leading-relaxed">
+        <div className="p-8 rounded-3xl bg-surface-muted/50 border border-border/50">
+          <h2 className="text-2xl font-bold text-foreground mb-6">Deep Dive: How PDF Compression Works</h2>
+          <div className="grid md:grid-cols-2 gap-8 font-medium">
+            <p>
+              Our PDF compressor uses advanced <strong>pdf-lib</strong> technology to parse, clean, and re-pack document files. Its primary goal is to reduce file size without ever compromising on readability or document integrity.
+            </p>
+            <p>
+              Specifically, the tool targets <strong>embedded metadata</strong> — information like author details, software signatures, and time-stamps that add weight but zero visual value.
+            </p>
+            <p>
+              Furthermore, we enable <strong>object stream compression</strong>. This technical process groups small objects together within the PDF structure, allowing for better overall compression ratios.
+            </p>
+            <p>
+              ShrinkBox is perfect for students, professionals, and developers who need to meet strict upload limits for email, government forms, or web deployments.
+            </p>
+          </div>
+        </div>
       </section>
       <RelatedGuides tags={["PDF","Tools"]} />
     </>

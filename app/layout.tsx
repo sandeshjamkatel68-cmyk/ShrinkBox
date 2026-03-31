@@ -67,6 +67,14 @@ export const metadata: Metadata = {
     index:  true,
     follow: true,
   },
+  alternates: {
+    canonical: "https://shrink-box.com",
+    languages: {
+      "en-US": "https://shrink-box.com",
+      "es-ES": "https://shrink-box.com/es",
+      "hi-IN": "https://shrink-box.com/hi",
+    },
+  },
 };
 
 export default function RootLayout({

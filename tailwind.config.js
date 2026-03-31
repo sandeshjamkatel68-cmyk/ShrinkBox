@@ -5,30 +5,45 @@ const config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
+        background: "hsl(var(--bg))",
+        foreground: "hsl(var(--text))",
         brand: {
-          50:  "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
-          900: "#1e3a8a",
+          DEFAULT: "hsl(var(--brand))",
+          dim:     "hsl(var(--brand-dim))",
+          light:   "hsl(var(--brand-light))",
+          muted:   "hsl(var(--brand-muted))",
         },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          light:   "hsl(var(--accent-light))",
+        },
+        surface: {
+          DEFAULT: "hsl(var(--surface))",
+          muted:   "hsl(var(--surface-muted))",
+        },
+        border: "hsl(var(--border))",
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       animation: {
-        "fade-up":    "fadeUp 0.4s ease forwards",
-        "pulse-slow": "pulse 3s cubic-bezier(0.4,0,0.6,1) infinite",
+        "fade-up":    "fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "shimmer":    "shimmer 2s linear infinite",
       },
       keyframes: {
         fadeUp: {
-          "0%":   { opacity: "0", transform: "translateY(12px)" },
+          "0%":   { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        shimmer: {
+          "100%": { left: "100%" },
         },
       },
     },

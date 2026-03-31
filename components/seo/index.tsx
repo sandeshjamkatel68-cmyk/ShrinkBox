@@ -12,13 +12,14 @@ export function TrustSignals() {
     "100% free",
   ];
   return (
-    <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+    <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 animate-fade-up">
       {items.map((text) => (
-        <span key={text} className="flex items-center gap-1.5 text-sm text-[var(--text-muted)]">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <circle cx="7" cy="7" r="7" fill="var(--brand-light)"/>
-            <path d="M4.5 7l1.8 1.8 3-3.6" stroke="var(--brand)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+        <span key={text} className="flex items-center gap-2 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors cursor-default group">
+          <div className="w-5 h-5 rounded-full bg-brand-light flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+              <path d="M4.5 7l1.8 1.8 3-3.6" stroke="hsl(var(--brand))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
           {text}
         </span>
       ))}
@@ -34,29 +35,32 @@ export function FAQ({ items }: { items: FAQItem[] }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] divide-y divide-[var(--border)] overflow-hidden" style={{ boxShadow: "var(--shadow-sm)" }}>
+    <section className="max-w-2xl mx-auto py-12">
+      <h2 className="text-[28px] font-bold mb-10 text-center tracking-tight text-foreground">Frequently Asked Questions</h2>
+      <div className="rounded-2xl border border-border bg-surface divide-y divide-border overflow-hidden shadow-md">
         {items.map((item, i) => (
-          <div key={item.q}>
+          <div key={item.q} className="group/faq">
             <button
               onClick={() => setOpen(open === i ? null : i)}
-              className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left bg-transparent border-none cursor-pointer font-[inherit] hover:bg-[var(--surface-muted)] transition-colors"
+              className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-transparent border-none cursor-pointer font-[inherit] hover:bg-surface-muted/50 transition-colors"
             >
-              <span className="text-sm font-semibold text-[var(--text)]">{item.q}</span>
-              <svg
-                width="16" height="16" viewBox="0 0 16 16" fill="none"
-                className="shrink-0 transition-transform duration-200"
-                style={{ transform: open === i ? "rotate(180deg)" : "rotate(0deg)" }}
-              >
-                <path d="M4 6l4 4 4-4" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </button>
-            {open === i && (
-              <div className="px-5 pb-4">
-                <p className="text-sm text-[var(--text-muted)] leading-relaxed">{item.a}</p>
+              <span className="text-[15px] font-semibold text-foreground group-hover/faq:text-brand transition-colors">{item.q}</span>
+              <div className={`shrink-0 w-6 h-6 rounded-full border border-border flex items-center justify-center transition-all duration-300 ${open === i ? 'bg-brand border-brand rotate-180' : 'bg-transparent'}`}>
+                <svg
+                  width="12" height="12" viewBox="0 0 16 16" fill="none"
+                  className="transition-colors"
+                >
+                  <path d="M4 6l4 4 4-4" stroke={open === i ? "white" : "hsl(var(--text-muted))"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
-            )}
+            </button>
+            <div 
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${open === i ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+            >
+              <div className="px-6 pb-6 pt-1">
+                <p className="text-[15px] text-muted-foreground leading-relaxed font-medium">{item.a}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -75,19 +79,18 @@ interface ToolHeroProps {
 
 export function ToolHero({ icon, title, description, badge }: ToolHeroProps) {
   return (
-    <div className="text-center mb-8">
+    <div className="text-center mb-12 animate-fade-up">
       {badge && (
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--brand)] bg-[var(--brand-light)] rounded-full px-3 py-1 mb-4">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <circle cx="5" cy="5" r="5" fill="var(--brand)"/>
-            <path d="M3 5l1.5 1.5L7 3.5" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
-          </svg>
+        <span className="inline-flex items-center gap-1.5 text-xs font-bold text-brand bg-brand-light rounded-full px-4 py-1.5 mb-6 border border-brand/10">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
           {badge}
         </span>
       )}
-      <div className="text-4xl mb-3 leading-none">{icon}</div>
-      <h1 className="text-3xl md:text-[38px] font-bold mb-3 tracking-tight">{title}</h1>
-      <p className="text-[var(--text-muted)] max-w-md mx-auto text-[15px] leading-relaxed">
+      <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-brand-light flex items-center justify-center text-3xl shadow-sm rotate-3 group-hover:rotate-0 transition-transform">
+        {icon}
+      </div>
+      <h1 className="text-[34px] md:text-[48px] font-extrabold mb-4 tracking-tight leading-[1.1] text-foreground">{title}</h1>
+      <p className="text-muted-foreground max-w-lg mx-auto text-lg leading-relaxed font-medium">
         {description}
       </p>
     </div>

@@ -46,7 +46,7 @@ export default function Header() {
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 glass border-b border-border shadow-sm">
       <div className="max-w-[1120px] mx-auto px-6 h-14 flex items-center justify-between gap-4">
 
         {/* Logo */}
@@ -55,7 +55,7 @@ export default function Header() {
             <rect width="28" height="28" rx="8" fill="var(--brand)"/>
             <path d="M8.5 10h11M8.5 14h8M12 18.5l2 2.5 4.5-5.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          <span className="font-bold text-[15px] text-[var(--text)] tracking-tight">ShrinkBox</span>
+          <span className="font-bold text-[18px] text-foreground tracking-tight">ShrinkBox</span>
         </Link>
 
         {/* Desktop nav */}
@@ -67,7 +67,7 @@ export default function Header() {
               onMouseEnter={() => setActiveGroup(group.label)}
               onMouseLeave={() => setActiveGroup(null)}
             >
-              <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-muted)] transition-all bg-transparent border-none cursor-pointer font-[inherit]">
+              <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-surface-muted transition-all bg-transparent border-none cursor-pointer font-[inherit]">
                 {group.label}
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                   style={{ transform: activeGroup === group.label ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.15s ease", opacity: 0.5 }}>
@@ -75,26 +75,25 @@ export default function Header() {
                 </svg>
               </button>
 
-              {/* Invisible bridge to prevent gap closing dropdown */}
+              {/* Dropdown Menu */}
               {activeGroup === group.label && (
-                <div className="absolute top-full left-0 w-full h-2" />
-              )}
-
-              {activeGroup === group.label && (
-                <div
-                  className="absolute top-[calc(100%+8px)] left-0 bg-[var(--surface)] border border-[var(--border)] rounded-xl py-2 z-50 min-w-[200px]"
-                  style={{ boxShadow: "0 8px 24px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08)" }}
-                >
-                  {group.items.map(item => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="flex items-center px-4 py-2.5 text-[13px] font-medium text-[var(--text-muted)] hover:bg-[var(--surface-muted)] hover:text-[var(--text)] transition-colors no-underline whitespace-nowrap"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
+                <>
+                  <div className="absolute top-full left-0 w-full h-2" />
+                  <div
+                    className="absolute top-[calc(100%+8px)] left-0 bg-surface border border-border rounded-xl py-2 z-50 min-w-[200px] shadow-xl animate-fade-up"
+                  >
+                    {group.items.map(item => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="flex items-center px-4 py-2.5 text-[13px] font-medium text-muted-foreground hover:bg-surface-muted hover:text-foreground transition-all no-underline whitespace-nowrap group/item"
+                      >
+                        <span className="opacity-0 -ml-2 group-hover/item:opacity-100 group-hover/item:ml-0 transition-all mr-2 text-brand">→</span>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
           ))}
@@ -109,7 +108,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
-            onClick={() => setMobileOpen(o => !o)}
+            onClick={() => setMobileOpen((o: boolean) => !o)}
             className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--surface)] cursor-pointer"
             aria-label="Menu"
           >
