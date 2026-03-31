@@ -1,102 +1,38 @@
-"use client";
-import { useState, useRef } from "react";
+import type { Metadata } from "next";
+import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
+import { ToolSchema, TOOL_META } from "@/lib/seo";
+import UnlockPdfWidget from "./UnlockPdfWidget";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
-function formatBytes(b: number) {
-  if (b < 1048576) return `${(b / 1024).toFixed(1)} KB`;
-  return `${(b / 1048576).toFixed(1)} MB`;
-}
+export const metadata: Metadata = {
+  title: TOOL_META["unlock-pdf"].title, description: TOOL_META["unlock-pdf"].description, keywords: TOOL_META["unlock-pdf"].keywords,
+  openGraph: { title: TOOL_META["unlock-pdf"].title, description: TOOL_META["unlock-pdf"].description, url: "https://shrink-box.com/unlock-pdf", siteName: "ShrinkBox", type: "website", images: [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", title: TOOL_META["unlock-pdf"].title, description: TOOL_META["unlock-pdf"].description },
+  alternates: { canonical: "https://shrink-box.com/unlock-pdf" },
+};
+
+const FAQ_ITEMS = [
+  { q: "Do I need the password to unlock a PDF?", a: "If the PDF requires a password to open (user password), yes. If it only has printing/editing restrictions (owner password), our tool may be able to remove those restrictions without a password." },
+  { q: "Is this legal?", a: "Yes, as long as you own the PDF or have permission from the owner. Removing password protection from files you don't own may violate copyright law." },
+  { q: "Will unlocking change the content?", a: "No. The content, formatting, and images remain exactly the same. Only the password restriction is removed." },
+];
 
 export default function UnlockPdfPage() {
-  const [file, setFile]         = useState<File | null>(null);
-  const [password, setPassword] = useState("");
-  const [status, setStatus]     = useState<"idle"|"processing"|"done"|"error">("idle");
-  const [result, setResult]     = useState<any>(null);
-  const [error, setError]       = useState<string|null>(null);
-  const [dragOver, setDragOver] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  async function handleUnlock() {
-    if (!file) return;
-    setStatus("processing"); setError(null);
-    const form = new FormData();
-    form.append("file", file);
-    if (password) form.append("password", password);
-    try {
-      const res = await fetch("/api/pdf/unlock", { method: "POST", body: form });
-      const data = await res.json();
-      if (!data.success) { setError(data.error); setStatus("error"); return; }
-      setResult(data); setStatus("done");
-    } catch { setError("Network error."); setStatus("error"); }
-  }
-
-  function reset() { setFile(null); setPassword(""); setStatus("idle"); setResult(null); setError(null); }
-
-  if (status === "done" && result) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 py-16">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 text-center">
-          <div className="text-4xl mb-3">🔓</div>
-          <p className="font-semibold mb-1">PDF unlocked — {result.pageCount} pages</p>
-          <p className="text-sm text-[var(--text-muted)] mb-5">{formatBytes(result.outputSize)}</p>
-          <a href={result.downloadUrl} download="unlocked.pdf"
-            className="inline-block bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">
-            ↓ Download Unlocked PDF
-          </a>
-          <button onClick={reset} className="block mx-auto mt-3 text-sm text-[var(--text-muted)]">Try another</button>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
-      <div className="mb-8 text-center">
-        <div className="text-5xl mb-4">🔓</div>
-        <h1 className="text-3xl font-bold mb-2">Unlock PDF</h1>
-        <p className="text-[var(--text-muted)]">Remove restrictions from a PDF. If it has an open password, enter it below.</p>
-      </div>
-
-      <div onClick={() => inputRef.current?.click()}
-        onDrop={e => { e.preventDefault(); setDragOver(false); const f = e.dataTransfer.files[0]; if (f) setFile(f); }}
-        onDragOver={e => { e.preventDefault(); setDragOver(true); }}
-        onDragLeave={() => setDragOver(false)}
-        className={`cursor-pointer rounded-2xl border-2 border-dashed p-8 flex flex-col items-center gap-3 text-center mb-4 transition-all ${
-          dragOver ? "border-[var(--brand)] bg-[rgba(34,197,94,0.05)]" : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50"
-        }`}>
-        <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">🔒</div>
-        <p className="font-medium">{file ? file.name : "Drop your PDF here"}</p>
-        <p className="text-sm text-[var(--text-muted)]">{file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}</p>
-        <input ref={inputRef} type="file" accept=".pdf" className="sr-only"
-          onChange={e => { const f = e.target.files?.[0]; if (f) setFile(f); e.target.value = ""; }} />
-      </div>
-
-      {file && status === "idle" && (
-        <div className="flex flex-col gap-4">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4">
-            <label className="text-sm font-medium block mb-1.5">Password (if required)</label>
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)}
-              placeholder="Leave blank if no password"
-              className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-2.5 text-sm focus:outline-none focus:border-[var(--brand)]" />
-            <p className="text-xs text-[var(--text-muted)] mt-2">Only needed if PDF requires a password to open.</p>
-          </div>
-          <button onClick={handleUnlock}
-            className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
-            Unlock PDF
-          </button>
-        </div>
-      )}
-
-      {status === "processing" && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center">
-          <p className="text-sm font-medium">Unlocking...</p>
-        </div>
-      )}
-
-      {status === "error" && (
-        <div className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">
-          {error} <button onClick={reset} className="ml-2 underline">Retry</button>
-        </div>
-      )}
-    </div>
+    <>
+      <ToolSchema name={TOOL_META["unlock-pdf"].title} description={TOOL_META["unlock-pdf"].description} url={TOOL_META["unlock-pdf"].url} category={TOOL_META["unlock-pdf"].category} />
+      <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
+        <ToolHero icon="🔓" title="Unlock PDF Online" description="Remove restrictions from a password-protected PDF. If it has an open password, enter it below to unlock." badge="Free · Instant · Secure" />
+        <UnlockPdfWidget />
+        <div className="mt-8"><TrustSignals /></div>
+      </section>
+      <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">How PDF unlocking works</h2>
+        <p>PDF files can have two types of passwords: a user password (required to open the file) and an owner password (restricts editing, printing, and copying). Our tool handles both scenarios — enter the password if required, and we'll create an unrestricted copy.</p>
+        <p>The unlocked PDF retains all original content, formatting, and embedded media. Your file is processed server-side and deleted immediately after download.</p>
+      </section>
+      <RelatedGuides tags={["PDF","Tools"]} />
+    </>
   );
 }

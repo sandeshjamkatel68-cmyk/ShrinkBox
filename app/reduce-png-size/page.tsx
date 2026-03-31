@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CompressorWidget from "@/components/upload/CompressorWidget";
 import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
 import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
 export const metadata: Metadata = {
   title:       TOOL_META["reduce-png-size"].title,
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title:       TOOL_META["reduce-png-size"].title,
     description: TOOL_META["reduce-png-size"].description,
-    url:         `https://shrink-box.comReduce PNG Size Online`,
+    url:         "https://shrink-box.com/reduce-png-size",
     siteName:    "ShrinkBox",
     type:        "website",
+    images:      [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card:        "summary_large_image",
@@ -64,6 +66,17 @@ export default function ReducePngPage() {
       <section className="max-w-4xl mx-auto px-4 pb-16">
         <FAQ items={PNG_FAQ} />
       </section>
+
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">How to reduce PNG size securely</h2>
+        <p>
+          PNG files are famous for their lossless quality and support for transparent backgrounds, making them essential for logos, web design, and digital art. The tradeoff is that their file sizes can be massive compared to JPEGs. ShrinkBox tackles this by using advanced <a href="https://en.wikipedia.org/wiki/PNG" target="_blank" rel="noopener noreferrer" className="text-[var(--brand)] hover:underline">zlib compression techniques</a> directly in your browser.
+        </p>
+        <p>
+          When you upload a PNG, our local engine strips unnecessary metadata (like software creator tags) and re-compresses the image data without dropping a single pixel of visual fidelity. Because the processing happens on your device, your images are never sent to a cloud server — ensuring maximum privacy and zero upload waiting time.
+        </p>
+      </section>
+      <RelatedGuides tags={["Formats","Images"]} />
     </>
   );
 }

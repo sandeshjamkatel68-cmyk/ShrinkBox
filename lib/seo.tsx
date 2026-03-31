@@ -259,4 +259,141 @@ export const TOOL_META: Record<string, ToolMeta> = {
     url:         "/pdf-to-word",
     category:    "BusinessApplication",
   },
+  "compress-image-to-size": {
+    title:       "Compress Image to Exact Size (KB) — Free Online",
+    description: "Compress images to an exact target file size (e.g. 50KB or 100KB) online for free. Perfect for exam forms and government applications.",
+    keywords:    ["compress image to 50kb", "image compressor kb", "compress photo to exact size", "compress to 100kb"],
+    url:         "/compress-image-to-size",
+    category:    "MultimediaApplication",
+  },
+  "heic-to-jpg": {
+    title:       "Convert HEIC to JPG Online Free — No Upload",
+    description: "Convert Apple HEIC photos to JPG format instantly in your browser. Fast, free, and completely private with zero uploads.",
+    keywords:    ["heic to jpg", "convert heic to jpeg online free", "heic converter", "iphone photo to jpg"],
+    url:         "/heic-to-jpg",
+    category:    "MultimediaApplication",
+  },
+  "image-to-text": {
+    title:       "Extract Text from Image (OCR) — Free Online",
+    description: "Extract text from images, screenshots, and scanned documents instantly in your browser. Free online OCR with zero file uploads.",
+    keywords:    ["extract text from image", "image to text converter", "online ocr free", "copy text from photo"],
+    url:         "/image-to-text",
+    category:    "BusinessApplication",
+  },
+  "color-picker": {
+    title:       "Image Color Picker & Palette Generator — Free Online",
+    description: "Extract dominant hex colors and generate a complete color palette from any image. Perfect for designers. 100% free and private.",
+    keywords:    ["image color picker", "extract colors from image", "color palette generator from image", "hex code from photo"],
+    url:         "/color-picker",
+    category:    "DesignApplication",
+  },
+  "svg-to-png": {
+    title:       "Convert SVG to PNG Online Free — Instant Vector Conversion",
+    description: "Instantly convert SVG vector graphics to PNG images online. Free, fast, and secure rasterization directly in your browser.",
+    keywords:    ["svg to png", "convert svg to png high resolution", "vector to image", "svg converter online"],
+    url:         "/svg-to-png",
+    category:    "MultimediaApplication",
+  },
+  "watermark-image": {
+    title:       "Add Watermark to Image Online Free — Protect Photos",
+    description: "Stamp your text or overlay logo watermark onto your images directly in your browser. Secure, fast, and transparent.",
+    keywords:    ["add watermark to image", "watermark photo online free", "stamp text on image", "protect image online"],
+    url:         "/watermark-image",
+    category:    "MultimediaApplication",
+  },
+  "image-to-base64": {
+    title:       "Convert Image to Base64 String — Free Developer Tool",
+    description: "Encode images to Base64 data URI format instantly. The best free developer tool for embedding images inside HTML and CSS files.",
+    keywords:    ["image to base64", "convert photo to base64", "base64 encoder online", "image data uri generator"],
+    url:         "/image-to-base64",
+    category:    "DeveloperApplication",
+  },
+  "base64-to-image": {
+    title:       "Decode Base64 to Image — Free Visual Decoder",
+    description: "Paste a Base64 encoded string and preview or download the decoded image instantly. Free developer tool.",
+    keywords:    ["base64 to image", "decode base64 string", "base64 decoder online", "preview base64 string"],
+    url:         "/base64-to-image",
+    category:    "DeveloperApplication",
+  },
+  "favicon-generator": {
+    title:       "Favicon Generator — Convert Image to ICO / PNG",
+    description: "Generate 16x16, 32x32, and Apple Touch Icon sizes from your logo instantly. Download a packaged ZIP file for your website.",
+    keywords:    ["favicon generator", "create favicon online", "image to ico converter", "app icon generator"],
+    url:         "/favicon-generator",
+    category:    "DesignApplication",
+  },
+  "meme-generator": {
+    title:       "Meme Generator Online — Add Text to Images Free",
+    description: "Create funny memes instantly by overlaying Impact text on your images. Free, private, and no signup needed.",
+    keywords:    ["meme generator", "add text to image", "make a meme online", "impact font meme creator"],
+    url:         "/meme-generator",
+    category:    "MultimediaApplication",
+  },
+  "qr-code-generator": {
+    title:       "QR Code Generator — Free Online QR Creator",
+    description: "Create custom QR codes for URLs, WiFi, and text instantly. Customize colors and download in high resolution for free.",
+    keywords:    ["qr code generator", "create qr code free", "online qr creator", "generate qr code"],
+    url:         "/qr-code-generator",
+    category:    "DesignApplication",
+  },
+  "json-formatter": {
+    title:       "JSON Formatter & Validator — Free Developer Tool",
+    description: "Format, beautify, and validate JSON data instantly. A clean, private tool for developers to debug JSON structures.",
+    keywords:    ["json formatter", "beautify json", "json validator", "format json online"],
+    url:         "/json-formatter",
+    category:    "DeveloperApplication",
+  },
+  "social-media-resizer": {
+    title:       "Social Media Image Resizer — One-Click Presets",
+    description: "Resize images for Instagram, YouTube, TikTok, and Twitter instantly. Use our one-click presets for perfect social media posts.",
+    keywords:    ["social media resizer", "instagram photo resizer", "youtube thumbnail size", "resize image for tiktok"],
+    url:         "/social-media-resizer",
+    category:    "MultimediaApplication",
+  },
+  "privacy-policy-generator": {
+    title:       "Free Privacy Policy & Terms Generator — Free Online",
+    description: "Generate professional privacy policies and terms of service for your website or app in seconds. Free and legally compliant.",
+    keywords:    ["privacy policy generator", "free terms and conditions creator", "legal document generator", "website privacy policy"],
+    url:         "/privacy-policy-generator",
+    category:    "BusinessApplication",
+  }
 };
+
+export function ArticleSchema({
+  title,
+  description,
+  url,
+  datePublished,
+  imageUrl,
+}: {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  imageUrl?: string;
+}) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description: description,
+    url: url,
+    datePublished: datePublished,
+    author: {
+      "@type": "Organization",
+      name: "ShrinkBox",
+      url: "https://shrink-box.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ShrinkBox",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://shrink-box.com/icon.svg",
+      },
+    },
+    ...(imageUrl && { image: [imageUrl] }),
+  };
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+}

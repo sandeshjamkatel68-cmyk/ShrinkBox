@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { BLOG_POSTS } from "@/lib/content/blogPosts";
+import { ArticleSchema } from "@/lib/seo";
 
 // ── Full article content keyed by slug ───────────────────────────────────────
 const ARTICLES: Record<string, { intro: string; sections: { h2: string; body: string }[]; cta: { label: string; href: string } }> = {
@@ -806,6 +807,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-16">
+      <ArticleSchema 
+        title={post.title} 
+        description={post.excerpt} 
+        url={`https://shrink-box.com/blog/${slug}`} 
+        datePublished={post.date} 
+      />
       {/* Back */}
       <Link href="/blog" className="text-sm text-[var(--text-muted)] hover:text-[var(--brand)] transition-colors mb-8 inline-block">
         ← All articles

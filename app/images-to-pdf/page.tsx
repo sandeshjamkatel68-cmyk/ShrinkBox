@@ -1,106 +1,39 @@
-"use client";
-import { useState } from "react";
+import type { Metadata } from "next";
+import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
+import { ToolSchema, TOOL_META } from "@/lib/seo";
+import ImagesToPdfWidget from "@/app/images-to-pdf/ImagesToPdfWidget";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
-function formatBytes(b: number) {
-  if (b < 1024) return `${b} B`;
-  if (b < 1048576) return `${(b/1024).toFixed(1)} KB`;
-  return `${(b/1048576).toFixed(1)} MB`;
-}
+export const metadata: Metadata = {
+  title: TOOL_META["images-to-pdf"].title, description: TOOL_META["images-to-pdf"].description, keywords: TOOL_META["images-to-pdf"].keywords,
+  openGraph: { title: TOOL_META["images-to-pdf"].title, description: TOOL_META["images-to-pdf"].description, url: "https://shrink-box.com/images-to-pdf", siteName: "ShrinkBox", type: "website", images: [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", title: TOOL_META["images-to-pdf"].title, description: TOOL_META["images-to-pdf"].description },
+  alternates: { canonical: "https://shrink-box.com/images-to-pdf" },
+};
+
+const FAQ_ITEMS = [
+  { q: "How many images can I combine?", a: "You can combine up to 20 images at once. Each image becomes one page in the output PDF." },
+  { q: "What order will images appear?", a: "Images appear in the order they were uploaded. Most browsers upload in alphabetical order by filename." },
+  { q: "What file formats are supported?", a: "JPG, JPEG, PNG, and WebP images. The output is always a PDF file." },
+  { q: "Can I set the page size?", a: "Each page automatically matches the dimensions of its corresponding image." },
+];
 
 export default function ImagesToPdfPage() {
-  const [files, setFiles] = useState<File[]>([]);
-  const [status, setStatus] = useState<"idle"|"processing"|"done"|"error">("idle");
-  const [result, setResult] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  function addFiles(list: FileList | null) {
-    if (!list) return;
-    const valid = Array.from(list).filter(f => /\.(jpe?g|png|webp)$/i.test(f.name));
-    setFiles(prev => [...prev, ...valid].slice(0, 20));
-  }
-
-  function removeFile(i: number) { setFiles(f => f.filter((_, idx) => idx !== i)); }
-
-  async function handleConvert() {
-    if (!files.length) return;
-    setStatus("processing"); setError(null);
-    const form = new FormData();
-    files.forEach(f => form.append("files", f));
-    try {
-      const res = await fetch("/api/convert/images-to-pdf", { method: "POST", body: form });
-      const data = await res.json();
-      if (!data.success) { setError(data.error); setStatus("error"); return; }
-      setResult(data); setStatus("done");
-    } catch { setError("Network error."); setStatus("error"); }
-  }
-
-  function reset() { setFiles([]); setStatus("idle"); setResult(null); setError(null); }
-
-  if (status === "done" && result) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 py-16">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 text-center">
-          <div className="text-4xl mb-3">✅</div>
-          <p className="font-semibold text-lg mb-1">PDF created — {result.pageCount} pages</p>
-          <p className="text-sm text-[var(--text-muted)] mb-5">{formatBytes(result.outputSize)}</p>
-          <a href={result.downloadUrl} download="images.pdf"
-            className="inline-block bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">
-            ↓ Download PDF
-          </a>
-          <button onClick={reset} className="block mx-auto mt-3 text-sm text-[var(--text-muted)] hover:text-[var(--text)]">Convert more</button>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
-      <div className="mb-8 text-center">
-        <div className="text-5xl mb-4">🖼→📄</div>
-        <h1 className="text-3xl font-bold mb-2">Images to PDF</h1>
-        <p className="text-[var(--text-muted)]">Combine JPG, PNG or WebP images into one PDF. Up to 20 images free.</p>
-      </div>
-
-      <label onDrop={e => { e.preventDefault(); addFiles(e.dataTransfer.files); }} onDragOver={e => e.preventDefault()}
-        className="cursor-pointer rounded-2xl border-2 border-dashed border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50 p-10 flex flex-col items-center gap-3 text-center mb-4 transition-all block">
-        <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">🖼</div>
-        <p className="font-medium">Drop images here</p>
-        <p className="text-sm text-[var(--text-muted)]">JPG · PNG · WebP · or <span className="text-[var(--brand)]">click to browse</span> · Max 20</p>
-        <input type="file" accept=".jpg,.jpeg,.png,.webp" multiple className="sr-only" onChange={e => addFiles(e.target.files)} />
-      </label>
-
-      {files.length > 0 && status === "idle" && (
-        <>
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden mb-4">
-            <div className="px-4 py-3 border-b border-[var(--border)] flex justify-between">
-              <span className="text-sm font-medium">{files.length} images selected</span>
-              <span className="text-xs text-[var(--text-muted)]">{formatBytes(files.reduce((s,f)=>s+f.size,0))}</span>
-            </div>
-            <ul>{files.map((f,i) => (
-              <li key={i} className="flex items-center gap-3 px-4 py-2.5 border-b border-[var(--border)] last:border-0">
-                <span className="text-sm flex-1 truncate">{f.name}</span>
-                <span className="text-xs text-[var(--text-muted)]">{formatBytes(f.size)}</span>
-                <button onClick={() => removeFile(i)} className="text-xs text-red-400 hover:text-red-300 px-1">✕</button>
-              </li>
-            ))}</ul>
-          </div>
-          <button onClick={handleConvert} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
-            Create PDF from {files.length} images
-          </button>
-        </>
-      )}
-
-      {status === "processing" && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center">
-          <p className="text-sm font-medium">Creating PDF...</p>
-        </div>
-      )}
-
-      {status === "error" && (
-        <div className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">
-          {error} <button onClick={reset} className="ml-2 underline">Retry</button>
-        </div>
-      )}
-    </div>
+    <>
+      <ToolSchema name={TOOL_META["images-to-pdf"].title} description={TOOL_META["images-to-pdf"].description} url={TOOL_META["images-to-pdf"].url} category={TOOL_META["images-to-pdf"].category} />
+      <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
+        <ToolHero icon="🖼→📄" title="Images to PDF Converter" description="Combine JPG, PNG or WebP images into one PDF document. Upload up to 20 images and download as a single PDF." badge="Free · Up to 20 images" />
+        <ImagesToPdfWidget />
+        <div className="mt-8"><TrustSignals /></div>
+      </section>
+      <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">When to convert images to PDF</h2>
+        <p>Converting images to PDF is commonly used for submitting scanned documents, creating photo albums, assembling portfolios, combining receipts for expense reports, and creating product catalogs from images.</p>
+        <p>Our converter uses pdf-lib to create a standards-compliant PDF where each image becomes a full page. The resulting PDF can be opened in any PDF reader and is ready for emailing, printing, or archiving.</p>
+      </section>
+      <RelatedGuides tags={["PDF","Tools"]} />
+    </>
   );
 }

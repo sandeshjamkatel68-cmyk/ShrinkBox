@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ConvertImageWidget from "@/components/tools/ConvertImageWidget";
 import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
 import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
 export const metadata: Metadata = {
   title:       TOOL_META["convert-jpg-to-png"].title,
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title:       TOOL_META["convert-jpg-to-png"].title,
     description: TOOL_META["convert-jpg-to-png"].description,
-    url:         `https://shrink-box.comConvert JPG to PNG`,
+    url:         "https://shrink-box.com/convert-jpg-to-png",
     siteName:    "ShrinkBox",
     type:        "website",
+    images:      [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card:        "summary_large_image",
@@ -45,6 +47,7 @@ export default function JpgToPngPage() {
         <div className="mt-8"><TrustSignals /></div>
       </section>
       <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+      <RelatedGuides tags={["Formats","Images"]} />
     </>
   );
 }

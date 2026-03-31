@@ -11,20 +11,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/compress-image-to-size/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/compress-image-to-size/page.js"
+    ],
     "/resize-image/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/resize-image/page.js"
     ],
-    "/blog/page": [
+    "/color-picker/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/blog/page.js"
+      "static/chunks/app/color-picker/page.js"
     ],
-    "/merge-pdf/page": [
+    "/json-formatter/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/merge-pdf/page.js"
+      "static/chunks/app/json-formatter/page.js"
+    ],
+    "/privacy-policy-generator/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/privacy-policy-generator/page.js"
     ]
   }
 }

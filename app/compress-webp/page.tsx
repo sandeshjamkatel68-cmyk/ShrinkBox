@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CompressorWidget from "@/components/upload/CompressorWidget";
 import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
 import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
 export const metadata: Metadata = {
   title:       TOOL_META["compress-webp"].title,
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title:       TOOL_META["compress-webp"].title,
     description: TOOL_META["compress-webp"].description,
-    url:         `https://shrink-box.comCompress WebP Online`,
+    url:         "https://shrink-box.com/compress-webp",
     siteName:    "ShrinkBox",
     type:        "website",
+    images:      [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card:        "summary_large_image",
@@ -44,6 +46,7 @@ export default function CompressWebpPage() {
         <div className="mt-8"><TrustSignals /></div>
       </section>
       <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+      <RelatedGuides tags={["Formats","Images"]} />
     </>
   );
 }

@@ -30,15 +30,27 @@ const I = {
   Numbers:    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M5 4h2v8H5M7 8H5M10 4l-1.5 8h4M10 4h3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/><path d="M3 16h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
   PdfImg:     <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="9" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M12 9l5-0M14.5 6.5l2.5 2.5-2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
   Word:       <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M6.5 8l1.5 6L10 9l2 5 1.5-6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  Code:       <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M7 6l-4 4 4 4M13 6l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><path d="M11 4L9 16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>,
+  Grid:       <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M3 6a3 3 0 013-3h8a3 3 0 013 3v8a3 3 0 01-3 3H6a3 3 0 01-3-3V6z" stroke="currentColor" strokeWidth="1.5"/><path d="M10 3v14M3 10h14" stroke="currentColor" strokeWidth="1.5"/></svg>,
+  Text:       <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M6 3h8M10 4v12M7 16h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  Dropper:    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M15 5l.7-.7a2.8 2.8 0 00-4-4L11 1M8 4l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M15 5L4 16a2 2 0 00-1 2v1h1a2 2 0 002-1L17 7z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  Qr:         <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5"/><path d="M11 11h2v2h-2zm4 4h2v2h-2zm0-4h2v2h-2zm-4 4h2v2h-2z" fill="currentColor"/></svg>,
+  Json:       <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M7 4h-1a2 2 0 00-2 2v2a2 2 0 01-2 2 2 2 0 012 2v2a2 2 0 002 2h1M13 4h1a2 2 0 012 2v2a2 2 0 002 2 2 2 0 00-2 2v2a2 2 0 01-2 2h-1" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  Social:     <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 17c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z" stroke="currentColor" strokeWidth="1.5"/><path d="M10 7a3 3 0 100 6 3 3 0 000-6z" stroke="currentColor" strokeWidth="1.5"/><path d="M13.5 6.5l.5.5M6 14l.5.5" stroke="currentColor" strokeWidth="1.5"/></svg>,
+  Legal:      <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 3L5 5v5c0 3.866 5 7 5 7s5-3.134 5-7V5l-5-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M8 9.5l1.5 1.5 2.5-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
 };
 
 const IMAGE_TOOLS = [
-  { href: "/compress-image",     label: "Compress Image", icon: I.Compress },
-  { href: "/bulk-compress",      label: "Bulk Compress",  icon: I.Bulk,    badge: "×10" },
-  { href: "/resize-image",       label: "Resize Image",   icon: I.Resize },
-  { href: "/crop-image",         label: "Crop Image",     icon: I.Crop },
-  { href: "/image-to-grayscale", label: "Black & White",  icon: I.BW },
-  { href: "/reduce-jpg-size",    label: "Reduce JPG",     icon: I.Jpg },
+  { href: "/compress-image",         label: "Compress Image", icon: I.Compress },
+  { href: "/compress-image-to-size", label: "Compress to KB", icon: I.Compress, badge: "New" },
+  { href: "/bulk-compress",          label: "Bulk Compress",  icon: I.Bulk,     badge: "×10" },
+  { href: "/resize-image",           label: "Resize Image",   icon: I.Resize },
+  { href: "/crop-image",             label: "Crop Image",     icon: I.Crop },
+  { href: "/image-to-grayscale",     label: "Black & White",  icon: I.BW },
+  { href: "/reduce-jpg-size",        label: "Reduce JPG",     icon: I.Jpg },
+  { href: "/watermark-image",        label: "Watermark Photo",icon: I.Watermark, badge: "New" },
+  { href: "/social-media-resizer",   label: "Social Resize",  icon: I.Social,    badge: "New" },
+  { href: "/meme-generator",         label: "Meme Generator", icon: I.Text,      badge: "New" },
 ];
 
 const CONVERT_TOOLS = [
@@ -47,6 +59,8 @@ const CONVERT_TOOLS = [
   { href: "/convert-png-to-webp", label: "PNG → WebP",   icon: I.Convert },
   { href: "/convert-png-to-jpg",  label: "PNG → JPG",    icon: I.Convert },
   { href: "/convert-webp-to-jpg", label: "WebP → JPG",   icon: I.Convert },
+  { href: "/heic-to-jpg",         label: "HEIC → JPG",   icon: I.Convert, badge: "New" },
+  { href: "/svg-to-png",          label: "SVG → PNG",    icon: I.Convert, badge: "New" },
   { href: "/images-to-pdf",       label: "Images → PDF", icon: I.ImgPdf },
 ];
 
@@ -62,6 +76,17 @@ const PDF_TOOLS = [
   { href: "/add-page-numbers-pdf", label: "Page Numbers",  icon: I.Numbers },
   { href: "/pdf-to-jpg",           label: "PDF → JPG",     icon: I.PdfImg },
   { href: "/pdf-to-word",          label: "PDF → Word",    icon: I.Word },
+  { href: "/privacy-policy-generator", label: "Legal Generator", icon: I.Legal, badge: "New" },
+];
+
+const DEV_DESIGN_TOOLS = [
+  { href: "/image-to-text",        label: "Image to Text (OCR)", icon: I.Word, badge: "New" },
+  { href: "/color-picker",         label: "Color Palette",       icon: I.Dropper, badge: "New" },
+  { href: "/favicon-generator",    label: "Favicon Generator",   icon: I.Grid, badge: "New" },
+  { href: "/qr-code-generator",    label: "QR Generator",        icon: I.Qr,   badge: "New" },
+  { href: "/json-formatter",       label: "JSON Formatter",      icon: I.Json, badge: "New" },
+  { href: "/image-to-base64",      label: "Image → Base64",      icon: I.Code, badge: "New" },
+  { href: "/base64-to-image",      label: "Base64 → Image",      icon: I.Code, badge: "New" },
 ];
 
 type Tool = { href: string; label: string; icon: React.ReactNode; badge?: string };
@@ -137,6 +162,11 @@ export default function HomePage() {
         <div className="mb-8">
           <p className="text-[11px] font-semibold uppercase tracking-widest text-[var(--text-subtle)] mb-3">Convert Images</p>
           <ToolGrid tools={CONVERT_TOOLS} />
+        </div>
+        
+        <div className="mb-8">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[var(--text-subtle)] mb-3">Design & Developer Tools</p>
+          <ToolGrid tools={DEV_DESIGN_TOOLS} />
         </div>
 
         <div>

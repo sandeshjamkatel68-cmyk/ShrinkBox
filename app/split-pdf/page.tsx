@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SplitPdfWidget from "@/components/tools/SplitPdfWidget";
 import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
 import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
 export const metadata: Metadata = {
   title:       TOOL_META["split-pdf"].title,
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title:       TOOL_META["split-pdf"].title,
     description: TOOL_META["split-pdf"].description,
-    url:         `https://shrink-box.comSplit PDF Online`,
+    url:         "https://shrink-box.com/split-pdf",
     siteName:    "ShrinkBox",
     type:        "website",
+    images:      [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card:        "summary_large_image",
@@ -45,6 +47,17 @@ export default function SplitPdfPage() {
         <div className="mt-8"><TrustSignals /></div>
       </section>
       <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">Extract PDF Pages Instantly</h2>
+        <p>
+          Often, you receive a massive PDF report but only need a single page or a specific section to send to a client or colleague. Our PDF Splitter solves this by allowing you to easily extract individual pages from a multi-page PDF document and save them as standalone files.
+        </p>
+        <p>
+          Just like our other tools, ShrinkBox ensures the highest level of privacy by parsing and extracting the PDF pages entirely within your web browser. No data is transmitted to a remote server, meaning confidential financial documents, legal contracts, and personal records remain strictly on your own device. The extracted pages maintain 100% of the original formatting, fonts, and image quality.
+        </p>
+      </section>
+      <RelatedGuides tags={["PDF","Tools"]} />
     </>
   );
 }

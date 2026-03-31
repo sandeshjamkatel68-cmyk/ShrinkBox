@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CompressorWidget from "@/components/upload/CompressorWidget";
 import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
 import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
 export const metadata: Metadata = {
   title:       TOOL_META["reduce-jpg-size"].title,
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title:       TOOL_META["reduce-jpg-size"].title,
     description: TOOL_META["reduce-jpg-size"].description,
-    url:         `https://shrink-box.comReduce JPG Size Online`,
+    url:         "https://shrink-box.com/reduce-jpg-size",
     siteName:    "ShrinkBox",
     type:        "website",
+    images:      [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card:        "summary_large_image",
@@ -64,6 +66,17 @@ export default function ReduceJpgPage() {
       <section className="max-w-4xl mx-auto px-4 pb-16">
         <FAQ items={JPG_FAQ} />
       </section>
+
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">How to reduce JPG size effectively</h2>
+        <p>
+          JPEG (or JPG) is the standard format for photographs across the web because of its highly efficient lossy compression. However, cameras and smartphones often save JPEGs at 100% quality and embed heavy EXIF data (location, camera model, etc.), which creates unnecessarily large file sizes.
+        </p>
+        <p>
+          ShrinkBox solves this by re-encoding your JPG images at an optimal web-ready quality (typically 80-85%) and stripping out hidden metadata. Because we use WebAssembly to process files locally in your browser, the reduction happens instantly and securely—your personal photos are never uploaded to our servers.
+        </p>
+      </section>
+      <RelatedGuides tags={["Formats","Images"]} />
     </>
   );
 }

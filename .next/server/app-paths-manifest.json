@@ -1,6 +1,8 @@
 {
   "/page": "app/page.js",
+  "/compress-image-to-size/page": "app/compress-image-to-size/page.js",
   "/resize-image/page": "app/resize-image/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/merge-pdf/page": "app/merge-pdf/page.js"
+  "/color-picker/page": "app/color-picker/page.js",
+  "/json-formatter/page": "app/json-formatter/page.js",
+  "/privacy-policy-generator/page": "app/privacy-policy-generator/page.js"
 }

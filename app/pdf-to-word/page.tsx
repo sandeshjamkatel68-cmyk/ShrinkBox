@@ -1,106 +1,38 @@
-"use client";
-import { useState, useRef } from "react";
+import type { Metadata } from "next";
+import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
+import { ToolSchema, TOOL_META } from "@/lib/seo";
+import PdfToWordWidget from "./PdfToWordWidget";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
-function formatBytes(b: number) {
-  if (b < 1024) return `${b} B`;
-  if (b < 1048576) return `${(b / 1024).toFixed(1)} KB`;
-  return `${(b / 1048576).toFixed(1)} MB`;
-}
+export const metadata: Metadata = {
+  title: TOOL_META["pdf-to-word"].title, description: TOOL_META["pdf-to-word"].description, keywords: TOOL_META["pdf-to-word"].keywords,
+  openGraph: { title: TOOL_META["pdf-to-word"].title, description: TOOL_META["pdf-to-word"].description, url: "https://shrink-box.com/pdf-to-word", siteName: "ShrinkBox", type: "website", images: [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", title: TOOL_META["pdf-to-word"].title, description: TOOL_META["pdf-to-word"].description },
+  alternates: { canonical: "https://shrink-box.com/pdf-to-word" },
+};
+
+const FAQ_ITEMS = [
+  { q: "Will the formatting be preserved?", a: "This free tool extracts text content and basic structure. Full formatting, tables, and images are not preserved. For complete Word conversion, use Adobe Acrobat or CloudConvert." },
+  { q: "What output format do I get?", a: "The output is a plain text (.txt) file containing the extracted text content from your PDF." },
+  { q: "Does this work with scanned PDFs?", a: "No. Scanned PDFs contain images, not text. You would need OCR (Optical Character Recognition) software to extract text from scanned documents." },
+];
 
 export default function PdfToWordPage() {
-  const [file, setFile] = useState<File | null>(null);
-  const [status, setStatus] = useState<"idle" | "processing" | "done" | "error">("idle");
-  const [result, setResult] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [dragOver, setDragOver] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  async function handleConvert() {
-    if (!file) return;
-    setStatus("processing"); setError(null);
-    const form = new FormData();
-    form.append("file", file);
-    try {
-      const res = await fetch("/api/convert/pdf-to-word", { method: "POST", body: form });
-      const data = await res.json();
-      if (!data.success) { setError(data.error); setStatus("error"); return; }
-      setResult(data); setStatus("done");
-    } catch { setError("Network error."); setStatus("error"); }
-  }
-
-  function reset() { setFile(null); setStatus("idle"); setResult(null); setError(null); }
-
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
-      <div className="mb-8 text-center">
-        <div className="text-5xl mb-4">📄→📝</div>
-        <h1 className="text-3xl font-bold mb-2">PDF to Word</h1>
-        <p className="text-[var(--text-muted)]">Convert PDF to an editable text file. Free, instant, no signup required.</p>
-      </div>
-
-      {/* Honest warning */}
-      <div className="rounded-xl border border-yellow-400/30 bg-yellow-400/5 px-4 py-3 text-sm text-yellow-600 dark:text-yellow-400 mb-6">
-        <p className="font-medium mb-1">⚠️ Basic text extraction only</p>
-        <p className="text-xs opacity-80">This free tool extracts document structure and metadata. Formatting, tables, and images are not preserved. For full Word formatting, use Adobe Acrobat or CloudConvert.</p>
-      </div>
-
-      {status !== "done" && (
-        <div
-          onClick={() => inputRef.current?.click()}
-          onDrop={e => { e.preventDefault(); setDragOver(false); const f = e.dataTransfer.files[0]; if (f) setFile(f); }}
-          onDragOver={e => { e.preventDefault(); setDragOver(true); }}
-          onDragLeave={() => setDragOver(false)}
-          className={["cursor-pointer rounded-2xl border-2 border-dashed p-10 flex flex-col items-center gap-3 text-center mb-4 transition-all",
-            dragOver ? "border-[var(--brand)] bg-[rgba(34,197,94,0.05)]" : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50"].join(" ")}>
-          <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">📄</div>
-          <p className="font-medium">{file ? file.name : "Drop your PDF here"}</p>
-          <p className="text-sm text-[var(--text-muted)]">{file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}</p>
-          <input ref={inputRef} type="file" accept=".pdf" className="sr-only"
-            onChange={e => { const f = e.target.files?.[0]; if (f) setFile(f); e.target.value = ""; }} />
-        </div>
-      )}
-
-      {file && status === "idle" && (
-        <button onClick={handleConvert}
-          className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
-          Convert PDF to Text
-        </button>
-      )}
-
-      {status === "processing" && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center">
-          <p className="text-sm font-medium">Converting...</p>
-        </div>
-      )}
-
-      {status === "done" && result && (
-        <div className="flex flex-col gap-4">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-[var(--brand)]">✓</span>
-              <span className="font-medium text-sm">Converted — {result.pageCount} pages</span>
-            </div>
-            {result.warning && (
-              <p className="text-xs text-yellow-500 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-3 py-2 mb-3">{result.warning}</p>
-            )}
-            <div className="flex gap-3">
-              <a href={result.downloadUrl} download={result.outputFileName}
-                className="flex-1 text-center bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors">
-                ↓ Download .txt file
-              </a>
-              <button onClick={reset} className="px-4 py-2.5 rounded-xl border border-[var(--border)] text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
-                Try another
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {status === "error" && (
-        <div className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">
-          {error} <button onClick={reset} className="ml-2 underline">Retry</button>
-        </div>
-      )}
-    </div>
+    <>
+      <ToolSchema name={TOOL_META["pdf-to-word"].title} description={TOOL_META["pdf-to-word"].description} url={TOOL_META["pdf-to-word"].url} category={TOOL_META["pdf-to-word"].category} />
+      <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
+        <ToolHero icon="📄→📝" title="PDF to Word Converter" description="Extract text content from PDF documents. Convert PDF to editable text format instantly — no signup required." badge="Free · Instant · Basic Text" />
+        <PdfToWordWidget />
+        <div className="mt-8"><TrustSignals /></div>
+      </section>
+      <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">How PDF to text extraction works</h2>
+        <p>Our converter uses pdf-lib to parse the PDF document structure and extract embedded text content. The extracted text includes the document metadata, page count, and text content organized by page.</p>
+        <p>This tool is best for text-heavy PDFs like reports, articles, and documentation. For PDFs with complex layouts, tables, or images, we recommend professional tools like Adobe Acrobat for full Word format conversion.</p>
+      </section>
+      <RelatedGuides tags={["PDF","Tools"]} />
+    </>
   );
 }

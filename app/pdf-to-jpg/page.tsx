@@ -1,106 +1,38 @@
-"use client";
 import type { Metadata } from "next";
-import { useState, useRef } from "react";
+import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
+import { ToolSchema, TOOL_META } from "@/lib/seo";
+import PdfToJpgWidget from "@/app/pdf-to-jpg/PdfToJpgWidget";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
-interface PageResult { pageNumber: number; fileName: string; downloadUrl: string; size: number; }
+export const metadata: Metadata = {
+  title: TOOL_META["pdf-to-jpg"].title, description: TOOL_META["pdf-to-jpg"].description, keywords: TOOL_META["pdf-to-jpg"].keywords,
+  openGraph: { title: TOOL_META["pdf-to-jpg"].title, description: TOOL_META["pdf-to-jpg"].description, url: "https://shrink-box.com/pdf-to-jpg", siteName: "ShrinkBox", type: "website", images: [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", title: TOOL_META["pdf-to-jpg"].title, description: TOOL_META["pdf-to-jpg"].description },
+  alternates: { canonical: "https://shrink-box.com/pdf-to-jpg" },
+};
 
-function formatBytes(b: number) {
-  if (b < 1024) return `${b} B`;
-  if (b < 1048576) return `${(b/1024).toFixed(1)} KB`;
-  return `${(b/1048576).toFixed(1)} MB`;
-}
+const FAQ_ITEMS = [
+  { q: "How many pages can I extract?", a: "You can extract all pages from any PDF. Each page becomes a separate JPG image that you can download individually or all at once." },
+  { q: "What resolution are the extracted images?", a: "Images are extracted at the resolution embedded in the PDF. For scanned documents, this is typically 150-300 DPI." },
+  { q: "Can I extract just one page?", a: "All pages are extracted at once. Download only the ones you need." },
+];
 
 export default function PdfToJpgPage() {
-  const [file, setFile] = useState<File | null>(null);
-  const [status, setStatus] = useState<"idle"|"processing"|"done"|"error">("idle");
-  const [pages, setPages] = useState<PageResult[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [warning, setWarning] = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  async function handleConvert() {
-    if (!file) return;
-    setStatus("processing"); setError(null);
-    const form = new FormData();
-    form.append("file", file);
-    try {
-      const res = await fetch("/api/convert/pdf-to-jpg", { method: "POST", body: form });
-      const data = await res.json();
-      if (!data.success) { setError(data.error); setStatus("error"); return; }
-      setPages(data.pages);
-      if (data.error) setWarning(data.error);
-      setStatus("done");
-    } catch { setError("Network error."); setStatus("error"); }
-  }
-
-  function downloadAll() {
-    pages.forEach((p, i) => setTimeout(() => {
-      const a = document.createElement("a"); a.href = p.downloadUrl; a.download = p.fileName; a.click();
-    }, i * 300));
-  }
-
-  function reset() { setFile(null); setStatus("idle"); setPages([]); setError(null); setWarning(null); }
-
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
-      <div className="mb-8 text-center">
-        <div className="text-5xl mb-4">📄→🖼</div>
-        <h1 className="text-3xl font-bold mb-2">PDF to JPG</h1>
-        <p className="text-[var(--text-muted)]">Extract pages from a PDF as individual downloadable files. Free, no signup.</p>
-      </div>
-
-      {status !== "done" && (
-        <div
-          onClick={() => inputRef.current?.click()}
-          className="cursor-pointer rounded-2xl border-2 border-dashed border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50 p-10 flex flex-col items-center gap-3 text-center mb-4 transition-all"
-        >
-          <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">📄</div>
-          <p className="font-medium">{file ? file.name : "Drop your PDF here"}</p>
-          <p className="text-sm text-[var(--text-muted)]">{file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}</p>
-          <input ref={inputRef} type="file" accept=".pdf" className="sr-only" onChange={e => { const f = e.target.files?.[0]; if (f) setFile(f); e.target.value = ""; }} />
-        </div>
-      )}
-
-      {file && status === "idle" && (
-        <button onClick={handleConvert} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
-          Extract Pages
-        </button>
-      )}
-
-      {status === "processing" && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center">
-          <p className="text-sm font-medium">Extracting pages...</p>
-        </div>
-      )}
-
-      {status === "done" && pages.length > 0 && (
-        <div className="flex flex-col gap-4">
-          {warning && <p className="text-xs text-yellow-500 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-3 py-2">{warning}</p>}
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
-            <div className="px-5 py-3 border-b border-[var(--border)] flex justify-between items-center">
-              <span className="text-sm font-medium">{pages.length} pages extracted</span>
-              <button onClick={downloadAll} className="text-xs bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white rounded-lg px-3 py-1.5">Download all</button>
-            </div>
-            <ul className="max-h-72 overflow-y-auto">
-              {pages.map(p => (
-                <li key={p.pageNumber} className="flex items-center gap-3 px-5 py-3 border-b border-[var(--border)] last:border-0">
-                  <span className="text-xs font-mono text-[var(--text-muted)] w-8">p.{p.pageNumber}</span>
-                  <span className="text-sm flex-1 truncate">{p.fileName}</span>
-                  <span className="text-xs text-[var(--text-muted)]">{formatBytes(p.size)}</span>
-                  <a href={p.downloadUrl} download={p.fileName} className="text-xs text-[var(--brand)] hover:underline">↓</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <button onClick={reset} className="w-full py-2.5 rounded-xl border border-[var(--border)] text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">Try another PDF</button>
-        </div>
-      )}
-
-      {status === "error" && (
-        <div className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">
-          {error} <button onClick={reset} className="ml-2 underline">Retry</button>
-        </div>
-      )}
-    </div>
+    <>
+      <ToolSchema name={TOOL_META["pdf-to-jpg"].title} description={TOOL_META["pdf-to-jpg"].description} url={TOOL_META["pdf-to-jpg"].url} category={TOOL_META["pdf-to-jpg"].category} />
+      <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
+        <ToolHero icon="📄→🖼" title="PDF to JPG Converter" description="Extract every page from a PDF as individual JPG image files. Download pages separately or all at once." badge="Free · Instant · No Signup" />
+        <PdfToJpgWidget />
+        <div className="mt-8"><TrustSignals /></div>
+      </section>
+      <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">How PDF to JPG conversion works</h2>
+        <p>Our converter uses pdf-lib to parse the PDF structure and extract embedded images and rendered pages. Each page is converted to a JPG image file that can be used independently — for presentations, social media, or archiving.</p>
+        <p>This is particularly useful for extracting charts, diagrams, or scanned document pages from PDFs when you need them as standalone image files.</p>
+      </section>
+      <RelatedGuides tags={["PDF","Tools"]} />
+    </>
   );
 }

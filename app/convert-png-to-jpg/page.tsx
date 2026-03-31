@@ -1,117 +1,38 @@
-"use client";
-import { useState, useRef } from "react";
+import type { Metadata } from "next";
+import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
+import { ToolSchema, TOOL_META } from "@/lib/seo";
+import PngToJpgWidget from "@/app/convert-png-to-jpg/PngToJpgWidget";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
-function formatBytes(b: number) {
-  if (b < 1024) return `${b} B`;
-  if (b < 1048576) return `${(b / 1024).toFixed(1)} KB`;
-  return `${(b / 1048576).toFixed(1)} MB`;
-}
+export const metadata: Metadata = {
+  title: TOOL_META["convert-png-to-jpg"].title, description: TOOL_META["convert-png-to-jpg"].description, keywords: TOOL_META["convert-png-to-jpg"].keywords,
+  openGraph: { title: TOOL_META["convert-png-to-jpg"].title, description: TOOL_META["convert-png-to-jpg"].description, url: "https://shrink-box.com/convert-png-to-jpg", siteName: "ShrinkBox", type: "website", images: [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", title: TOOL_META["convert-png-to-jpg"].title, description: TOOL_META["convert-png-to-jpg"].description },
+  alternates: { canonical: "https://shrink-box.com/convert-png-to-jpg" },
+};
+
+const FAQ_ITEMS = [
+  { q: "What happens to transparency?", a: "PNG images with transparent backgrounds will have transparency replaced with a white background in the JPG output." },
+  { q: "Will the file size decrease?", a: "Usually yes. JPG uses lossy compression which produces much smaller file sizes than PNG, especially for photographs." },
+  { q: "What quality should I choose?", a: "90% is recommended for most uses. Lower values produce smaller files; higher values preserve more detail." },
+];
 
 export default function PngToJpgPage() {
-  const [file, setFile] = useState<File | null>(null);
-  const [quality, setQuality] = useState(90);
-  const [status, setStatus] = useState<"idle" | "processing" | "done" | "error">("idle");
-  const [result, setResult] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [dragOver, setDragOver] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  async function handleConvert() {
-    if (!file) return;
-    setStatus("processing"); setError(null);
-    const form = new FormData();
-    form.append("file", file);
-    form.append("quality", String(quality));
-    try {
-      const res = await fetch("/api/image/convert-to-jpg", { method: "POST", body: form });
-      const data = await res.json();
-      if (!data.success) { setError(data.error); setStatus("error"); return; }
-      setResult(data); setStatus("done");
-    } catch { setError("Network error."); setStatus("error"); }
-  }
-
-  function reset() { setFile(null); setStatus("idle"); setResult(null); setError(null); }
-
-  if (status === "done" && result) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 py-16">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
-          <div className="px-6 py-4 border-b border-[var(--border)] flex items-center gap-2">
-            <span className="text-[var(--brand)]">✓</span>
-            <span className="font-medium text-sm">Converted to JPG</span>
-          </div>
-          <div className="px-6 py-5">
-            <div className="grid grid-cols-3 gap-4 mb-5">
-              <div><div className="text-xs text-[var(--text-muted)] mb-1">Original</div><div className="text-xl font-semibold">{formatBytes(result.originalSize)}</div></div>
-              <div className="flex items-center justify-center text-[var(--text-subtle)]">→</div>
-              <div><div className="text-xs text-[var(--text-muted)] mb-1">JPG output</div><div className="text-xl font-semibold text-[var(--brand)]">{formatBytes(result.outputSize)}</div></div>
-            </div>
-            {result.reductionPercent > 0 && (
-              <p className="text-sm text-[var(--brand)] mb-4">-{result.reductionPercent}% smaller</p>
-            )}
-            <div className="flex gap-3">
-              <a href={result.downloadUrl} download={result.outputFileName}
-                className="flex-1 text-center bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors">
-                ↓ Download JPG
-              </a>
-              <button onClick={reset} className="px-4 py-2.5 rounded-xl border border-[var(--border)] text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
-                Try another
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
-      <div className="mb-8 text-center">
-        <div className="text-5xl mb-4">🔄</div>
-        <h1 className="text-3xl font-bold mb-2">PNG to JPG</h1>
-        <p className="text-[var(--text-muted)]">Convert PNG images to JPG format. Transparency is replaced with a white background.</p>
-      </div>
-
-      <div
-        onClick={() => inputRef.current?.click()}
-        onDrop={e => { e.preventDefault(); setDragOver(false); const f = e.dataTransfer.files[0]; if (f) setFile(f); }}
-        onDragOver={e => { e.preventDefault(); setDragOver(true); }}
-        onDragLeave={() => setDragOver(false)}
-        className={["cursor-pointer rounded-2xl border-2 border-dashed p-10 flex flex-col items-center gap-3 text-center mb-4 transition-all",
-          dragOver ? "border-[var(--brand)] bg-[rgba(34,197,94,0.05)]" : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50"].join(" ")}>
-        <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">🖼</div>
-        <p className="font-medium">{file ? file.name : "Drop your PNG here"}</p>
-        <p className="text-sm text-[var(--text-muted)]">{file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}</p>
-        <input ref={inputRef} type="file" accept=".png" className="sr-only"
-          onChange={e => { const f = e.target.files?.[0]; if (f) setFile(f); e.target.value = ""; }} />
-      </div>
-
-      {file && status === "idle" && (
-        <div className="flex flex-col gap-4">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4">
-            <label className="text-sm font-medium block mb-2">Quality: {quality}%</label>
-            <input type="range" min={60} max={100} value={quality} onChange={e => setQuality(Number(e.target.value))}
-              className="w-full accent-[var(--brand)]" />
-            <div className="flex justify-between text-xs text-[var(--text-muted)] mt-1"><span>Smaller file</span><span>Higher quality</span></div>
-          </div>
-          <button onClick={handleConvert}
-            className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
-            Convert to JPG
-          </button>
-        </div>
-      )}
-
-      {status === "processing" && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center">
-          <p className="text-sm font-medium">Converting...</p>
-        </div>
-      )}
-
-      {status === "error" && (
-        <div className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">
-          {error} <button onClick={reset} className="ml-2 underline">Retry</button>
-        </div>
-      )}
-    </div>
+    <>
+      <ToolSchema name={TOOL_META["convert-png-to-jpg"].title} description={TOOL_META["convert-png-to-jpg"].description} url={TOOL_META["convert-png-to-jpg"].url} category={TOOL_META["convert-png-to-jpg"].category} />
+      <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
+        <ToolHero icon="🔄" title="PNG to JPG Converter" description="Convert PNG images to JPG format quickly. Transparency is replaced with a white background. Adjust quality and download instantly." badge="Free · Instant · No Signup" />
+        <PngToJpgWidget />
+        <div className="mt-8"><TrustSignals /></div>
+      </section>
+      <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">When to convert PNG to JPG</h2>
+        <p>PNG to JPG conversion is useful when you need smaller file sizes for web uploads, email attachments, or social media. JPG files are typically 50-80% smaller than PNGs for photographic content.</p>
+        <p>Note: If your image relies on transparency (logos, icons, overlays), keep it as PNG. JPG does not support transparency — any transparent areas will become white.</p>
+      </section>
+      <RelatedGuides tags={["Formats","Images"]} />
+    </>
   );
 }

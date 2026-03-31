@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CompressorWidget from "@/components/upload/CompressorWidget";
 import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
 import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
 export const metadata: Metadata = {
   title:       TOOL_META["compress-image"].title,
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title:       TOOL_META["compress-image"].title,
     description: TOOL_META["compress-image"].description,
-    url:         `https://shrink-box.comCompress Image Online`,
+    url:         "https://shrink-box.com/compress-image",
     siteName:    "ShrinkBox",
     type:        "website",
+    images:      [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card:        "summary_large_image",
@@ -82,6 +84,7 @@ export default function CompressImagePage() {
           This is the same technique used by CDNs and major image hosting services.
         </p>
       </section>
+      <RelatedGuides tags={["Images","Tools"]} />
     </>
   );
 }

@@ -1,101 +1,38 @@
-"use client";
-import { useState, useRef } from "react";
+import type { Metadata } from "next";
+import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
+import { ToolSchema, TOOL_META } from "@/lib/seo";
+import RemovePdfPagesWidget from "./RemovePdfPagesWidget";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
-function formatBytes(b: number) {
-  if (b < 1024) return `${b} B`;
-  if (b < 1048576) return `${(b / 1024).toFixed(1)} KB`;
-  return `${(b / 1048576).toFixed(1)} MB`;
-}
+export const metadata: Metadata = {
+  title: TOOL_META["remove-pdf-pages"].title, description: TOOL_META["remove-pdf-pages"].description, keywords: TOOL_META["remove-pdf-pages"].keywords,
+  openGraph: { title: TOOL_META["remove-pdf-pages"].title, description: TOOL_META["remove-pdf-pages"].description, url: "https://shrink-box.com/remove-pdf-pages", siteName: "ShrinkBox", type: "website", images: [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", title: TOOL_META["remove-pdf-pages"].title, description: TOOL_META["remove-pdf-pages"].description },
+  alternates: { canonical: "https://shrink-box.com/remove-pdf-pages" },
+};
+
+const FAQ_ITEMS = [
+  { q: "Can I remove multiple pages at once?", a: "Yes. Enter page numbers separated by commas — for example: 1, 3, 5 removes pages 1, 3, and 5. At least one page must remain in the document." },
+  { q: "Will removing pages change the content of other pages?", a: "No. Only the specified pages are deleted. All other pages retain their original content, formatting, and position." },
+  { q: "How do I know which page numbers to remove?", a: "Open your PDF in any viewer (browser, Adobe Reader, Preview) and check the page numbers shown in the viewer — use those numbers, not any printed page numbers inside the document." },
+];
 
 export default function RemovePdfPagesPage() {
-  const [file, setFile] = useState<File | null>(null);
-  const [pageInput, setPageInput] = useState("");
-  const [status, setStatus] = useState<"idle" | "processing" | "done" | "error">("idle");
-  const [result, setResult] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  async function handleRemove() {
-    if (!file || !pageInput.trim()) return;
-    setStatus("processing"); setError(null);
-    const form = new FormData();
-    form.append("file", file);
-    form.append("pages", pageInput.trim());
-    try {
-      const res = await fetch("/api/pdf/remove-pages", { method: "POST", body: form });
-      const data = await res.json();
-      if (!data.success) { setError(data.error); setStatus("error"); return; }
-      setResult(data); setStatus("done");
-    } catch { setError("Network error."); setStatus("error"); }
-  }
-
-  function reset() { setFile(null); setPageInput(""); setStatus("idle"); setResult(null); setError(null); }
-
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
-      <div className="mb-8 text-center">
-        <div className="text-5xl mb-4">🗑</div>
-        <h1 className="text-3xl font-bold mb-2">Remove PDF Pages</h1>
-        <p className="text-[var(--text-muted)]">Delete specific pages from a PDF. Enter page numbers and download the cleaned file.</p>
-      </div>
-
-      {status !== "done" && (
-        <div onClick={() => inputRef.current?.click()}
-          className="cursor-pointer rounded-2xl border-2 border-dashed border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50 p-10 flex flex-col items-center gap-3 text-center mb-4 transition-all">
-          <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">📄</div>
-          <p className="font-medium">{file ? file.name : "Drop your PDF here"}</p>
-          <p className="text-sm text-[var(--text-muted)]">{file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}</p>
-          <input ref={inputRef} type="file" accept=".pdf" className="sr-only"
-            onChange={e => { const f = e.target.files?.[0]; if (f) setFile(f); e.target.value = ""; }} />
-        </div>
-      )}
-
-      {file && status === "idle" && (
-        <div className="flex flex-col gap-4">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4">
-            <label className="text-sm font-medium block mb-2">Pages to remove</label>
-            <input
-              type="text"
-              value={pageInput}
-              onChange={e => setPageInput(e.target.value)}
-              placeholder="e.g. 1, 3, 5 or 2-4"
-              className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-2.5 text-sm focus:outline-none focus:border-[var(--brand)]"
-            />
-            <p className="text-xs text-[var(--text-muted)] mt-2">Enter page numbers separated by commas: 1, 3, 5</p>
-          </div>
-          <button onClick={handleRemove} disabled={!pageInput.trim()}
-            className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">
-            Remove Pages
-          </button>
-        </div>
-      )}
-
-      {status === "processing" && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center">
-          <p className="text-sm font-medium">Processing...</p>
-        </div>
-      )}
-
-      {status === "done" && result && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 text-center">
-          <div className="text-4xl mb-3">✅</div>
-          <p className="font-semibold mb-1">Done — {result.remainingPages} pages remaining</p>
-          <p className="text-sm text-[var(--text-muted)] mb-5">
-            Removed {result.originalPages - result.remainingPages} page{result.originalPages - result.remainingPages !== 1 ? "s" : ""} · {formatBytes(result.outputSize)}
-          </p>
-          <a href={result.downloadUrl} download="cleaned.pdf"
-            className="inline-block bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">
-            ↓ Download PDF
-          </a>
-          <button onClick={reset} className="block mx-auto mt-3 text-sm text-[var(--text-muted)] hover:text-[var(--text)]">Try another</button>
-        </div>
-      )}
-
-      {status === "error" && (
-        <div className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">
-          {error} <button onClick={reset} className="ml-2 underline">Retry</button>
-        </div>
-      )}
-    </div>
+    <>
+      <ToolSchema name={TOOL_META["remove-pdf-pages"].title} description={TOOL_META["remove-pdf-pages"].description} url={TOOL_META["remove-pdf-pages"].url} category={TOOL_META["remove-pdf-pages"].category} />
+      <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
+        <ToolHero icon="🗑" title="Remove Pages from PDF" description="Delete specific pages from a PDF. Enter page numbers, click remove, and download the cleaned file instantly." badge="Free · Instant · No Signup" />
+        <RemovePdfPagesWidget />
+        <div className="mt-8"><TrustSignals /></div>
+      </section>
+      <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">When to remove pages from a PDF</h2>
+        <p>Common reasons include removing blank pages at the end of documents exported from Word, deleting cover pages with internal information before sharing externally, removing duplicate pages from scanned documents, or stripping confidential pages before distributing to clients.</p>
+        <p>If you need to keep only a few specific pages from a large document, consider using our Split PDF tool instead — it lets you extract individual pages as separate files.</p>
+      </section>
+      <RelatedGuides tags={["PDF","Tools"]} />
+    </>
   );
 }

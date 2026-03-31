@@ -33,6 +33,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/add-page-numbers-pdf",
     "/pdf-to-jpg",
     "/pdf-to-word",
+    // New Tools
+    "/compress-image-to-size",
+    "/heic-to-jpg",
+    "/image-to-text",
+    "/color-picker",
+    "/svg-to-png",
+    "/watermark-image",
+    "/image-to-base64",
+    "/base64-to-image",
+    "/favicon-generator",
+    "/meme-generator",
+    "/qr-code-generator",
+    "/json-formatter",
+    "/social-media-resizer",
+    "/privacy-policy-generator",
   ];
 
   const staticPages = ["/", "/about", "/contact", "/privacy", "/terms", "/blog"];

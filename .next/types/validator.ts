@@ -65,6 +65,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/base64-to-image/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/base64-to-image">> = Specific
+  const handler = {} as typeof import("../../app/base64-to-image/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/blog/[slug]/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/blog/[slug]">> = Specific
@@ -87,6 +96,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/bulk-compress">> = Specific
   const handler = {} as typeof import("../../app/bulk-compress/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/color-picker/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/color-picker">> = Specific
+  const handler = {} as typeof import("../../app/color-picker/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/compress-image-to-size/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/compress-image-to-size">> = Specific
+  const handler = {} as typeof import("../../app/compress-image-to-size/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -182,6 +209,33 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/favicon-generator/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/favicon-generator">> = Specific
+  const handler = {} as typeof import("../../app/favicon-generator/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/heic-to-jpg/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/heic-to-jpg">> = Specific
+  const handler = {} as typeof import("../../app/heic-to-jpg/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/image-to-base64/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/image-to-base64">> = Specific
+  const handler = {} as typeof import("../../app/image-to-base64/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/image-to-grayscale/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/image-to-grayscale">> = Specific
@@ -191,10 +245,37 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/image-to-text/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/image-to-text">> = Specific
+  const handler = {} as typeof import("../../app/image-to-text/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/images-to-pdf/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/images-to-pdf">> = Specific
   const handler = {} as typeof import("../../app/images-to-pdf/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/json-formatter/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/json-formatter">> = Specific
+  const handler = {} as typeof import("../../app/json-formatter/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/meme-generator/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/meme-generator">> = Specific
+  const handler = {} as typeof import("../../app/meme-generator/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -236,6 +317,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/privacy-policy-generator/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/privacy-policy-generator">> = Specific
+  const handler = {} as typeof import("../../app/privacy-policy-generator/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/privacy/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/privacy">> = Specific
@@ -249,6 +339,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/protect-pdf">> = Specific
   const handler = {} as typeof import("../../app/protect-pdf/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/qr-code-generator/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/qr-code-generator">> = Specific
+  const handler = {} as typeof import("../../app/qr-code-generator/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -299,10 +398,28 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/social-media-resizer/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/social-media-resizer">> = Specific
+  const handler = {} as typeof import("../../app/social-media-resizer/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/split-pdf/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/split-pdf">> = Specific
   const handler = {} as typeof import("../../app/split-pdf/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/svg-to-png/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/svg-to-png">> = Specific
+  const handler = {} as typeof import("../../app/svg-to-png/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -321,6 +438,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/unlock-pdf">> = Specific
   const handler = {} as typeof import("../../app/unlock-pdf/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/watermark-image/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/watermark-image">> = Specific
+  const handler = {} as typeof import("../../app/watermark-image/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import BulkCompressWidget from "@/components/tools/BulkCompressWidget";
 import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
 import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
+import RelatedGuides from "@/components/seo/RelatedGuides";
 
 export const metadata: Metadata = {
   title:       TOOL_META["bulk-compress"].title,
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title:       TOOL_META["bulk-compress"].title,
     description: TOOL_META["bulk-compress"].description,
-    url:         `https://shrink-box.comBulk Image Compressor`,
+    url:         "https://shrink-box.com/bulk-compress",
     siteName:    "ShrinkBox",
     type:        "website",
+    images:      [{ url: "https://shrink-box.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card:        "summary_large_image",
@@ -45,6 +47,17 @@ export default function BulkCompressPage() {
         <div className="mt-8"><TrustSignals /></div>
       </section>
       <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
+      
+      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
+        <h2 className="text-xl font-bold text-[var(--text)]">Fast and Private Bulk Image Compression</h2>
+        <p>
+          Compressing dozens of images one by one is incredibly tedious. Our bulk image compressor is designed for photographers, developers, and content creators who need to batch process multiple images at once without sacrificing quality. You can upload a mix of JPG, PNG, and WebP files simultaneously.
+        </p>
+        <p>
+          Unlike cloud-based competitors, our tool processes all images locally inside your browser using WebAssembly. This means you skip the slow upload times, and your files never touch an external server. It's faster, completely private, and highly efficient for optimizing large galleries or e-commerce product photos.
+        </p>
+      </section>
+      <RelatedGuides tags={["Images","Tools"]} />
     </>
   );
 }
