@@ -7,6 +7,9 @@ import { TrustSignals, FAQ } from "@/components/seo";
 export const metadata: Metadata = {
   title: "ShrinkBox — Free Image & PDF Tools Online",
   description: "Free online tools for compressing, converting, resizing, and editing images and PDFs. No signup. Files deleted instantly.",
+  alternates: {
+    canonical: "https://shrink-box.com",
+  },
 };
 
 // ── SVG Icons ────────────────────────────────────────────────────────────────

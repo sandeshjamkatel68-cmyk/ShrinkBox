@@ -4,6 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About ShrinkBox — Free File Compression Tool",
   description: "Learn about ShrinkBox — a free online tool for compressing images and PDFs. No signup, no storage, no tricks.",
+  alternates: {
+    canonical: "https://shrink-box.com/about",
+  },
 };
 
 export default function AboutPage() {

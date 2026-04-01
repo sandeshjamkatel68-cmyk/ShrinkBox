@@ -790,6 +790,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title:       `${post.title} | ShrinkBox Blog`,
     description: post.excerpt,
+    alternates: {
+      canonical: `https://shrink-box.com/blog/${slug}`,
+    },
   };
 }
 

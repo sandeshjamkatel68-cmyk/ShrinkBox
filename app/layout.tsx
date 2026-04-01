@@ -68,12 +68,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://shrink-box.com",
-    languages: {
-      "en-US": "https://shrink-box.com",
-      "es-ES": "https://shrink-box.com/es",
-      "hi-IN": "https://shrink-box.com/hi",
-    },
+    // Each page should define its own canonical to avoid duplicate content flags.
   },
 };
 
