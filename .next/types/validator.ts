@@ -128,10 +128,28 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/compress-jpg/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/compress-jpg">> = Specific
+  const handler = {} as typeof import("../../app/compress-jpg/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/compress-pdf/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/compress-pdf">> = Specific
   const handler = {} as typeof import("../../app/compress-pdf/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/compress-png/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/compress-png">> = Specific
+  const handler = {} as typeof import("../../app/compress-png/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -263,6 +281,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/jpg-to-pdf/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/jpg-to-pdf">> = Specific
+  const handler = {} as typeof import("../../app/jpg-to-pdf/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/json-formatter/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/json-formatter">> = Specific
@@ -299,6 +326,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/pdf-to-image/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/pdf-to-image">> = Specific
+  const handler = {} as typeof import("../../app/pdf-to-image/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/pdf-to-jpg/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/pdf-to-jpg">> = Specific
@@ -312,6 +348,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/pdf-to-word">> = Specific
   const handler = {} as typeof import("../../app/pdf-to-word/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/png-to-pdf/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/png-to-pdf">> = Specific
+  const handler = {} as typeof import("../../app/png-to-pdf/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -456,6 +501,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/watermark-pdf">> = Specific
   const handler = {} as typeof import("../../app/watermark-pdf/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/webp-to-pdf/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/webp-to-pdf">> = Specific
+  const handler = {} as typeof import("../../app/webp-to-pdf/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

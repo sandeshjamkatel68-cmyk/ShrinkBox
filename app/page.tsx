@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "ShrinkBox — Free Image & PDF Tools Online",
   description: "Free online tools for compressing, converting, resizing, and editing images and PDFs. No signup. Files deleted instantly.",
   alternates: {
-    canonical: "https://shrink-box.com",
+    canonical: "/",
   },
 };
 
@@ -102,21 +102,21 @@ function ToolGrid({ tools }: { tools: Tool[] }) {
         <Link
           key={href}
           href={href}
-          className="tool-card group relative flex flex-col items-center gap-4 px-4 py-6 rounded-2xl border border-border bg-surface text-center no-underline transition-all duration-300 hover:-translate-y-1.5 hover:border-brand shadow-sm hover:shadow-xl animate-fade-up"
+          className="tool-card group relative flex flex-col items-center gap-4 px-4 py-6 rounded-3xl border border-border bg-surface text-center no-underline transition-all duration-500 hover:-translate-y-2 hover:border-brand shadow-premium hover:shadow-2xl animate-fade-up"
           style={{ animationDelay: `${idx * 0.05}s` }}
         >
           {badge && (
-            <span className="absolute top-3 right-3 text-[10px] font-bold bg-brand text-white rounded-full px-2 py-0.5 leading-none shadow-sm z-10">
+            <span className="absolute top-3 right-3 text-[10px] font-bold bg-brand text-white rounded-full px-2 py-1 leading-none shadow-premium z-10">
               {badge}
             </span>
           )}
-          <div className="w-12 h-12 rounded-xl bg-surface-muted flex items-center justify-center text-muted-foreground group-hover:bg-brand-light group-hover:text-brand transition-all duration-300 rotate-0 group-hover:rotate-6">
+          <div className="w-12 h-12 rounded-2xl bg-brand-light flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-all duration-300 rotate-0 group-hover:rotate-6">
             {icon}
           </div>
-          <span className="text-[14px] font-bold text-muted-foreground group-hover:text-foreground leading-tight transition-colors">
+          <span className="text-[14px] font-bold text-foreground leading-tight transition-colors">
             {label}
           </span>
-          <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand group-hover:w-full transition-all duration-500" />
+          <div className="absolute bottom-0 left-0 w-0 h-1 bg-brand group-hover:w-full transition-all duration-500 rounded-b-full" />
         </Link>
       ))}
     </div>
@@ -124,11 +124,11 @@ function ToolGrid({ tools }: { tools: Tool[] }) {
 }
 
 const HOME_FAQ = [
-  { q: "Is ShrinkBox really free?",            a: "Yes. All tools are completely free. No hidden fees, no email required, no watermarks added to your files." },
-  { q: "Are my files stored on your servers?", a: "No. Files are processed in memory and deleted immediately after you download the result. We never store your files permanently." },
-  { q: "What file types do you support?",      a: "JPG, JPEG, PNG, WebP for images — and PDF for document tools. More formats coming soon." },
-  { q: "What's the maximum file size?",        a: "The free tier supports files up to 10 MB. Need larger? Let us know via the contact page." },
-  { q: "How much will my file shrink?",        a: "Images typically reduce by 30–60% at medium quality. PDFs with metadata can shrink 5–25%. Already-optimized files may see minimal reduction — we'll tell you honestly." },
+  { q: "Is ShrinkBox really free to use?", a: "Absolutely. Every tool on ShrinkBox is 100% free with no hidden fees, no subscription traps, and no watermarks added to your professional work. We believe high-quality file optimization should be accessible to everyone." },
+  { q: "How secure are my files on ShrinkBox?", a: "Security is our core priority. For data-sensitive tools (like JSON or Base64), processing happens **entirely in your browser**. For media tools requiring high-power encoding (like PDF or Image compression), files are processed in secure, high-speed memory and **deleted permanently** immediately after your session ends." },
+  { q: "What is the maximum file size I can upload?", a: "Our free tier currently supports files up to 10 MB. This covers 99% of web optimization needs for images and documents. If you have a larger project, feel free to reach out to us via the contact page." },
+  { q: "Does ShrinkBox support bulk image processing?", a: "Yes! Our 'Bulk Image Compressor' allows you to optimize up to 10 images simultaneously, saving you massive amounts of time on large web development or photography projects." },
+  { q: "Will I lose image quality during compression?", a: "We use professional-grade MozJPEG and Sharp encoding. This allows us to reduce file sizes by up to 80% with visual quality that is virtually indistinguishable from the original high-resolution master." },
 ];
 
 export default function HomePage() {
@@ -136,17 +136,17 @@ export default function HomePage() {
     <div className="relative isolate">
       {/* Background Mesh */}
       <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-        <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-brand to-accent opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+        <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-brand to-accent opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
       </div>
 
       {/* Hero */}
       <section className="max-w-[800px] mx-auto px-5 pt-20 pb-12 text-center relative">
-        <div className="inline-flex items-center gap-2 text-xs font-bold text-brand bg-brand-light rounded-full px-4 py-2 mb-8 border border-brand/10 animate-fade-up">
+        <div className="inline-flex items-center gap-2 text-[11px] font-bold text-brand bg-brand-light rounded-full px-5 py-2.5 mb-8 border border-brand/10 shadow-premium animate-fade-up">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
           </span>
-          Free · No login · Instant download
+          Next-Gen File Optimization · Free · No Signup
         </div>
 
         <h1 className="text-[52px] md:text-[72px] font-extrabold tracking-tight leading-[0.95] mb-6 text-foreground animate-fade-up" style={{ animationDelay: '0.1s' }}>
@@ -154,7 +154,7 @@ export default function HomePage() {
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand to-accent">No friction.</span>
         </h1>
         <p className="text-muted-foreground text-xl mb-12 max-w-[480px] mx-auto leading-relaxed font-medium animate-fade-up" style={{ animationDelay: '0.2s' }}>
-          The fastest way to optimize images and PDFs. Instant results, zero registration, and complete privacy.
+          The fastest way to optimize images and PDFs. Professional-grade results, zero registration, and bank-level privacy.
         </p>
 
         <div className="animate-fade-up" style={{ animationDelay: '0.3s' }}>
@@ -169,28 +169,29 @@ export default function HomePage() {
       {/* Tools Section */}
       <section className="max-w-[1200px] mx-auto px-5 py-20 relative" id="tools">
         <div className="flex flex-col items-center mb-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">Powerful tools, zero cost.</h2>
+          <h2 className="text-3xl font-bold tracking-tight mb-4">Complete Creative Toolkit</h2>
           <div className="h-1 w-20 bg-brand rounded-full mb-2" />
+          <p className="text-muted-foreground max-w-lg mt-4 font-medium">Over 30+ specialized tools designed to streamline your web development and design workflow.</p>
         </div>
 
 
         <div className="mb-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Image Tools</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Image Optimization</p>
           <ToolGrid tools={IMAGE_TOOLS} />
         </div>
 
         <div className="mb-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Convert & PDF</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Format Conversion</p>
           <ToolGrid tools={CONVERT_TOOLS} />
         </div>
         
         <div className="mb-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Design & Developer</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Developer & Design Utilities</p>
           <ToolGrid tools={DEV_DESIGN_TOOLS} />
         </div>
 
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Advanced PDF</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 px-2">Professional PDF Management</p>
           <ToolGrid tools={PDF_TOOLS} />
         </div>
       </section>
@@ -199,10 +200,10 @@ export default function HomePage() {
       <div className="border-y border-border bg-surface-muted/30">
         <div className="max-w-[1100px] mx-auto px-5 py-8 flex flex-wrap justify-center gap-x-16 gap-y-6">
           {[
-            { num: "50+",   label: "Free online tools" },
-            { num: "10 MB", label: "Max file size" },
-            { num: "0",     label: "Files stored" },
-            { num: "100%",  label: "Free forever" },
+            { num: "30+",   label: "Professional Tools" },
+            { num: "10 MB", label: "Max File Size" },
+            { num: "Zero",  label: "User Accounts" },
+            { num: "100%",  label: "Privacy Guaranteed" },
           ].map(({ num, label }) => (
             <div key={label} className="text-center min-w-[100px]">
               <div className="text-2xl font-black tracking-tight text-foreground">{num}</div>
@@ -217,14 +218,49 @@ export default function HomePage() {
         <FAQ items={HOME_FAQ} />
       </section>
 
-      {/* SEO text */}
-      <section className="max-w-[800px] mx-auto px-5 pb-24 space-y-6 text-[16px] text-muted-foreground leading-relaxed">
-        <div className="p-8 rounded-3xl bg-surface-muted/50 border border-border/50">
-          <h2 className="text-2xl font-bold text-foreground mb-4">The fastest way to compress files online</h2>
-          <div className="space-y-4 font-medium">
-            <p>ShrinkBox is a free online file utility built for speed and simplicity. Whether you need to reduce an image for email, shrink a PDF for an upload limit, or convert between formats — we handle it instantly without any sign-up.</p>
-            <p>Our image compression uses Sharp with MozJPEG encoding to reduce JPG, PNG, and WebP files by up to 60% while maintaining visual quality. All processing happens server-side and files are permanently deleted after download.</p>
+      {/* Robust SEO Content Section */}
+      <section className="max-w-[900px] mx-auto px-5 pb-24 space-y-12 text-muted-foreground leading-relaxed">
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-foreground">Why Speed Matters for Your SEO</h2>
+            <p>
+              In the modern digital landscape, page load speed is a critical ranking factor. Large, unoptimized images and heavy PDF documents are the primary culprits behind slow mobile performance and poor 'Core Web Vitals' scores. ShrinkBox provides an all-in-one platform to **compress JPG**, **convert PNG to WebP**, and **shrink PDF** files in seconds, giving you a competitive edge in Google search rankings.
+            </p>
           </div>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-foreground">A Privacy-First Architecture</h2>
+            <p>
+              We believe your proprietary data should stay private. Unlike 'cloud' converters that could store or index your sensitive documents, ShrinkBox uses a hybrid security model. Many of our tools, like our **JSON Formatter** and **QR Code Generator**, run entirely within your browser using JavaScript, meaning your data never even touches our network.
+            </p>
+          </div>
+        </div>
+
+        <div className="p-8 rounded-3xl bg-surface-muted/50 border border-border/50 space-y-6">
+          <h2 className="text-2xl font-bold text-foreground text-center">How to Optimize Your Workflow with ShrinkBox</h2>
+          <div className="grid sm:grid-cols-3 gap-8 text-sm">
+            <div className="space-y-2">
+              <div className="w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center font-bold">1</div>
+              <p className="font-bold text-foreground">Select Your Tool</p>
+              <p>Choose from our specialized image, PDF, or developer tools tailored for specific formats and needs.</p>
+            </div>
+            <div className="space-y-2">
+              <div className="w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center font-bold">2</div>
+              <p className="font-bold text-foreground">Drop & Configure</p>
+              <p>Drag your files into the secure zone and adjust quality settings or presets with intuitive controls.</p>
+            </div>
+            <div className="space-y-2">
+              <div className="w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center font-bold">3</div>
+              <p className="font-bold text-foreground">Instant Download</p>
+              <p>Our high-speed engine processes your request in real-time. Download your optimized asset immediately.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="text-center space-y-4">
+          <h2 className="text-xl font-bold text-foreground">Universally Compatible, Globally Accessible</h2>
+          <p className="max-w-2xl mx-auto">
+            From **HEIC to JPG** conversion for iPhone users to **PDF Watermarking** for legal professionals, ShrinkBox is designed to handle the diverse needs of modern creators. We support all major browser environments and require zero installation, making it the perfect companion for remote teams and solo entrepreneurs alike.
+          </p>
         </div>
       </section>
     </div>

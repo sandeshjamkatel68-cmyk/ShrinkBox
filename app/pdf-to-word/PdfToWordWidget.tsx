@@ -25,22 +25,22 @@ export default function PdfToWordWidget() {
         <p className="text-xs opacity-80">This free tool extracts document structure and metadata. Formatting, tables, and images are not preserved. For full Word formatting, use Adobe Acrobat or CloudConvert.</p>
       </div>
       {status !== "done" && (
-        <div onClick={() => inputRef.current?.click()} onDrop={e => { e.preventDefault(); setDragOver(false); const f = e.dataTransfer.files[0]; if (f) setFile(f); }} onDragOver={e => { e.preventDefault(); setDragOver(true); }} onDragLeave={() => setDragOver(false)} className={["cursor-pointer rounded-2xl border-2 border-dashed p-10 flex flex-col items-center gap-3 text-center transition-all", dragOver ? "border-[var(--brand)] bg-[rgba(34,197,94,0.05)]" : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50"].join(" ")}>
-          <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">📄</div>
+        <div onClick={() => inputRef.current?.click()} onDrop={e => { e.preventDefault(); setDragOver(false); const f = e.dataTransfer.files[0]; if (f) setFile(f); }} onDragOver={e => { e.preventDefault(); setDragOver(true); }} onDragLeave={() => setDragOver(false)} className={["cursor-pointer rounded-2xl border-2 border-dashed p-10 flex flex-col items-center gap-3 text-center transition-all", dragOver ? "border-brand bg-[rgba(34,197,94,0.05)]" : "border-border bg-surface hover:border-brand/50"].join(" ")}>
+          <div className="w-14 h-14 rounded-2xl bg-surface-muted flex items-center justify-center text-2xl">📄</div>
           <p className="font-medium">{file ? file.name : "Drop your PDF here"}</p>
-          <p className="text-sm text-[var(--text-muted)]">{file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}</p>
+          <p className="text-sm text-muted">{file ? formatBytes(file.size) : <span>or <span className="text-brand">click to browse</span></span>}</p>
           <input ref={inputRef} type="file" accept=".pdf" className="sr-only" onChange={e => { const f = e.target.files?.[0]; if (f) setFile(f); e.target.value = ""; }} />
         </div>
       )}
-      {file && status === "idle" && (<button onClick={handleConvert} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Convert PDF to Text</button>)}
-      {status === "processing" && (<div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center"><p className="text-sm font-medium">Converting...</p></div>)}
+      {file && status === "idle" && (<button onClick={handleConvert} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Convert PDF to Text</button>)}
+      {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Converting...</p></div>)}
       {status === "done" && result && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
-          <div className="flex items-center gap-2 mb-3"><span className="text-[var(--brand)]">✓</span><span className="font-medium text-sm">Converted — {result.pageCount} pages</span></div>
+        <div className="rounded-2xl border border-border bg-surface p-5">
+          <div className="flex items-center gap-2 mb-3"><span className="text-brand">✓</span><span className="font-medium text-sm">Converted — {result.pageCount} pages</span></div>
           {result.warning && (<p className="text-xs text-yellow-500 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-3 py-2 mb-3">{result.warning}</p>)}
           <div className="flex gap-3">
-            <a href={result.downloadUrl} download={result.outputFileName} className="flex-1 text-center bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors">↓ Download .txt file</a>
-            <button onClick={reset} className="px-4 py-2.5 rounded-xl border border-[var(--border)] text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">Try another</button>
+            <a href={result.downloadUrl} download={result.outputFileName} className="flex-1 text-center bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors">↓ Download .txt file</a>
+            <button onClick={reset} className="px-4 py-2.5 rounded-xl border border-border text-sm text-muted hover:text-foreground transition-colors">Try another</button>
           </div>
         </div>
       )}

@@ -147,6 +147,20 @@ export const TOOL_META: Record<string, ToolMeta> = {
     url:         "/reduce-png-size",
     category:    "MultimediaApplication",
   },
+  "compress-jpg": {
+    title:       "Compress JPG Online Free — Reduce JPEG File Size",
+    description: "Compress JPG images online for free. Reduce file size without losing quality for faster websites. No signup required.",
+    keywords:    ["compress jpg", "jpeg compressor", "reduce jpg size free", "optimize jpeg online"],
+    url:         "/compress-jpg",
+    category:    "MultimediaApplication",
+  },
+  "compress-png": {
+    title:       "Compress PNG Online Free — Reduce PNG File Size",
+    description: "Compress PNG images online for free. Reduce file size while keeping high quality and transparency. No registration needed.",
+    keywords:    ["compress png", "png compressor", "reduce png size free", "optimize png online"],
+    url:         "/compress-png",
+    category:    "MultimediaApplication",
+  },
   "convert-jpg-to-webp": {
     title:       "Convert JPG to WebP Online Free — JPG to WebP Converter",
     description: "Convert JPG images to WebP format online for free. WebP files are 25-35% smaller than JPG. No signup, instant download.",
@@ -187,6 +201,27 @@ export const TOOL_META: Record<string, ToolMeta> = {
     description: "Combine multiple images into one PDF online for free. Upload JPG, PNG, or WebP images and download as a single PDF. No signup.",
     keywords:    ["images to pdf", "jpg to pdf", "convert images to pdf online free", "combine photos to pdf"],
     url:         "/images-to-pdf",
+    category:    "BusinessApplication",
+  },
+  "jpg-to-pdf": {
+    title:       "Convert JPG to PDF Online Free — Image to PDF",
+    description: "Convert JPG images to PDF format online for free. Fast, easy, and secure processing in your browser. No signup needed.",
+    keywords:    ["jpg to pdf", "convert jpg to pdf free", "jpeg to pdf converter", "online image to pdf"],
+    url:         "/jpg-to-pdf",
+    category:    "BusinessApplication",
+  },
+  "png-to-pdf": {
+    title:       "Convert PNG to PDF Online Free — Portable Document Creator",
+    description: "Convert PNG images to PDF format online for free. High quality document generation without uploading files. No signup.",
+    keywords:    ["png to pdf", "convert png to pdf free", "png to pdf converter online"],
+    url:         "/png-to-pdf",
+    category:    "BusinessApplication",
+  },
+  "webp-to-pdf": {
+    title:       "Convert WebP to PDF Online Free — WebP to PDF Converter",
+    description: "Convert WebP images to PDF format online for free. Modern image format to professional document in seconds. No signup.",
+    keywords:    ["webp to pdf", "convert webp to pdf free", "webp to pdf converter"],
+    url:         "/webp-to-pdf",
     category:    "BusinessApplication",
   },
   "merge-pdf": {
@@ -252,6 +287,13 @@ export const TOOL_META: Record<string, ToolMeta> = {
     url:         "/pdf-to-jpg",
     category:    "BusinessApplication",
   },
+  "pdf-to-image": {
+    title:       "Convert PDF to Image Online Free — High Quality Extraction",
+    description: "Extract images from your PDF documents or convert pages to images for free. Fast, private, and secure in your browser.",
+    keywords:    ["pdf to image", "extract images from pdf", "pdf to image converter free", "online pdf to photo"],
+    url:         "/pdf-to-image",
+    category:    "BusinessApplication",
+  },
   "pdf-to-word": {
     title:       "PDF to Word Online Free — Convert PDF to Text",
     description: "Convert PDF to Word/text format online for free. Extract text content from PDF documents. No signup required.",
@@ -260,98 +302,98 @@ export const TOOL_META: Record<string, ToolMeta> = {
     category:    "BusinessApplication",
   },
   "compress-image-to-size": {
-    title:       "Compress Image to Exact Size (KB) — Free Online",
+    title:       "Compress Image to Exact Size (KB) Online Free — Image Reducer",
     description: "Compress images to an exact target file size (e.g. 50KB or 100KB) online for free. Perfect for exam forms and government applications.",
     keywords:    ["compress image to 50kb", "image compressor kb", "compress photo to exact size", "compress to 100kb"],
     url:         "/compress-image-to-size",
     category:    "MultimediaApplication",
   },
   "heic-to-jpg": {
-    title:       "Convert HEIC to JPG Online Free — No Upload",
+    title:       "Convert HEIC to JPG Online Free — High Quality iPhone Photo Converter",
     description: "Convert Apple HEIC photos to JPG format instantly in your browser. Fast, free, and completely private with zero uploads.",
     keywords:    ["heic to jpg", "convert heic to jpeg online free", "heic converter", "iphone photo to jpg"],
     url:         "/heic-to-jpg",
     category:    "MultimediaApplication",
   },
   "image-to-text": {
-    title:       "Extract Text from Image (OCR) — Free Online",
+    title:       "Extract Text from Image (OCR) Online Free — Image to Text Converter",
     description: "Extract text from images, screenshots, and scanned documents instantly in your browser. Free online OCR with zero file uploads.",
     keywords:    ["extract text from image", "image to text converter", "online ocr free", "copy text from photo"],
     url:         "/image-to-text",
     category:    "BusinessApplication",
   },
   "color-picker": {
-    title:       "Image Color Picker & Palette Generator — Free Online",
+    title:       "Image Color Picker & Palette Generator Online Free — Hex Code Finder",
     description: "Extract dominant hex colors and generate a complete color palette from any image. Perfect for designers. 100% free and private.",
     keywords:    ["image color picker", "extract colors from image", "color palette generator from image", "hex code from photo"],
     url:         "/color-picker",
     category:    "DesignApplication",
   },
   "svg-to-png": {
-    title:       "Convert SVG to PNG Online Free — Instant Vector Conversion",
+    title:       "Convert SVG to PNG Online Free — Instant High-Res Rasterizer",
     description: "Instantly convert SVG vector graphics to PNG images online. Free, fast, and secure rasterization directly in your browser.",
     keywords:    ["svg to png", "convert svg to png high resolution", "vector to image", "svg converter online"],
     url:         "/svg-to-png",
     category:    "MultimediaApplication",
   },
   "watermark-image": {
-    title:       "Add Watermark to Image Online Free — Protect Photos",
+    title:       "Add Watermark to Image Online Free — Protect Photos Digitally",
     description: "Stamp your text or overlay logo watermark onto your images directly in your browser. Secure, fast, and transparent.",
     keywords:    ["add watermark to image", "watermark photo online free", "stamp text on image", "protect image online"],
     url:         "/watermark-image",
     category:    "MultimediaApplication",
   },
   "image-to-base64": {
-    title:       "Convert Image to Base64 String — Free Developer Tool",
+    title:       "Convert Image to Base64 Online Free — Developer Data URI Tool",
     description: "Encode images to Base64 data URI format instantly. The best free developer tool for embedding images inside HTML and CSS files.",
     keywords:    ["image to base64", "convert photo to base64", "base64 encoder online", "image data uri generator"],
     url:         "/image-to-base64",
     category:    "DeveloperApplication",
   },
   "base64-to-image": {
-    title:       "Decode Base64 to Image — Free Visual Decoder",
+    title:       "Decode Base64 to Image Online Free — Visual String Decoder",
     description: "Paste a Base64 encoded string and preview or download the decoded image instantly. Free developer tool.",
     keywords:    ["base64 to image", "decode base64 string", "base64 decoder online", "preview base64 string"],
     url:         "/base64-to-image",
     category:    "DeveloperApplication",
   },
   "favicon-generator": {
-    title:       "Favicon Generator — Convert Image to ICO / PNG",
+    title:       "Favicon Generator Online Free — Create ICO & PNG App Icons",
     description: "Generate 16x16, 32x32, and Apple Touch Icon sizes from your logo instantly. Download a packaged ZIP file for your website.",
     keywords:    ["favicon generator", "create favicon online", "image to ico converter", "app icon generator"],
     url:         "/favicon-generator",
     category:    "DesignApplication",
   },
   "meme-generator": {
-    title:       "Meme Generator Online — Add Text to Images Free",
+    title:       "Meme Generator Online Free — Add Text to Images Instantly",
     description: "Create funny memes instantly by overlaying Impact text on your images. Free, private, and no signup needed.",
     keywords:    ["meme generator", "add text to image", "make a meme online", "impact font meme creator"],
     url:         "/meme-generator",
     category:    "MultimediaApplication",
   },
   "qr-code-generator": {
-    title:       "QR Code Generator — Free Online QR Creator",
+    title:       "QR Code Generator Online Free — Create Custom QRs for WiFi & URL",
     description: "Create custom QR codes for URLs, WiFi, and text instantly. Customize colors and download in high resolution for free.",
     keywords:    ["qr code generator", "create qr code free", "online qr creator", "generate qr code"],
     url:         "/qr-code-generator",
     category:    "DesignApplication",
   },
   "json-formatter": {
-    title:       "JSON Formatter & Validator — Free Developer Tool",
+    title:       "JSON Formatter & Validator Online Free — Pretty Print Developer Tool",
     description: "Format, beautify, and validate JSON data instantly. A clean, private tool for developers to debug JSON structures.",
     keywords:    ["json formatter", "beautify json", "json validator", "format json online"],
     url:         "/json-formatter",
     category:    "DeveloperApplication",
   },
   "social-media-resizer": {
-    title:       "Social Media Image Resizer — One-Click Presets",
+    title:       "Social Media Image Resizer Online Free — One-Click Size Presets",
     description: "Resize images for Instagram, YouTube, TikTok, and Twitter instantly. Use our one-click presets for perfect social media posts.",
     keywords:    ["social media resizer", "instagram photo resizer", "youtube thumbnail size", "resize image for tiktok"],
     url:         "/social-media-resizer",
     category:    "MultimediaApplication",
   },
   "privacy-policy-generator": {
-    title:       "Free Privacy Policy & Terms Generator — Free Online",
+    title:       "Free Privacy Policy & Terms Generator Online — Website Legal Documents",
     description: "Generate professional privacy policies and terms of service for your website or app in seconds. Free and legally compliant.",
     keywords:    ["privacy policy generator", "free terms and conditions creator", "legal document generator", "website privacy policy"],
     url:         "/privacy-policy-generator",
@@ -396,4 +438,28 @@ export function ArticleSchema({
   };
 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+}
+
+export function BreadcrumbSchema({
+  items,
+}: {
+  items: { name: string; url: string }[];
+}) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url.startsWith("http") ? item.url : `${BASE_URL}${item.url}`,
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
 }

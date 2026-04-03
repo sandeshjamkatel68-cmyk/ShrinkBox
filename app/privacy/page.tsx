@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "pdf tool privacy policy",
   ],
   alternates: {
-    canonical: "https://shrink-box.com/privacy",
+    canonical: "/privacy",
   },
   openGraph: {
     title: "Privacy Policy — ShrinkBox",
     description:
       "Learn how ShrinkBox handles uploaded files, analytics, cookies, and security.",
-    url: "https://shrink-box.com/privacy",
+    url: "/privacy",
     siteName: "ShrinkBox",
     type: "website",
   },
@@ -42,22 +42,22 @@ export default function PrivacyPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 py-16">
       <section className="mb-10">
-        <span className="text-xs font-medium text-[var(--brand)] border border-[var(--brand)]/30 rounded-full px-3 py-1">
+        <span className="text-xs font-medium text-brand border border-brand/30 rounded-full px-3 py-1">
           Privacy
         </span>
         <h1 className="text-4xl font-bold mt-4 mb-3">Privacy Policy</h1>
-        <p className="text-[var(--text-muted)] text-lg leading-relaxed">
+        <p className="text-muted text-lg leading-relaxed">
           Your privacy matters to us. This page explains what ShrinkBox collects, how it is
           used, and how uploaded files are handled when you use our tools.
         </p>
-        <p className="text-sm text-[var(--text-muted)] mt-4">
+        <p className="text-sm text-muted mt-4">
           Last updated: {lastUpdated}
         </p>
       </section>
 
-      <div className="space-y-10 text-[var(--text-muted)] leading-relaxed">
+      <div className="space-y-10 text-muted leading-relaxed">
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Overview</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Overview</h2>
           <p>
             ShrinkBox ("we", "our", or "us") is committed to protecting your privacy. This
             Privacy Policy explains what information we may collect, how we use it, and how
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             Files you upload
           </h2>
           <p>
@@ -78,32 +78,32 @@ export default function PrivacyPage() {
 
           <ul className="mt-3 space-y-2">
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>Your file is sent securely using HTTPS.</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
                 Files are processed only for the purpose of completing the requested tool
                 action.
               </span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
                 Uploaded files and generated outputs are stored only temporarily and are
                 automatically removed after processing or after a limited retention period.
               </span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
                 We do not use your files to train models, build profiles, or analyze file
                 contents for advertising purposes.
               </span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
                 We do not intentionally share uploaded file contents with third parties
                 except where needed to operate the service, comply with law, or protect the
@@ -120,7 +120,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             Information we collect automatically
           </h2>
           <p>
@@ -130,30 +130,30 @@ export default function PrivacyPage() {
 
           <ul className="mt-3 space-y-2">
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
-                <strong className="text-[var(--text)]">IP address</strong> — used for
+                <strong className="text-foreground">IP address</strong> — used for
                 security, rate limiting, abuse prevention, and basic operational logging.
               </span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
-                <strong className="text-[var(--text)]">Browser and device data</strong> —
+                <strong className="text-foreground">Browser and device data</strong> —
                 such as browser type, operating system, screen size, and device category.
               </span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
-                <strong className="text-[var(--text)]">Usage data</strong> — such as pages
+                <strong className="text-foreground">Usage data</strong> — such as pages
                 visited, tools used, and general interaction events.
               </span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
-                <strong className="text-[var(--text)]">Referral data</strong> — such as the
+                <strong className="text-foreground">Referral data</strong> — such as the
                 page or source that led you to ShrinkBox.
               </span>
             </li>
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Cookies and local storage</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Cookies and local storage</h2>
           <p>
             ShrinkBox may use a limited number of cookies or browser storage technologies to
             keep the service working properly and improve user experience.
@@ -169,16 +169,16 @@ export default function PrivacyPage() {
 
           <ul className="mt-3 space-y-2">
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
-                <strong className="text-[var(--text)]">Preference storage</strong> — such as
+                <strong className="text-foreground">Preference storage</strong> — such as
                 theme selection or interface preferences.
               </span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
-                <strong className="text-[var(--text)]">Analytics technologies</strong> — if
+                <strong className="text-foreground">Analytics technologies</strong> — if
                 enabled, these help us understand how the website is used and which tools are
                 most useful.
               </span>
@@ -191,7 +191,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Analytics</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Analytics</h2>
           <p>
             We may use analytics tools to understand overall traffic, popular pages, tool
             usage, device types, and general performance of the service. Analytics data helps
@@ -204,7 +204,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Advertising</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Advertising</h2>
           <p>
             ShrinkBox may display ads through third-party advertising providers such as
             Google AdSense or similar services. These providers may use cookies or related
@@ -218,7 +218,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Data security</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Data security</h2>
           <p>
             We use reasonable technical and organizational measures to protect ShrinkBox and
             the data processed through it. This includes HTTPS encryption and access controls
@@ -231,7 +231,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Third-party services</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Third-party services</h2>
           <p>
             ShrinkBox may rely on third-party infrastructure or service providers for
             hosting, analytics, advertising, monitoring, or other operational needs. These
@@ -240,7 +240,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             Children&apos;s privacy
           </h2>
           <p>
@@ -252,7 +252,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Your choices</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Your choices</h2>
           <p>
             You can stop using the service at any time, avoid uploading sensitive files if
             you are uncomfortable, and control certain browser-level settings such as cookies,
@@ -265,7 +265,7 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             Changes to this policy
           </h2>
           <p>
@@ -276,17 +276,17 @@ export default function PrivacyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">Contact</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Contact</h2>
           <p>
             If you have questions about this Privacy Policy, you can contact us by email at{" "}
             <a
               href="mailto:privacy@shrinkbox.io"
-              className="text-[var(--brand)] hover:underline"
+              className="text-brand hover:underline"
             >
               privacy@shrinkbox.io
             </a>{" "}
             or through our{" "}
-            <Link href="/contact" className="text-[var(--brand)] hover:underline">
+            <Link href="/contact" className="text-brand hover:underline">
               contact page
             </Link>
             .

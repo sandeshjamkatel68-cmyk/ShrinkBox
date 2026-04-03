@@ -44,18 +44,18 @@ export default function ResizeImageWidget() {
         onDragLeave={() => setDragOver(false)}
         className={[
           "cursor-pointer rounded-2xl border-2 border-dashed p-10 flex flex-col items-center gap-3 text-center transition-all",
-          dragOver ? "border-[var(--brand)] bg-[rgba(34,197,94,0.05)]"
-                   : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50",
+          dragOver ? "border-brand bg-[rgba(34,197,94,0.05)]"
+                   : "border-border bg-surface hover:border-brand/50",
           isProcessing ? "opacity-50 pointer-events-none" : "",
         ].join(" ")}
       >
-        <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">
+        <div className="w-14 h-14 rounded-2xl bg-surface-muted flex items-center justify-center text-2xl">
           {dragOver ? "⬇" : "📐"}
         </div>
         <div>
           <p className="font-medium">{file ? file.name : "Drop your image here"}</p>
-          <p className="text-sm text-[var(--text-muted)] mt-1">
-            {file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}
+          <p className="text-sm text-muted mt-1">
+            {file ? formatBytes(file.size) : <span>or <span className="text-brand">click to browse</span></span>}
           </p>
         </div>
         <input ref={inputRef} type="file" accept=".jpg,.jpeg,.png,.webp" className="sr-only"
@@ -63,7 +63,7 @@ export default function ResizeImageWidget() {
       </div>
 
       {file && !isProcessing && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 flex flex-col gap-4">
+        <div className="rounded-2xl border border-border bg-surface px-5 py-4 flex flex-col gap-4">
           {/* Unit toggle */}
           <div className="flex gap-2">
             {(["px", "percent"] as const).map((u) => (
@@ -71,8 +71,8 @@ export default function ResizeImageWidget() {
                 className={[
                   "flex-1 rounded-xl border py-2 text-sm font-medium transition-all",
                   unit === u
-                    ? "border-[var(--brand)] bg-[var(--brand-light)] text-[var(--brand)]"
-                    : "border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--brand)]/30",
+                    ? "border-brand bg-[var(--brand-light)] text-brand"
+                    : "border-border text-muted hover:border-brand/30",
                 ].join(" ")}>
                 {u === "px" ? "Pixels" : "Percent"}
               </button>
@@ -82,26 +82,26 @@ export default function ResizeImageWidget() {
           {/* Dimensions */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs text-[var(--text-muted)] block mb-1">
+              <label className="text-xs text-muted block mb-1">
                 Width {unit === "px" ? "(px)" : "(%)"}
               </label>
               <input type="number" value={width} onChange={(e) => setWidth(e.target.value)} placeholder="Auto"
                 min={1} max={unit === "percent" ? 100 : 10000}
-                className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)]" />
+                className="w-full rounded-xl border border-border bg-surface-muted px-3 py-2 text-sm focus:outline-none focus:border-brand" />
             </div>
             <div>
-              <label className="text-xs text-[var(--text-muted)] block mb-1">
+              <label className="text-xs text-muted block mb-1">
                 Height {unit === "px" ? "(px)" : "(%)"}
               </label>
               <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} placeholder="Auto"
                 min={1} max={unit === "percent" ? 100 : 10000}
-                className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)]" />
+                className="w-full rounded-xl border border-border bg-surface-muted px-3 py-2 text-sm focus:outline-none focus:border-brand" />
             </div>
           </div>
 
           {/* Fit mode */}
           <div>
-            <label className="text-xs text-[var(--text-muted)] block mb-1.5">Fit mode</label>
+            <label className="text-xs text-muted block mb-1.5">Fit mode</label>
             <div className="grid grid-cols-2 gap-2">
               {([
                 { value: "inside",  label: "Fit inside",  desc: "No cropping, preserves ratio" },
@@ -113,8 +113,8 @@ export default function ResizeImageWidget() {
                   className={[
                     "rounded-xl border px-3 py-2 text-left text-xs transition-all",
                     fit === f.value
-                      ? "border-[var(--brand)] bg-[var(--brand-light)] text-[var(--brand)]"
-                      : "border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--brand)]/30",
+                      ? "border-brand bg-[var(--brand-light)] text-brand"
+                      : "border-border text-muted hover:border-brand/30",
                   ].join(" ")}>
                   <div className="font-medium">{f.label}</div>
                   <div className="opacity-70 mt-0.5">{f.desc}</div>
@@ -124,16 +124,16 @@ export default function ResizeImageWidget() {
           </div>
 
           <button onClick={handleResize} disabled={!width && !height}
-            className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+            className="w-full bg-brand hover:bg-[var(--brand-dim)] disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">
             Resize Image
           </button>
         </div>
       )}
 
       {isProcessing && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5">
+        <div className="rounded-2xl border border-border bg-surface px-6 py-5">
           <p className="text-sm font-medium mb-2">Resizing...</p>
-          <div className="h-1.5 rounded-full bg-[var(--surface-muted)] overflow-hidden">
+          <div className="h-1.5 rounded-full bg-surface-muted overflow-hidden">
             <div className="h-full rounded-full shimmer" style={{ width: `${state.progress}%` }} />
           </div>
         </div>
@@ -146,7 +146,7 @@ export default function ResizeImageWidget() {
             <p className="text-sm font-medium text-red-400">Resize failed</p>
             <p className="text-xs text-red-400/70 mt-1">{state.error}</p>
           </div>
-          <button onClick={() => { reset(); setFile(null); }} className="text-xs text-[var(--text-muted)]">Retry</button>
+          <button onClick={() => { reset(); setFile(null); }} className="text-xs text-muted">Retry</button>
         </div>
       )}
     </div>

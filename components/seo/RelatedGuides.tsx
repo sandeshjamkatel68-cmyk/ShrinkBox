@@ -17,10 +17,10 @@ export default function RelatedGuides({ tags }: { tags: string[] }) {
   if (relatedPosts.length === 0) return null;
 
   return (
-    <section className="max-w-4xl mx-auto px-4 pb-16 pt-8 border-t border-[var(--border)]">
+    <section className="max-w-4xl mx-auto px-4 pb-16 pt-8 border-t border-border">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-bold text-[var(--text)]">Related Guides & Tutorials</h2>
-        <Link href="/blog" className="text-sm font-medium text-[var(--brand)] hover:text-[var(--brand-dim)] transition-colors">
+        <h2 className="text-2xl font-bold text-foreground">Related Guides & Tutorials</h2>
+        <Link href="/blog" className="text-sm font-medium text-brand hover:text-[var(--brand-dim)] transition-colors">
           View all articles →
         </Link>
       </div>
@@ -30,22 +30,22 @@ export default function RelatedGuides({ tags }: { tags: string[] }) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group flex flex-col items-start gap-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 hover:shadow-[var(--shadow-md)] hover:border-[var(--brand)]/30 transition-all duration-200"
+            className="group flex flex-col items-start gap-4 rounded-2xl border border-border bg-surface p-6 hover:shadow-[var(--shadow-md)] hover:border-brand/30 transition-all duration-200"
           >
             <div className="flex items-center gap-2 w-full">
-              <span className="text-[10px] font-bold tracking-wider uppercase text-[var(--brand)] bg-[var(--brand-light)] rounded-full px-2 py-0.5 shrink-0">
+              <span className="text-[10px] font-bold tracking-wider uppercase text-brand bg-[var(--brand-light)] rounded-full px-2 py-0.5 shrink-0">
                 {post.tag}
               </span>
-              <span className="text-[11px] font-medium text-[var(--text-subtle)] truncate">
+              <span className="text-[11px] font-medium text-subtle truncate">
                 {post.readMin} min read
               </span>
             </div>
             
-            <h3 className="text-base font-bold text-[var(--text)] leading-snug group-hover:text-[var(--brand)] transition-colors line-clamp-2">
+            <h3 className="text-base font-bold text-foreground leading-snug group-hover:text-brand transition-colors line-clamp-2">
               {post.title}
             </h3>
             
-            <p className="text-sm text-[var(--text-muted)] line-clamp-3 leading-relaxed mt-auto">
+            <p className="text-sm text-muted line-clamp-3 leading-relaxed mt-auto">
               {post.excerpt}
             </p>
           </Link>

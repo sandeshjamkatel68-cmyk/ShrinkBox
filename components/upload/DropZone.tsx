@@ -57,30 +57,31 @@ export default function DropZone({ onFile, disabled }: DropZoneProps) {
         onDragOver={(e) => { e.preventDefault(); if (!disabled) setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
         className={[
-          "relative cursor-pointer rounded-2xl border-2 border-dashed p-10 md:p-16",
-          "flex flex-col items-center justify-center gap-4 text-center",
-          "transition-all duration-200",
+          "relative cursor-pointer rounded-[2rem] border-2 border-dashed p-12 md:p-20",
+          "flex flex-col items-center justify-center gap-6 text-center",
+          "transition-all duration-500 shadow-sm glow-hover",
           dragOver
-            ? "border-[var(--brand)] bg-[rgba(34,197,94,0.05)]"
-            : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50",
+            ? "border-brand bg-brand-light shadow-premium scale-[1.01]"
+            : "border-border bg-surface hover:border-brand/40 hover:shadow-md",
           disabled ? "opacity-50 cursor-not-allowed" : "",
         ].join(" ")}
       >
         {/* Upload icon */}
         <div className={[
-          "w-16 h-16 rounded-2xl flex items-center justify-center text-3xl",
-          "bg-[var(--surface-muted)] transition-colors duration-200",
-          dragOver ? "bg-[rgba(34,197,94,0.12)] text-[var(--brand)]" : "text-[var(--text-muted)]",
+          "w-20 h-20 rounded-[1.5rem] flex items-center justify-center text-4xl",
+          "bg-gradient-to-br from-brand-light to-surface-muted shadow-sm",
+          "transition-all duration-500",
+          dragOver ? "from-brand to-brand-vibrant text-white scale-110 rotate-12" : "text-brand",
         ].join(" ")}>
           {dragOver ? "⬇" : "⬆"}
         </div>
 
         <div>
-          <p className="text-lg font-medium text-[var(--text)]">
-            {dragOver ? "Drop your file here" : "Drag & drop your file here"}
+          <p className="text-2xl font-bold tracking-tight text-foreground">
+            {dragOver ? "Drop to optimize" : "Drag & drop files"}
           </p>
-          <p className="text-sm text-[var(--text-muted)] mt-1">
-            or <span className="text-[var(--brand)] font-medium">click to browse</span>
+          <p className="text-sm text-muted mt-1.5 font-medium">
+            or <span className="text-brand hover:underline decoration-2 underline-offset-4">click to browse</span>
           </p>
         </div>
 
@@ -89,12 +90,12 @@ export default function DropZone({ onFile, disabled }: DropZoneProps) {
           {SUPPORTED_TYPE_LABELS.map((label) => (
             <span
               key={label}
-              className="px-2.5 py-1 rounded-full bg-[var(--surface-muted)] text-xs font-mono text-[var(--text-muted)]"
+              className="px-2.5 py-1 rounded-full bg-surface-muted text-xs font-mono text-muted"
             >
               {label}
             </span>
           ))}
-          <span className="text-xs text-[var(--text-subtle)]">
+          <span className="text-xs text-subtle">
             · Max {MAX_FILE_SIZE_LABEL}
           </span>
         </div>

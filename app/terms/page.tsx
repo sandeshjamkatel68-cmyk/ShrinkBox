@@ -13,13 +13,13 @@ export const metadata: Metadata = {
     "pdf tool terms",
   ],
   alternates: {
-    canonical: "https://shrink-box.com/terms",
+    canonical: "/terms",
   },
   openGraph: {
     title: "Terms of Service — ShrinkBox",
     description:
       "Read the rules and conditions for using ShrinkBox online file tools.",
-    url: "https://shrink-box.com/terms",
+    url: "/terms",
     siteName: "ShrinkBox",
     type: "website",
   },
@@ -51,25 +51,25 @@ export default function TermsPage() {
   return (
     <main className="max-w-2xl mx-auto px-4 py-16">
       <section className="mb-10">
-        <span className="text-xs font-medium text-[var(--brand)] border border-[var(--brand)]/30 rounded-full px-3 py-1">
+        <span className="text-xs font-medium text-brand border border-brand/30 rounded-full px-3 py-1">
           Terms
         </span>
 
         <h1 className="text-4xl font-bold mt-4 mb-3">Terms of Service</h1>
 
-        <p className="text-[var(--text-muted)] text-lg leading-relaxed">
+        <p className="text-muted text-lg leading-relaxed">
           These Terms of Service explain the rules and conditions for using ShrinkBox.
           By accessing or using the service, you agree to these terms.
         </p>
 
-        <p className="text-sm text-[var(--text-muted)] mt-4">
+        <p className="text-sm text-muted mt-4">
           Last updated: {lastUpdated}
         </p>
       </section>
 
-      <div className="space-y-10 text-[var(--text-muted)] leading-relaxed">
+      <div className="space-y-10 text-muted leading-relaxed">
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             1. Acceptance of terms
           </h2>
           <p>
@@ -80,7 +80,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             2. Description of service
           </h2>
           <p>
@@ -95,7 +95,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             3. Acceptable use
           </h2>
           <p>You agree to use ShrinkBox only for lawful and proper purposes. You must not:</p>
@@ -111,7 +111,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             4. Your files and responsibility
           </h2>
           <p>
@@ -122,15 +122,15 @@ export default function TermsPage() {
 
           <ul className="mt-3 space-y-2">
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>You own the file or have permission to use and process it.</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>The file does not contain unlawful or prohibited content.</span>
             </li>
             <li className="flex gap-2">
-              <span className="text-[var(--brand)] shrink-0">→</span>
+              <span className="text-brand shrink-0">→</span>
               <span>
                 You are responsible for the legality, accuracy, and suitability of the file
                 and its contents.
@@ -140,7 +140,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             5. Limits and fair use
           </h2>
           <p>
@@ -155,7 +155,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             6. No guarantee of results
           </h2>
           <p>
@@ -171,7 +171,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             7. Availability and service changes
           </h2>
           <p>
@@ -182,7 +182,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             8. Disclaimer of warranties
           </h2>
           <p>
@@ -194,7 +194,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             9. Limitation of liability
           </h2>
           <p>
@@ -210,7 +210,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             10. Termination or restriction
           </h2>
           <p>
@@ -221,7 +221,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             11. Changes to these terms
           </h2>
           <p>
@@ -232,12 +232,12 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             12. Related policies
           </h2>
           <p>
             Your use of ShrinkBox may also be subject to our{" "}
-            <Link href="/privacy" className="text-[var(--brand)] hover:underline">
+            <Link href="/privacy" className="text-brand hover:underline">
               Privacy Policy
             </Link>
             .
@@ -245,14 +245,14 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-3">
+          <h2 className="text-xl font-semibold text-foreground mb-3">
             13. Contact
           </h2>
           <p>
             If you have questions about these Terms of Service, contact us at{" "}
             <a
               href="mailto:legal@shrinkbox.io"
-              className="text-[var(--brand)] hover:underline"
+              className="text-brand hover:underline"
             >
               legal@shrinkbox.io
             </a>

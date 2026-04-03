@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import LegalGeneratorWidget from "@/app/privacy-policy-generator/LegalGeneratorWidget";
-import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
-import { ToolSchema, TOOL_META } from "@/lib/seo";
+import { TrustSignals, FAQ, ToolHero, SEOContent } from "@/components/seo";
+import { ToolSchema, TOOL_META, BreadcrumbSchema } from "@/lib/seo";
 import RelatedGuides from "@/components/seo/RelatedGuides";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 
 export const metadata: Metadata = {
   title:       TOOL_META["privacy-policy-generator"].title,
@@ -22,14 +23,15 @@ export const metadata: Metadata = {
     description: TOOL_META["privacy-policy-generator"].description,
   },
   alternates: {
-    canonical: `https://shrink-box.com/privacy-policy-generator`,
+    canonical: "/privacy-policy-generator",
   },
 };
 
 const FAQ_ITEMS = [
-  { q: "Is this legal document binding?", a: "Our generator provide standard templates based on common web practices. While they cover the requirements for most small websites and apps, we recommend having a legal professional review them if you handle sensitive financial or health data." },
-  { q: "Is the generator free?", a: "Yes. ShrinkBox provides these legal templates 100% for free with no forced attribution or hidden costs." },
-  { q: "Can I generate Terms of Service too?", a: "Yes. Our tool allows you to toggle between a Privacy Policy and Terms of Service (TOS) instantly using the same business information." },
+  { q: "Is this legal document legally binding?", a: "Our generator provides standard legal templates based on global data protection patterns (GDPR/CCPA). While they cover the requirements for most standard websites, blogs, and apps, we strongly recommend having a legal professional review the final output if you handle complex financial, health, or adult-only content." },
+  { q: "Do I have to pay to use these legal templates?", a: "No. ShrinkBox provides high-quality, professional-grade legal templates 100% for free. We do not require signups, credit cards, or forced attribution links to use the generated policies on your own platforms." },
+  { q: "Can I generate Terms of Service (TOS) as well?", a: "Yes. Our integrated generator allows you to switch between a Privacy Policy and Terms of Service (TOS) instantly. All of your business information is preserved between the two, making it easy to create a complete legal suite in minutes." },
+  { q: "Is the information I provide for my policy private?", a: "Yes. Your privacy is our priority. ShrinkBox performs the entire text assembly process **locally in your browser**. We never store, sell, or analyze the business names or email addresses you input, ensuring full confidentiality." },
 ];
 
 export default function PrivacyGeneratorPage() {
@@ -41,12 +43,19 @@ export default function PrivacyGeneratorPage() {
         url={TOOL_META["privacy-policy-generator"].url}
         category={TOOL_META["privacy-policy-generator"].category}
       />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Privacy Policy Generator", url: "/privacy-policy-generator" },
+        ]}
+      />
       <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
+        <Breadcrumbs items={[{ name: "Privacy Policy Generator", url: "/privacy-policy-generator" }]} />
         <ToolHero 
           icon="🛡️" 
-          title="Free Legal Document Generator" 
-          description="Protect your website and comply with GDPR/CCPA. Generate custom Privacy Policies and Terms of Service in seconds." 
-          badge="Legal · Free" 
+          title="Free Legal Policy Generator Online — GDPR & CCPA Ready" 
+          description="Protect your brand and comply with international data laws instantly. Generate professional Privacy Policies and Terms of Service for your website without expensive legal fees." 
+          badge="Legal · Free · Secure" 
         />
         <LegalGeneratorWidget />
         <div className="mt-8"><TrustSignals /></div>
@@ -56,16 +65,40 @@ export default function PrivacyGeneratorPage() {
         <FAQ items={FAQ_ITEMS} />
       </section>
 
-      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
-        <h2 className="text-xl font-bold text-[var(--text)]">Compliance Made Simple</h2>
-        <p>
-          Creating a privacy policy is a legal requirement in many jurisdictions (like the EU and California) if your website collects any data—even just basic cookies or analytics. Hiring a lawyer to draft these documents can cost hundreds of dollars, which is a barrier for new creators and startups.
-        </p>
-        <p>
-          ShrinkBox offers a fast, accessible alternative. By inputting your basic website information, our generator assembles a robust legal template that covers data collection, user rights, and liability protections. It's safe, private, and helps you stay compliant from day one.
-        </p>
-      </section>
+      <SEOContent
+        toolName="Privacy Policy Generator"
+        title="Privacy Policy & TOS Generator Online Free — Start Your Business Safely"
+        description="Stop risking your brand's reputation with generic, copied policies. ShrinkBox provides a fast, browser-based way to assemble custom legal documents that protect your liability."
+        howToSteps={[
+          "Select the type of document you need (Privacy Policy or Terms of Service).",
+          "Input your basic business information into the secure local generator fields.",
+          "Our system instantly assembles a robust template based on modern web standards.",
+          "Copy the polished, HTML or plain-text document instantly to your clipboard."
+        ]}
+      >
+        <div className="mt-12 space-y-8 text-muted-foreground leading-relaxed">
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-4">Why every modern website needs custom legal documentation</h3>
+            <p>
+              In an era of strict data protection laws like GDPR and CCPA, having a clear and accurate privacy policy is no longer optional—it's a legal requirement. Whether you use basic analytics or a contact form, you are collecting user data. ShrinkBox provides an accessible way to bridge the legal gap, giving you a professional-grade starting point that informs your users about their rights and protects your business from unnecessary liability.
+            </p>
+          </div>
 
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-4">Complete Privacy: Local Legal Assembly</h3>
+            <p>
+              Your business configurations and legal requirements are sensitive. ShrinkBox respects your privacy by performing the entire document generation process **within your own browser**. Your internal emails and business addresses are never transmitted to our servers, making this the safest way to generate legal templates for new ventures and confidential side projects.
+            </p>
+          </div>
+
+          <div className="bg-brand-light/20 p-6 rounded-2xl border border-brand/10">
+            <h3 className="text-lg font-bold text-brand mb-2">Pro Tip: Keep Your Policies Updated</h3>
+            <p className="text-sm">
+              As you add new tracking pixels, payment processors, or marketing tools to your site, ensure you re-generate your policy to include these third-party processors. Maintaining an up-to-date policy is critical for building trust with your audience and maintaining long-term compliance.
+            </p>
+          </div>
+        </div>
+      </SEOContent>
       <RelatedGuides tags={["Tools", "Business"]} />
     </>
   );

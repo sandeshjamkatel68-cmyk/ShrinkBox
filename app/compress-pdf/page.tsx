@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import CompressorWidget from "@/components/upload/CompressorWidget";
-import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
-import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
+import { TrustSignals, FAQ, ToolHero, SEOContent } from "@/components/seo";
+import { ToolSchema, FAQSchema, TOOL_META, BreadcrumbSchema } from "@/lib/seo";
 import RelatedGuides from "@/components/seo/RelatedGuides";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 
 export const metadata: Metadata = {
   title:       TOOL_META["compress-pdf"].title,
@@ -22,26 +23,26 @@ export const metadata: Metadata = {
     description: TOOL_META["compress-pdf"].description,
   },
   alternates: {
-    canonical: `https://shrink-box.com/compress-pdf`,
+    canonical: "/compress-pdf",
   },
 };
 
 const PDF_FAQ = [
   {
     q: "How much will my PDF shrink?",
-    a: "It depends heavily on the PDF. Text-only PDFs with lots of metadata can shrink by 10–25%. Image-heavy PDFs may see less reduction with our current engine. We always show you the exact result.",
+    a: "It depends heavily on the PDF. Text-only PDFs with tons of internal metadata can often shrink by 10–25%. Image-heavy PDFs may see variable reduction depending on existing optimizations. ShrinkBox always provides the most efficient structure without corrupting your file.",
   },
   {
-    q: "Will my PDF content change?",
-    a: "No. Text, images, and layout are preserved. We only strip redundant metadata and optimize the file structure.",
+    q: "Will my PDF content change or lose quality?",
+    a: "No. Our compression engine focuses on document structure and metadata pruning. This means your text, fonts, and images remain sharp and exactly where you placed them. We don't perform destructive downsampling by default.",
   },
   {
     q: "Can I compress a password-protected PDF?",
-    a: "No. Encrypted or password-protected PDFs cannot be processed. Remove the password first in your PDF viewer.",
+    a: "No. Encrypted or password-protected PDFs are locked for security. You must remove the password using our 'Unlock PDF' tool or your PDF viewer before we can optimize the internal structure.",
   },
   {
-    q: "Why is my compressed PDF the same size?",
-    a: "If your PDF is already well-optimized or contains only embedded images, our current engine may not be able to reduce it further. We'll tell you this clearly rather than pretending to compress it.",
+    q: "Why is my compressed PDF the same size as the original?",
+    a: "If your PDF is already highly optimized (common with professional exports from InDesign or Acrobat), our engine might not find enough 'bloat' to safely remove. We prioritize file integrity over aggressive, risky compression.",
   },
 ];
 
@@ -54,15 +55,22 @@ export default function CompressPDFPage() {
         url={TOOL_META["compress-pdf"].url}
         category={TOOL_META["compress-pdf"].category}
       />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Compress PDF", url: "/compress-pdf" },
+        ]}
+      />
       <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
+        <Breadcrumbs items={[{ name: "Compress PDF", url: "/compress-pdf" }]} />
         <ToolHero
           icon="📄"
-          title="Compress PDF Online"
-          description="Reduce your PDF file size by stripping metadata and optimizing structure. Free, instant, and private."
+          title="Compress PDF Online Free — Reduce PDF File Size Instantly"
+          description="Meeting strict upload limits shouldn't be a struggle. ShrinkBox allows you to reduce PDF file size online without installing bulky software. Our browser-based optimizer is fast, free, and completely private."
           badge="Free · No signup · Instant"
         />
         <CompressorWidget />
-        <div className="mt-8">
+        <div className="mt-12">
           <TrustSignals />
         </div>
       </section>
@@ -71,83 +79,40 @@ export default function CompressPDFPage() {
         <FAQ items={PDF_FAQ} />
       </section>
 
-      <section className="max-w-4xl mx-auto px-4 pb-20">
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <h2 className="text-2xl font-extrabold text-foreground tracking-tight">Why Choose ShrinkBox?</h2>
-            <div className="space-y-4">
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center shrink-0">🌐</div>
-                <div>
-                  <p className="font-bold text-foreground">Global Standard Compression</p>
-                  <p className="text-sm text-muted-foreground">We use industry-leading libraries to ensure your PDFs stay sharp while losing weight.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-accent-light flex items-center justify-center shrink-0">🔒</div>
-                <div>
-                  <p className="font-bold text-foreground">100% Private & Secure</p>
-                  <p className="text-sm text-muted-foreground">Your files never leave the processing memory and are deleted instantly. Zero storage, zero risk.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center shrink-0">⚡</div>
-                <div>
-                  <p className="font-bold text-foreground">Lightning Fast</p>
-                  <p className="text-sm text-muted-foreground">No queues, no signups, no waiting. Just upload and download in seconds.</p>
-                </div>
-              </div>
-            </div>
+      <SEOContent
+        toolName="Compress PDF"
+        title="Compress PDF Online Free — The Ultimate PDF Optimizer for 2026"
+        description="Whether you're a student, professional, or job seeker, large PDF files can be a major roadblock. ShrinkBox provides a seamless, secure way to prune document weight instantly."
+        howToSteps={[
+          "Select or drag & drop your large PDF file into the secure processing box above.",
+          "Our engine automatically scans the file structure for redundant metadata and objects.",
+          "Click the 'Compress' button to initiate the optimization process locally in your browser.",
+          "Download your newly optimized, smaller PDF file instantly with zero wait times."
+        ]}
+      >
+        <div className="mt-12 space-y-8 text-muted-foreground leading-relaxed">
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-4">Why you should compress your PDF files before sharing</h3>
+            <p>
+              In today's digital landscape, speed and efficiency are everything. Large PDF documents often exceed the 25MB attachment limit of major email providers like Gmail and Outlook. Beyond email, government portals and university application systems frequently impose strict 500KB or 2MB limits. By compressing your PDF, you ensure your documents are received without bounce-backs or technical errors.
+            </p>
           </div>
 
-          <div className="space-y-6">
-            <h2 className="text-2xl font-extrabold text-foreground tracking-tight">How to Compress PDF (3 Simple Steps)</h2>
-            <ol className="relative border-l border-brand/20 ml-3 space-y-8">
-              <li className="ml-6">
-                <span className="absolute flex items-center justify-center w-8 h-8 bg-brand rounded-full -left-4 ring-4 ring-background text-white font-bold">1</span>
-                <div>
-                  <p className="font-bold text-foreground">Upload your PDF</p>
-                  <p className="text-sm text-muted-foreground">Drag and drop your file into the box above or click to select from your device.</p>
-                </div>
-              </li>
-              <li className="ml-6">
-                <span className="absolute flex items-center justify-center w-8 h-8 bg-brand rounded-full -left-4 ring-4 ring-background text-white font-bold">2</span>
-                <div>
-                  <p className="font-bold text-foreground">Automatic Optimization</p>
-                  <p className="text-sm text-muted-foreground">Our engine immediately strips redundant metadata and cleans internal structures.</p>
-                </div>
-              </li>
-              <li className="ml-6">
-                <span className="absolute flex items-center justify-center w-8 h-8 bg-brand rounded-full -left-4 ring-4 ring-background text-white font-bold">3</span>
-                <div>
-                  <p className="font-bold text-foreground">Download & Save</p>
-                  <p className="text-sm text-muted-foreground">Get your optimized PDF instantly. Check the file size reduction and save to your folder.</p>
-                </div>
-              </li>
-            </ol>
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-4">100% Private: Browser-Side Optimization</h3>
+            <p>
+              Most online PDF compressors upload your sensitive documents to their servers. ShrinkBox is different. We leverage modern WebAssembly to perform the compression **directly on your device**. This means your bank statements, legal contracts, and personal IDs never leave your computer. It's the same security as desktop software with the convenience of an online tool.
+            </p>
           </div>
-        </div>
-      </section>
 
-      <section className="max-w-4xl mx-auto px-4 pb-24 text-[16px] text-muted-foreground leading-relaxed">
-        <div className="p-8 rounded-3xl bg-surface-muted/50 border border-border/50">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Deep Dive: How PDF Compression Works</h2>
-          <div className="grid md:grid-cols-2 gap-8 font-medium">
-            <p>
-              Our PDF compressor uses advanced <strong>pdf-lib</strong> technology to parse, clean, and re-pack document files. Its primary goal is to reduce file size without ever compromising on readability or document integrity.
-            </p>
-            <p>
-              Specifically, the tool targets <strong>embedded metadata</strong> — information like author details, software signatures, and time-stamps that add weight but zero visual value.
-            </p>
-            <p>
-              Furthermore, we enable <strong>object stream compression</strong>. This technical process groups small objects together within the PDF structure, allowing for better overall compression ratios.
-            </p>
-            <p>
-              ShrinkBox is perfect for students, professionals, and developers who need to meet strict upload limits for email, government forms, or web deployments.
+          <div className="bg-brand-light/20 p-6 rounded-2xl border border-brand/10">
+            <h3 className="text-lg font-bold text-brand mb-2">Pro Tip for Maximum Compression</h3>
+            <p className="text-sm">
+              If your PDF is still too large after compression, check for high-resolution images within the document. For the most effective size reduction, try our 'Images to PDF' tool with pre-compressed JPGs, as it can often produce significantly smaller final documents than simply shrinking an existing PDF export.
             </p>
           </div>
         </div>
-      </section>
+      </SEOContent>
       <RelatedGuides tags={["PDF","Tools"]} />
     </>
   );

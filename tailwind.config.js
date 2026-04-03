@@ -11,11 +11,14 @@ const config = {
       colors: {
         background: "hsl(var(--bg))",
         foreground: "hsl(var(--text))",
+        muted:      "hsl(var(--text-muted))",
+        subtle:     "hsl(var(--text-subtle))",
         brand: {
           DEFAULT: "hsl(var(--brand))",
           dim:     "hsl(var(--brand-dim))",
           light:   "hsl(var(--brand-light))",
           muted:   "hsl(var(--brand-muted))",
+          vibrant: "hsl(var(--brand-vibrant))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",

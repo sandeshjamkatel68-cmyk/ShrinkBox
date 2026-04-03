@@ -20,27 +20,27 @@ export default function ImagesToPdfWidget() {
   function reset() { setFiles([]); setStatus("idle"); setResult(null); setError(null); }
 
   if (status === "done" && result) {
-    return (<div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 text-center"><div className="text-4xl mb-3">✅</div><p className="font-semibold text-lg mb-1">PDF created — {result.pageCount} pages</p><p className="text-sm text-[var(--text-muted)] mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="images.pdf" className="inline-block bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-[var(--text-muted)] hover:text-[var(--text)]">Convert more</button></div>);
+    return (<div className="rounded-2xl border border-border bg-surface p-6 text-center"><div className="text-4xl mb-3">✅</div><p className="font-semibold text-lg mb-1">PDF created — {result.pageCount} pages</p><p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="images.pdf" className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-muted hover:text-foreground">Convert more</button></div>);
   }
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <label onDrop={e => { e.preventDefault(); addFiles(e.dataTransfer.files); }} onDragOver={e => e.preventDefault()} className="cursor-pointer rounded-2xl border-2 border-dashed border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50 p-10 flex flex-col items-center gap-3 text-center transition-all block">
-        <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">🖼</div>
+      <label onDrop={e => { e.preventDefault(); addFiles(e.dataTransfer.files); }} onDragOver={e => e.preventDefault()} className="cursor-pointer rounded-2xl border-2 border-dashed border-border bg-surface hover:border-brand/50 p-10 flex flex-col items-center gap-3 text-center transition-all block">
+        <div className="w-14 h-14 rounded-2xl bg-surface-muted flex items-center justify-center text-2xl">🖼</div>
         <p className="font-medium">Drop images here</p>
-        <p className="text-sm text-[var(--text-muted)]">JPG · PNG · WebP · or <span className="text-[var(--brand)]">click to browse</span> · Max 20</p>
+        <p className="text-sm text-muted">JPG · PNG · WebP · or <span className="text-brand">click to browse</span> · Max 20</p>
         <input type="file" accept=".jpg,.jpeg,.png,.webp" multiple className="sr-only" onChange={e => addFiles(e.target.files)} />
       </label>
       {files.length > 0 && status === "idle" && (
         <>
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
-            <div className="px-4 py-3 border-b border-[var(--border)] flex justify-between"><span className="text-sm font-medium">{files.length} images selected</span><span className="text-xs text-[var(--text-muted)]">{formatBytes(files.reduce((s,f)=>s+f.size,0))}</span></div>
-            <ul>{files.map((f,i) => (<li key={i} className="flex items-center gap-3 px-4 py-2.5 border-b border-[var(--border)] last:border-0"><span className="text-sm flex-1 truncate">{f.name}</span><span className="text-xs text-[var(--text-muted)]">{formatBytes(f.size)}</span><button onClick={() => removeFile(i)} className="text-xs text-red-400 hover:text-red-300 px-1">✕</button></li>))}</ul>
+          <div className="rounded-2xl border border-border bg-surface overflow-hidden">
+            <div className="px-4 py-3 border-b border-border flex justify-between"><span className="text-sm font-medium">{files.length} images selected</span><span className="text-xs text-muted">{formatBytes(files.reduce((s,f)=>s+f.size,0))}</span></div>
+            <ul>{files.map((f,i) => (<li key={i} className="flex items-center gap-3 px-4 py-2.5 border-b border-border last:border-0"><span className="text-sm flex-1 truncate">{f.name}</span><span className="text-xs text-muted">{formatBytes(f.size)}</span><button onClick={() => removeFile(i)} className="text-xs text-red-400 hover:text-red-300 px-1">✕</button></li>))}</ul>
           </div>
-          <button onClick={handleConvert} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Create PDF from {files.length} images</button>
+          <button onClick={handleConvert} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Create PDF from {files.length} images</button>
         </>
       )}
-      {status === "processing" && (<div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center"><p className="text-sm font-medium">Creating PDF...</p></div>)}
+      {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Creating PDF...</p></div>)}
       {status === "error" && (<div className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">{error} <button onClick={reset} className="ml-2 underline">Retry</button></div>)}
     </div>
   );

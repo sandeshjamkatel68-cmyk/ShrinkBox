@@ -42,13 +42,13 @@ export default function JsonFormatterWidget() {
 
   return (
     <div className="mt-8 space-y-6">
-      <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 space-y-4">
+      <div className="bg-surface border border-border rounded-2xl p-6 space-y-4">
         <div>
-          <label className="block text-xs font-bold text-[var(--text-subtle)] uppercase tracking-wider mb-2">Paste JSON Here</label>
+          <label className="block text-xs font-bold text-subtle uppercase tracking-wider mb-2">Paste JSON Here</label>
           <textarea 
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="w-full h-80 p-4 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] text-[11px] font-mono leading-normal focus:outline-none focus:border-[var(--brand)] transition-colors resize-none"
+            className="w-full h-80 p-4 rounded-xl border border-border bg-surface-muted text-[11px] font-mono leading-normal focus:outline-none focus:border-brand transition-colors resize-none"
             placeholder='{"key": "value"}'
           />
         </div>
@@ -56,29 +56,29 @@ export default function JsonFormatterWidget() {
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <button 
             onClick={handleBeautify}
-            className="w-full sm:flex-1 h-11 rounded-xl bg-[var(--brand)] text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all"
+            className="w-full sm:flex-1 h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all"
           >
             Beautify (Pretty Print)
           </button>
           <button 
             onClick={handleMinify}
-            className="w-full sm:flex-1 h-11 rounded-xl bg-[var(--surface-muted)] border border-[var(--border)] text-[var(--text)] text-sm font-bold hover:bg-[var(--surface)] transition-all"
+            className="w-full sm:flex-1 h-11 rounded-xl bg-surface-muted border border-border text-foreground text-sm font-bold hover:bg-surface transition-all"
           >
             Minify JSON
           </button>
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-[var(--border)]">
+        <div className="flex items-center justify-between pt-4 border-t border-border">
           <button 
             onClick={copyToClipboard}
             disabled={!input}
-            className={`text-xs font-bold transition-colors disabled:opacity-50 ${copied ? 'text-green-600' : 'text-[var(--brand)] hover:text-[var(--brand-dim)]'}`}
+            className={`text-xs font-bold transition-colors disabled:opacity-50 ${copied ? 'text-green-600' : 'text-brand hover:text-[var(--brand-dim)]'}`}
           >
             {copied ? "Copied!" : "Copy Result"}
           </button>
           <button 
             onClick={() => { setInput(""); setError(null); }}
-            className="text-xs font-bold text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+            className="text-xs font-bold text-muted hover:text-foreground transition-colors"
           >
             Clear All
           </button>

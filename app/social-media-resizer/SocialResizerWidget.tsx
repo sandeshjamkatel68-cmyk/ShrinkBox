@@ -116,7 +116,7 @@ export default function SocialResizerWidget() {
       <div 
         onClick={() => fileInputRef.current?.click()}
         className={`w-full h-48 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 
-          ${file ? 'border-[var(--brand)] bg-[var(--brand-light)]/30' : 'border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand-muted)] hover:bg-[var(--surface-muted)]'}`}
+          ${file ? 'border-brand bg-[var(--brand-light)]/30' : 'border-border bg-surface hover:border-[var(--brand-muted)] hover:bg-surface-muted'}`}
       >
         <input 
           type="file" 
@@ -125,10 +125,10 @@ export default function SocialResizerWidget() {
           className="hidden" 
           accept="image/*"
         />
-        <div className="w-12 h-12 rounded-full bg-[var(--surface-muted)] flex items-center justify-center text-[var(--brand)]">
+        <div className="w-12 h-12 rounded-full bg-surface-muted flex items-center justify-center text-brand">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         </div>
-        <p className="text-sm font-medium text-[var(--text)]">
+        <p className="text-sm font-medium text-foreground">
           {file ? file.name : "Select a photo to resize"}
         </p>
       </div>
@@ -137,16 +137,16 @@ export default function SocialResizerWidget() {
 
       {file && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start animate-in fade-in duration-500">
-          <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 space-y-5 text-center">
+          <div className="bg-surface border border-border rounded-2xl p-6 space-y-5 text-center">
             <div>
-              <p className="text-[10px] font-bold text-[var(--text-subtle)] uppercase tracking-widest mb-3">Choose Platform Preset</p>
+              <p className="text-[10px] font-bold text-subtle uppercase tracking-widest mb-3">Choose Platform Preset</p>
               <div className="grid grid-cols-2 gap-2">
                 {PRESETS.map((p) => (
                   <button 
                     key={p.id}
                     onClick={() => setSelectedPreset(p)}
                     className={`h-11 px-3 rounded-xl text-[11px] font-bold border transition-all flex items-center gap-2
-                      ${selectedPreset.id === p.id ? 'bg-[var(--brand)] text-white border-[var(--brand)] shadow-sm' : 'bg-transparent text-[var(--text-muted)] border-[var(--border)] hover:border-[var(--brand-muted)]'}`}
+                      ${selectedPreset.id === p.id ? 'bg-brand text-white border-brand shadow-sm' : 'bg-transparent text-muted border-border hover:border-[var(--brand-muted)]'}`}
                   >
                     <span>{p.icon}</span>
                     <span className="truncate">{p.label}</span>
@@ -156,17 +156,17 @@ export default function SocialResizerWidget() {
             </div>
 
             <div>
-              <p className="text-[10px] font-bold text-[var(--text-subtle)] uppercase tracking-widest mb-3">Fit Mode</p>
-              <div className="flex gap-2 p-1 bg-[var(--surface-muted)] rounded-xl border border-[var(--border)]">
+              <p className="text-[10px] font-bold text-subtle uppercase tracking-widest mb-3">Fit Mode</p>
+              <div className="flex gap-2 p-1 bg-surface-muted rounded-xl border border-border">
                 <button 
                   onClick={() => setFitMode("cover")}
-                  className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all ${fitMode === "cover" ? 'bg-white text-[var(--text)] shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text)]'}`}
+                  className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all ${fitMode === "cover" ? 'bg-white text-foreground shadow-sm' : 'text-muted hover:text-foreground'}`}
                 >
                   Cover (Fill)
                 </button>
                 <button 
                   onClick={() => setFitMode("contain")}
-                  className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all ${fitMode === "contain" ? 'bg-white text-[var(--text)] shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text)]'}`}
+                  className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all ${fitMode === "contain" ? 'bg-white text-foreground shadow-sm' : 'text-muted hover:text-foreground'}`}
                 >
                   Contain (Full)
                 </button>
@@ -175,24 +175,24 @@ export default function SocialResizerWidget() {
 
             <button 
               onClick={handleDownload}
-              className="w-full h-12 rounded-xl bg-[var(--brand)] text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all mt-2"
+              className="w-full h-12 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all mt-2"
             >
               Download for {selectedPreset.label}
             </button>
           </div>
 
-          <div className="bg-[var(--surface-muted)] border border-[var(--border)] rounded-2xl p-4 flex flex-col items-center justify-center min-h-[300px]">
+          <div className="bg-surface-muted border border-border rounded-2xl p-4 flex flex-col items-center justify-center min-h-[300px]">
              {previewUrl ? (
               <div className="space-y-3 flex flex-col items-center">
                 <img 
                   src={previewUrl} 
                   alt="Social preview" 
-                  className="max-w-full max-h-[400px] rounded-lg shadow-md border border-[var(--border)]"
+                  className="max-w-full max-h-[400px] rounded-lg shadow-md border border-border"
                 />
-                <p className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">{selectedPreset.w} x {selectedPreset.h} PX</p>
+                <p className="text-[10px] font-bold text-muted uppercase tracking-widest">{selectedPreset.w} x {selectedPreset.h} PX</p>
               </div>
             ) : (
-              <p className="text-xs font-medium text-[var(--text-muted)] italic">Rendering...</p>
+              <p className="text-xs font-medium text-muted italic">Rendering...</p>
             )}
           </div>
         </div>

@@ -54,15 +54,15 @@ export default function CropImageWidget() {
 
   if (status === "done" && result) {
     return (
-      <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 text-center">
+      <div className="rounded-2xl border border-border bg-surface p-6 text-center">
         <div className="text-4xl mb-3">✅</div>
         <p className="font-semibold mb-1">Cropped to {result.outputWidth}×{result.outputHeight}px</p>
-        <p className="text-sm text-[var(--text-muted)] mb-5">{formatBytes(result.outputSize)}</p>
+        <p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p>
         <a href={result.downloadUrl} download={result.outputFileName}
-          className="inline-block bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">
+          className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">
           ↓ Download Image
         </a>
-        <button onClick={reset} className="block mx-auto mt-3 text-sm text-[var(--text-muted)] hover:text-[var(--text)]">Crop another</button>
+        <button onClick={reset} className="block mx-auto mt-3 text-sm text-muted hover:text-foreground">Crop another</button>
       </div>
     );
   }
@@ -76,10 +76,10 @@ export default function CropImageWidget() {
           onDragOver={e => { e.preventDefault(); setDragOver(true); }}
           onDragLeave={() => setDragOver(false)}
           className={["cursor-pointer rounded-2xl border-2 border-dashed p-10 flex flex-col items-center gap-3 text-center transition-all",
-            dragOver ? "border-[var(--brand)] bg-[rgba(34,197,94,0.05)]" : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50"].join(" ")}>
-          <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">🖼</div>
+            dragOver ? "border-brand bg-[rgba(34,197,94,0.05)]" : "border-border bg-surface hover:border-brand/50"].join(" ")}>
+          <div className="w-14 h-14 rounded-2xl bg-surface-muted flex items-center justify-center text-2xl">🖼</div>
           <p className="font-medium">Drop your image here</p>
-          <p className="text-sm text-[var(--text-muted)]">JPG · PNG · WebP · or <span className="text-[var(--brand)]">click to browse</span></p>
+          <p className="text-sm text-muted">JPG · PNG · WebP · or <span className="text-brand">click to browse</span></p>
           <input ref={inputRef} type="file" accept=".jpg,.jpeg,.png,.webp" className="sr-only"
             onChange={e => { const f = e.target.files?.[0]; if (f) handleFileSelect(f); e.target.value = ""; }} />
         </div>
@@ -87,10 +87,10 @@ export default function CropImageWidget() {
 
       {file && imgDims && status === "idle" && (
         <div className="flex flex-col gap-4">
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4">
+          <div className="rounded-2xl border border-border bg-surface px-5 py-4">
             <div className="flex justify-between items-center mb-3">
               <p className="text-sm font-medium">{file.name}</p>
-              <p className="text-xs text-[var(--text-muted)]">{imgDims.w}×{imgDims.h}px · {formatBytes(file.size)}</p>
+              <p className="text-xs text-muted">{imgDims.w}×{imgDims.h}px · {formatBytes(file.size)}</p>
             </div>
             <div className="grid grid-cols-2 gap-3">
               {[
@@ -100,27 +100,27 @@ export default function CropImageWidget() {
                 { label: "Height (px)", value: height, set: setHeight, max: imgDims.h },
               ].map(({ label, value, set, max }) => (
                 <div key={label}>
-                  <label className="text-xs text-[var(--text-muted)] block mb-1">{label}</label>
+                  <label className="text-xs text-muted block mb-1">{label}</label>
                   <input type="number" value={value} min={0} max={max}
                     onChange={e => set(Math.max(0, Math.min(max, Number(e.target.value))))}
-                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-2 text-sm focus:outline-none focus:border-[var(--brand)]" />
+                    className="w-full rounded-xl border border-border bg-surface-muted px-3 py-2 text-sm focus:outline-none focus:border-brand" />
                 </div>
               ))}
             </div>
-            <p className="text-xs text-[var(--text-muted)] mt-3">
+            <p className="text-xs text-muted mt-3">
               Output: {width}×{height}px starting at ({left}, {top})
             </p>
           </div>
           <button onClick={handleCrop} disabled={!width || !height}
-            className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+            className="w-full bg-brand hover:bg-[var(--brand-dim)] disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">
             Crop Image
           </button>
-          <button onClick={reset} className="text-sm text-center text-[var(--text-muted)] hover:text-[var(--text)]">Choose different image</button>
+          <button onClick={reset} className="text-sm text-center text-muted hover:text-foreground">Choose different image</button>
         </div>
       )}
 
       {status === "processing" && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center">
+        <div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center">
           <p className="text-sm font-medium">Cropping...</p>
         </div>
       )}

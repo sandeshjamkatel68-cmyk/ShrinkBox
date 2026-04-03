@@ -48,14 +48,6 @@ export const BLOG_POSTS = [
     tag:     "PDF",
   },
   {
-    slug:    "how-to-watermark-pdf",
-    title:   "How to Add a Watermark to a PDF Online (Free)",
-    excerpt: "Protect your documents by adding a custom text watermark to every page of your PDF. Here's how to do it free in seconds.",
-    date:    "2025-03-01",
-    readMin: 4,
-    tag:     "PDF",
-  },
-  {
     slug:    "resize-image-online",
     title:   "How to Resize an Image Online Without Losing Quality",
     excerpt: "Need to resize an image for a website, email, or social media? Learn the right way to resize without making it blurry.",

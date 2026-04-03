@@ -53,18 +53,18 @@ export default function ConvertImageWidget({ defaultTarget = "webp", allowedSour
         onDragLeave={() => setDragOver(false)}
         className={[
           "cursor-pointer rounded-2xl border-2 border-dashed p-10 flex flex-col items-center gap-3 text-center transition-all",
-          dragOver ? "border-[var(--brand)] bg-[rgba(34,197,94,0.05)]"
-                   : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50",
+          dragOver ? "border-brand bg-[rgba(34,197,94,0.05)]"
+                   : "border-border bg-surface hover:border-brand/50",
           isProcessing ? "opacity-50 pointer-events-none" : "",
         ].join(" ")}
       >
-        <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">
+        <div className="w-14 h-14 rounded-2xl bg-surface-muted flex items-center justify-center text-2xl">
           {dragOver ? "⬇" : "🔄"}
         </div>
         <div>
           <p className="font-medium">{file ? file.name : "Drop your image here"}</p>
-          <p className="text-sm text-[var(--text-muted)] mt-1">
-            {file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}
+          <p className="text-sm text-muted mt-1">
+            {file ? formatBytes(file.size) : <span>or <span className="text-brand">click to browse</span></span>}
           </p>
         </div>
         <input ref={inputRef} type="file" accept={allowedSources} className="sr-only"
@@ -72,18 +72,18 @@ export default function ConvertImageWidget({ defaultTarget = "webp", allowedSour
       </div>
 
       {file && !isProcessing && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 flex flex-col gap-4">
+        <div className="rounded-2xl border border-border bg-surface px-5 py-4 flex flex-col gap-4">
           {/* Target format */}
           <div>
-            <p className="text-sm font-medium text-[var(--text-muted)] mb-2">Convert to</p>
+            <p className="text-sm font-medium text-muted mb-2">Convert to</p>
             <div className="flex gap-2">
               {FORMAT_OPTIONS.map((f) => (
                 <button key={f.value} onClick={() => setTarget(f.value)}
                   className={[
                     "flex-1 rounded-xl border px-3 py-2.5 text-sm text-left transition-all",
                     target === f.value
-                      ? "border-[var(--brand)] bg-[var(--brand-light)] text-[var(--brand)]"
-                      : "border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--brand)]/30",
+                      ? "border-brand bg-[var(--brand-light)] text-brand"
+                      : "border-border bg-surface text-muted hover:border-brand/30",
                   ].join(" ")}>
                   <div className="font-medium">{f.label}</div>
                   <div className="text-xs opacity-70">{f.desc}</div>
@@ -92,16 +92,16 @@ export default function ConvertImageWidget({ defaultTarget = "webp", allowedSour
             </div>
           </div>
           <button onClick={handleConvert}
-            className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+            className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
             Convert to {target.toUpperCase()}
           </button>
         </div>
       )}
 
       {isProcessing && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5">
+        <div className="rounded-2xl border border-border bg-surface px-6 py-5">
           <p className="text-sm font-medium mb-2">Converting...</p>
-          <div className="h-1.5 rounded-full bg-[var(--surface-muted)] overflow-hidden">
+          <div className="h-1.5 rounded-full bg-surface-muted overflow-hidden">
             <div className="h-full rounded-full shimmer" style={{ width: `${state.progress}%` }} />
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function ConvertImageWidget({ defaultTarget = "webp", allowedSour
             <p className="text-sm font-medium text-red-400">Conversion failed</p>
             <p className="text-xs text-red-400/70 mt-1">{state.error}</p>
           </div>
-          <button onClick={() => { reset(); setFile(null); }} className="text-xs text-[var(--text-muted)] hover:text-[var(--text)]">Retry</button>
+          <button onClick={() => { reset(); setFile(null); }} className="text-xs text-muted hover:text-foreground">Retry</button>
         </div>
       )}
     </div>

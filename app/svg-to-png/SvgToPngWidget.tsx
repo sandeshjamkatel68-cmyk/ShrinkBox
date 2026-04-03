@@ -108,7 +108,7 @@ export default function SvgToPngWidget() {
       <div 
         onClick={() => fileInputRef.current?.click()}
         className={`w-full h-48 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 
-          ${file ? 'border-[var(--brand)] bg-[var(--brand-light)]/30' : 'border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand-muted)] hover:bg-[var(--surface-muted)]'}`}
+          ${file ? 'border-brand bg-[var(--brand-light)]/30' : 'border-border bg-surface hover:border-[var(--brand-muted)] hover:bg-surface-muted'}`}
       >
         <input 
           type="file" 
@@ -117,26 +117,26 @@ export default function SvgToPngWidget() {
           className="hidden" 
           accept=".svg"
         />
-        <div className="w-12 h-12 rounded-full bg-[var(--surface-muted)] flex items-center justify-center text-[var(--brand)]">
+        <div className="w-12 h-12 rounded-full bg-surface-muted flex items-center justify-center text-brand">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21a9 9 0 1 1 0-18c2.2 0 4.1.8 5.7 2.1l2.3-2.1V9h-6l2.1-2.1C14.1 5.9 12.1 5 10 5a7 7 0 1 0 7 7"/></svg>
         </div>
-        <p className="text-sm font-medium text-[var(--text)]">
+        <p className="text-sm font-medium text-foreground">
           {file ? file.name : "Select an SVG vector file"}
         </p>
       </div>
 
       {file && (
-        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 space-y-5 text-center">
+        <div className="bg-surface border border-border rounded-2xl p-6 space-y-5 text-center">
           <div className="flex items-center justify-center gap-6">
             <div>
-              <p className="text-[10px] font-bold text-[var(--text-subtle)] uppercase tracking-widest mb-2">Resolution Scale</p>
+              <p className="text-[10px] font-bold text-subtle uppercase tracking-widest mb-2">Resolution Scale</p>
               <div className="flex items-center gap-2">
                 {[1, 2, 4, 8].map((s) => (
                   <button 
                     key={s}
                     onClick={() => setScale(s)}
                     className={`w-10 h-10 rounded-lg text-xs font-bold transition-all border 
-                      ${scale === s ? 'bg-[var(--brand)] text-white border-[var(--brand)]' : 'bg-transparent text-[var(--text-muted)] border-[var(--border)] hover:border-[var(--brand-muted)]'}`}
+                      ${scale === s ? 'bg-brand text-white border-brand' : 'bg-transparent text-muted border-border hover:border-[var(--brand-muted)]'}`}
                   >
                     {s}x
                   </button>
@@ -148,22 +148,22 @@ export default function SvgToPngWidget() {
           <button 
             onClick={convertSvg}
             disabled={isProcessing}
-            className="w-full h-11 rounded-xl bg-[var(--brand)] text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] disabled:opacity-50 transition-all"
+            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] disabled:opacity-50 transition-all"
           >
             {isProcessing ? "Rasterizing..." : "Convert to PNG"}
           </button>
 
           {result && (
-            <div className="mt-4 pt-6 border-t border-[var(--border)] animate-in fade-in duration-300">
+            <div className="mt-4 pt-6 border-t border-border animate-in fade-in duration-300">
               <div className="p-4 rounded-xl bg-[var(--brand-light)]/40 border border-[var(--brand-muted)] flex flex-col items-center gap-3">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-500" />
                   <p className="text-[11px] font-bold text-green-600 uppercase tracking-widest leading-none">Ready for download</p>
                 </div>
-                <p className="text-xs font-medium text-[var(--text-subtle)] truncate w-full px-4">{result.name}</p>
+                <p className="text-xs font-medium text-subtle truncate w-full px-4">{result.name}</p>
                 <button 
                   onClick={handleDownload}
-                  className="w-full h-10 rounded-lg bg-[var(--brand)] text-white text-xs font-bold hover:bg-[var(--brand-dim)] transition-colors mt-1"
+                  className="w-full h-10 rounded-lg bg-brand text-white text-xs font-bold hover:bg-[var(--brand-dim)] transition-colors mt-1"
                 >
                   Download PNG
                 </button>

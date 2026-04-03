@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import MergePdfWidget from "@/components/tools/MergePdfWidget";
-import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
-import { ToolSchema, FAQSchema, TOOL_META } from "@/lib/seo";
+import { TrustSignals, FAQ, ToolHero, SEOContent } from "@/components/seo";
+import { ToolSchema, FAQSchema, TOOL_META, BreadcrumbSchema } from "@/lib/seo";
 import RelatedGuides from "@/components/seo/RelatedGuides";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 
 export const metadata: Metadata = {
   title:       TOOL_META["merge-pdf"].title,
@@ -22,15 +23,15 @@ export const metadata: Metadata = {
     description: TOOL_META["merge-pdf"].description,
   },
   alternates: {
-    canonical: `https://shrink-box.com/merge-pdf`,
+    canonical: "/merge-pdf",
   },
 };
 
 const FAQ_ITEMS = [
-  { q: "How many PDFs can I merge at once?", a: "You can merge up to 10 PDF files in a single operation for free." },
-  { q: "Can I reorder the pages before merging?", a: "Yes. After uploading, you can reorder your PDFs using the up and down arrows before merging." },
-  { q: "Will the merged PDF retain all formatting?", a: "Yes. All text, images, and layout from each input PDF are preserved exactly." },
-  { q: "Can I merge password-protected PDFs?", a: "No. Remove the password from your PDFs first, then merge them here." },
+  { q: "How many PDFs can I merge at once?", a: "With ShrinkBox, you can merge up to 10 PDF files in a single operation for free. If you have more, simply merge the first 10, then add the resulting file to your next batch." },
+  { q: "Can I reorder the pages before merging?", a: "Yes. After uploading your documents, you can use the intuitive sorting arrows to arrange your PDFs in the exact order you want them to appear in the final combined file." },
+  { q: "Will the merged PDF lose quality or formatting?", a: "No. Our merging engine performs a 'lossless' join. This means all text, fonts, high-resolution images, and complex layouts from each input PDF are preserved exactly as they were." },
+  { q: "Can I merge password-protected PDFs?", a: "No. For security reasons, encrypted or password-protected PDFs cannot be accessed by our tool. Please use our 'Unlock PDF' tool to remove the protection before merging." },
 ];
 
 export default function MergePdfPage() {
@@ -42,22 +43,54 @@ export default function MergePdfPage() {
         url={TOOL_META["merge-pdf"].url}
         category={TOOL_META["merge-pdf"].category}
       />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Merge PDF", url: "/merge-pdf" },
+        ]}
+      />
       <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
-        <ToolHero icon="📎" title="Merge PDF Files" description="Combine multiple PDFs into a single file. Upload up to 10 PDFs, set the order, and download the merged result instantly." badge="Free · Up to 10 files" />
+        <Breadcrumbs items={[{ name: "Merge PDF", url: "/merge-pdf" }]} />
+        <ToolHero icon="📎" title="Merge PDF Files Online Free — Combine Multiple Documents Instantly" description="Combining documents shouldn't require complex software. ShrinkBox allows you to merge multiple PDFs into a single, organized file directly in your browser. Perfect for students, lawyers, and business professionals." badge="Free · Up to 10 files" />
         <MergePdfWidget />
         <div className="mt-8"><TrustSignals /></div>
       </section>
       <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>
 
-      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
-        <h2 className="text-xl font-bold text-[var(--text)]">Securely Combine PDF Documents</h2>
-        <p>
-          Managing multiple PDF documents—like invoices, scanned tax forms, or school reports—can quickly become messy. Our PDF Merging tool simplifies this by allowing you to combine up to 10 separate PDF files into one clean, continuous document. You maintain full control over the sequence of the pages by reordering the files before hitting merge.
-        </p>
-        <p>
-          More importantly, we understand that PDFs often contain highly sensitive personal or business information. Unlike server-side converters that upload your documents to a cloud queue, ShrinkBox utilizes local browser processing. This means your PDFs are merged entirely on your own device's RAM, ensuring your private data never touches the internet.
-        </p>
-      </section>
+      <SEOContent
+        toolName="Merge PDF"
+        title="Merge PDF Online Free — The Easiest Way to Combine Documents in 2026"
+        description="Stop struggling with fragmented files. Our professional-grade PDF merger allows you to securely combine multiple documents into one polished file directly in your browser."
+        howToSteps={[
+          "Select up to 10 PDF files from your device or drag them into the secure upload zone.",
+          "Arrange your files in the desired sequence using our easy-to-use sorting arrows.",
+          "Click the 'Merge PDF' button to initiate the joining process locally on your computer.",
+          "Download your combined, high-quality document instantly with zero server-side storage."
+        ]}
+      >
+        <div className="mt-12 space-y-8 text-muted-foreground leading-relaxed">
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-4">Why merging PDFs is essential for efficient document management</h3>
+            <p>
+              Managing dozens of individual PDF files can be a nightmare for organization and sharing. Whether you're combining monthly invoices into a yearly report, merging academic certificates for a job application, or joining chapters of a manuscript, a single unified PDF is far more professional and easier to navigate. ShrinkBox makes this transition seamless by providing a high-speed, zero-cost solution that works on any device.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-4">Privacy First: Your Documents Never Leave Your Device</h3>
+            <p>
+              Unlike traditional 'cloud' tools that upload your files to remote servers, ShrinkBox performs the entire merging operation **locally in your browser**. Using modern WebAssembly technology, we process your sensitive documents (like medical records or legal contracts) on your hardware. This ensures 100% privacy and eliminates the risk of data breaches associated with third-party server storage.
+            </p>
+          </div>
+
+          <div className="bg-brand-light/20 p-6 rounded-2xl border border-brand/10">
+            <h3 className="text-lg font-bold text-brand mb-2">Pro Tip: Optimize After Merging</h3>
+            <p className="text-sm">
+              Merging multiple high-resolution PDFs can result in a very large final file. After you've combined your documents using this tool, we recommend running the output through our 'Compress PDF' tool. This will prune redundant metadata and ensure your combined file is small enough for easy email sharing or web uploads.
+            </p>
+          </div>
+        </div>
+      </SEOContent>
       <RelatedGuides tags={["PDF","Tools"]} />
     </>
   );

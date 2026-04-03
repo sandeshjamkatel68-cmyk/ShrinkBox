@@ -52,7 +52,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0 no-underline">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <rect width="28" height="28" rx="8" fill="var(--brand)"/>
+            <rect width="28" height="28" rx="8" fill="hsl(var(--brand))"/>
             <path d="M8.5 10h11M8.5 14h8M12 18.5l2 2.5 4.5-5.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
           <span className="font-bold text-[18px] text-foreground tracking-tight">ShrinkBox</span>
@@ -99,7 +99,7 @@ export default function Header() {
           ))}
 
           <Link href="/blog"
-            className="px-3 py-2 rounded-lg text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-muted)] transition-all no-underline">
+            className="px-3 py-2 rounded-lg text-sm font-medium text-muted hover:text-foreground hover:bg-surface-muted transition-all no-underline">
             Blog
           </Link>
         </nav>
@@ -109,12 +109,12 @@ export default function Header() {
           <ThemeToggle />
           <button
             onClick={() => setMobileOpen((o: boolean) => !o)}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--surface)] cursor-pointer"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-border bg-surface cursor-pointer"
             aria-label="Menu"
           >
             {mobileOpen
-              ? <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2 2l11 11M13 2L2 13" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round"/></svg>
-              : <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M1.5 3.5h12M1.5 7.5h12M1.5 11.5h12" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              ? <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2 2l11 11M13 2L2 13" stroke="hsl(var(--text-muted))" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              : <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M1.5 3.5h12M1.5 7.5h12M1.5 11.5h12" stroke="hsl(var(--text-muted))" strokeWidth="1.5" strokeLinecap="round"/></svg>
             }
           </button>
         </div>
@@ -122,10 +122,10 @@ export default function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-[var(--border)] bg-[var(--surface)] overflow-y-auto" style={{ maxHeight: "80vh" }}>
+        <div className="md:hidden border-t border-border bg-surface overflow-y-auto" style={{ maxHeight: "80vh" }}>
           {NAV_GROUPS.map(group => (
-            <div key={group.label} className="px-5 py-4 border-b border-[var(--border)]">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-[var(--text-subtle)] mb-3">
+            <div key={group.label} className="px-5 py-4 border-b border-border">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-subtle mb-3">
                 {group.label}
               </p>
               <div className="flex flex-col gap-1">
@@ -134,7 +134,7 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="px-3 py-2.5 rounded-lg text-[13px] font-medium text-[var(--text-muted)] hover:bg-[var(--surface-muted)] hover:text-[var(--text)] no-underline transition-colors"
+                    className="px-3 py-2.5 rounded-lg text-[13px] font-medium text-muted hover:bg-surface-muted hover:text-foreground no-underline transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -145,7 +145,7 @@ export default function Header() {
           <div className="px-5 py-4 flex gap-5">
             {[["Blog", "/blog"], ["About", "/about"], ["Contact", "/contact"]].map(([l, h]) => (
               <Link key={h} href={h} onClick={() => setMobileOpen(false)}
-                className="text-sm text-[var(--text-muted)] no-underline hover:text-[var(--text)]">
+                className="text-sm text-muted no-underline hover:text-foreground">
                 {l}
               </Link>
             ))}

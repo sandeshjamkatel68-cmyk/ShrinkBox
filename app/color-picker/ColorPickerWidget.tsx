@@ -90,7 +90,7 @@ export default function ColorPickerWidget() {
       <div 
         onClick={() => fileInputRef.current?.click()}
         className={`w-full h-48 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-200 
-          ${file ? 'border-[var(--brand)] bg-[var(--brand-light)]/30' : 'border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand-muted)] hover:bg-[var(--surface-muted)]'}`}
+          ${file ? 'border-brand bg-[var(--brand-light)]/30' : 'border-border bg-surface hover:border-[var(--brand-muted)] hover:bg-surface-muted'}`}
       >
         <input 
           type="file" 
@@ -99,28 +99,28 @@ export default function ColorPickerWidget() {
           className="hidden" 
           accept="image/*"
         />
-        <div className="w-12 h-12 rounded-full bg-[var(--surface-muted)] flex items-center justify-center text-[var(--brand)]">
+        <div className="w-12 h-12 rounded-full bg-surface-muted flex items-center justify-center text-brand">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21a9 9 0 1 1 0-18c2.2 0 4.1.8 5.7 2.1l2.3-2.1V9h-6l2.1-2.1C14.1 5.9 12.1 5 10 5a7 7 0 1 0 7 7"/></svg>
         </div>
-        <p className="text-sm font-medium text-[var(--text)]">
+        <p className="text-sm font-medium text-foreground">
           {file ? file.name : "Select an image for palette extraction"}
         </p>
       </div>
 
       {file && (
-        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 text-center space-y-6">
+        <div className="bg-surface border border-border rounded-2xl p-6 text-center space-y-6">
           <button 
             onClick={extractPalette}
             disabled={isProcessing}
-            className="w-full h-11 rounded-xl bg-[var(--brand)] text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] disabled:opacity-50 transition-all"
+            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] disabled:opacity-50 transition-all"
           >
             {isProcessing ? "Analyzing Colors..." : "Extract Palette"}
           </button>
 
           {palette && (
             <div className="space-y-4 animate-in slide-in-from-bottom-3 duration-500">
-              <p className="text-xs font-bold text-[var(--text-subtle)] uppercase tracking-widest">Extracted Palette</p>
-              <div className="flex w-full h-24 rounded-2xl overflow-hidden border border-[var(--border)] shadow-sm">
+              <p className="text-xs font-bold text-subtle uppercase tracking-widest">Extracted Palette</p>
+              <div className="flex w-full h-24 rounded-2xl overflow-hidden border border-border shadow-sm">
                 {palette.map((hex) => (
                   <div 
                     key={hex}
@@ -139,7 +139,7 @@ export default function ColorPickerWidget() {
                   <button 
                     key={hex}
                     onClick={() => copyToClipboard(hex)}
-                    className="text-[10px] font-mono font-bold text-[var(--text-muted)] hover:text-[var(--brand)] transition-colors"
+                    className="text-[10px] font-mono font-bold text-muted hover:text-brand transition-colors"
                   >
                     {copiedColor === hex ? "Copied!" : hex.toUpperCase()}
                   </button>

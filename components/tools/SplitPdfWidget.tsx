@@ -49,25 +49,25 @@ export default function SplitPdfWidget() {
   if (status === "done" && result?.pages) {
     return (
       <div className="flex flex-col gap-4">
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
-          <div className="px-5 py-4 border-b border-[var(--border)] flex items-center justify-between">
+        <div className="rounded-2xl border border-border bg-surface overflow-hidden">
+          <div className="px-5 py-4 border-b border-border flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-[var(--brand)]">✓</span>
+              <span className="text-brand">✓</span>
               <span className="font-medium text-sm">Split into {result.pages.length} pages</span>
             </div>
             <button onClick={downloadAll}
-              className="text-xs bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white rounded-lg px-3 py-1.5 transition-colors">
+              className="text-xs bg-brand hover:bg-[var(--brand-dim)] text-white rounded-lg px-3 py-1.5 transition-colors">
               Download all
             </button>
           </div>
           <ul className="max-h-72 overflow-y-auto">
             {result.pages.map((page) => (
-              <li key={page.pageNumber} className="flex items-center gap-3 px-5 py-3 border-b border-[var(--border)] last:border-0">
-                <span className="text-xs font-mono text-[var(--text-muted)] w-8">p.{page.pageNumber}</span>
+              <li key={page.pageNumber} className="flex items-center gap-3 px-5 py-3 border-b border-border last:border-0">
+                <span className="text-xs font-mono text-muted w-8">p.{page.pageNumber}</span>
                 <span className="text-sm flex-1 truncate">{page.fileName}</span>
-                <span className="text-xs text-[var(--text-muted)]">{formatBytes(page.size)}</span>
+                <span className="text-xs text-muted">{formatBytes(page.size)}</span>
                 <button onClick={() => downloadPage(page)}
-                  className="text-xs text-[var(--brand)] hover:underline ml-2">↓</button>
+                  className="text-xs text-brand hover:underline ml-2">↓</button>
               </li>
             ))}
           </ul>
@@ -76,7 +76,7 @@ export default function SplitPdfWidget() {
           <p className="text-xs text-yellow-500 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-3 py-2">{result.error}</p>
         )}
         <button onClick={reset}
-          className="w-full py-2.5 rounded-xl border border-[var(--border)] text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">
+          className="w-full py-2.5 rounded-xl border border-border text-sm text-muted hover:text-foreground transition-colors">
           Split another PDF
         </button>
       </div>
@@ -94,16 +94,16 @@ export default function SplitPdfWidget() {
         onDragLeave={() => setDragOver(false)}
         className={[
           "cursor-pointer rounded-2xl border-2 border-dashed p-10 flex flex-col items-center gap-3 text-center transition-all",
-          dragOver ? "border-[var(--brand)] bg-[rgba(34,197,94,0.05)]"
-                   : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50",
+          dragOver ? "border-brand bg-[rgba(34,197,94,0.05)]"
+                   : "border-border bg-surface hover:border-brand/50",
           isProcessing ? "opacity-50 pointer-events-none" : "",
         ].join(" ")}
       >
-        <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">✂️</div>
+        <div className="w-14 h-14 rounded-2xl bg-surface-muted flex items-center justify-center text-2xl">✂️</div>
         <div>
           <p className="font-medium">{file ? file.name : "Drop your PDF here"}</p>
-          <p className="text-sm text-[var(--text-muted)] mt-1">
-            {file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}
+          <p className="text-sm text-muted mt-1">
+            {file ? formatBytes(file.size) : <span>or <span className="text-brand">click to browse</span></span>}
           </p>
         </div>
         <input ref={inputRef} type="file" accept=".pdf" className="sr-only"
@@ -112,15 +112,15 @@ export default function SplitPdfWidget() {
 
       {file && !isProcessing && (
         <button onClick={handleSplit}
-          className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+          className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
           Split PDF into pages
         </button>
       )}
 
       {isProcessing && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5">
+        <div className="rounded-2xl border border-border bg-surface px-6 py-5">
           <p className="text-sm font-medium mb-2">Splitting PDF...</p>
-          <div className="h-1.5 rounded-full bg-[var(--surface-muted)] overflow-hidden">
+          <div className="h-1.5 rounded-full bg-surface-muted overflow-hidden">
             <div className="h-full w-3/4 rounded-full shimmer" />
           </div>
         </div>
@@ -131,7 +131,7 @@ export default function SplitPdfWidget() {
           <span className="text-red-400">⚠</span>
           <div className="flex-1"><p className="text-sm font-medium text-red-400">Split failed</p>
             <p className="text-xs text-red-400/70 mt-1">{error}</p></div>
-          <button onClick={reset} className="text-xs text-[var(--text-muted)]">Retry</button>
+          <button onClick={reset} className="text-xs text-muted">Retry</button>
         </div>
       )}
     </div>

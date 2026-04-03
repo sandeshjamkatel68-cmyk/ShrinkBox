@@ -23,23 +23,23 @@ export default function PdfToJpgWidget() {
   return (
     <div className="w-full flex flex-col gap-4">
       {status !== "done" && (
-        <div onClick={() => inputRef.current?.click()} className="cursor-pointer rounded-2xl border-2 border-dashed border-[var(--border)] bg-[var(--surface)] hover:border-[var(--brand)]/50 p-10 flex flex-col items-center gap-3 text-center transition-all">
-          <div className="w-14 h-14 rounded-2xl bg-[var(--surface-muted)] flex items-center justify-center text-2xl">📄</div>
+        <div onClick={() => inputRef.current?.click()} className="cursor-pointer rounded-2xl border-2 border-dashed border-border bg-surface hover:border-brand/50 p-10 flex flex-col items-center gap-3 text-center transition-all">
+          <div className="w-14 h-14 rounded-2xl bg-surface-muted flex items-center justify-center text-2xl">📄</div>
           <p className="font-medium">{file ? file.name : "Drop your PDF here"}</p>
-          <p className="text-sm text-[var(--text-muted)]">{file ? formatBytes(file.size) : <span>or <span className="text-[var(--brand)]">click to browse</span></span>}</p>
+          <p className="text-sm text-muted">{file ? formatBytes(file.size) : <span>or <span className="text-brand">click to browse</span></span>}</p>
           <input ref={inputRef} type="file" accept=".pdf" className="sr-only" onChange={e => { const f = e.target.files?.[0]; if (f) setFile(f); e.target.value = ""; }} />
         </div>
       )}
-      {file && status === "idle" && (<button onClick={handleConvert} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Extract Pages</button>)}
-      {status === "processing" && (<div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 text-center"><p className="text-sm font-medium">Extracting pages...</p></div>)}
+      {file && status === "idle" && (<button onClick={handleConvert} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Extract Pages</button>)}
+      {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Extracting pages...</p></div>)}
       {status === "done" && pages.length > 0 && (
         <div className="flex flex-col gap-4">
           {warning && <p className="text-xs text-yellow-500 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-3 py-2">{warning}</p>}
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
-            <div className="px-5 py-3 border-b border-[var(--border)] flex justify-between items-center"><span className="text-sm font-medium">{pages.length} pages extracted</span><button onClick={downloadAll} className="text-xs bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white rounded-lg px-3 py-1.5">Download all</button></div>
-            <ul className="max-h-72 overflow-y-auto">{pages.map(p => (<li key={p.pageNumber} className="flex items-center gap-3 px-5 py-3 border-b border-[var(--border)] last:border-0"><span className="text-xs font-mono text-[var(--text-muted)] w-8">p.{p.pageNumber}</span><span className="text-sm flex-1 truncate">{p.fileName}</span><span className="text-xs text-[var(--text-muted)]">{formatBytes(p.size)}</span><a href={p.downloadUrl} download={p.fileName} className="text-xs text-[var(--brand)] hover:underline">↓</a></li>))}</ul>
+          <div className="rounded-2xl border border-border bg-surface overflow-hidden">
+            <div className="px-5 py-3 border-b border-border flex justify-between items-center"><span className="text-sm font-medium">{pages.length} pages extracted</span><button onClick={downloadAll} className="text-xs bg-brand hover:bg-[var(--brand-dim)] text-white rounded-lg px-3 py-1.5">Download all</button></div>
+            <ul className="max-h-72 overflow-y-auto">{pages.map(p => (<li key={p.pageNumber} className="flex items-center gap-3 px-5 py-3 border-b border-border last:border-0"><span className="text-xs font-mono text-muted w-8">p.{p.pageNumber}</span><span className="text-sm flex-1 truncate">{p.fileName}</span><span className="text-xs text-muted">{formatBytes(p.size)}</span><a href={p.downloadUrl} download={p.fileName} className="text-xs text-brand hover:underline">↓</a></li>))}</ul>
           </div>
-          <button onClick={reset} className="w-full py-2.5 rounded-xl border border-[var(--border)] text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors">Try another PDF</button>
+          <button onClick={reset} className="w-full py-2.5 rounded-xl border border-border text-sm text-muted hover:text-foreground transition-colors">Try another PDF</button>
         </div>
       )}
       {status === "error" && (<div className="rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-3 text-sm text-red-400">{error} <button onClick={reset} className="ml-2 underline">Retry</button></div>)}

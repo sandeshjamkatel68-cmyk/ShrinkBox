@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+export * from "./SEOContent";
+
 // ── Trust Signals ─────────────────────────────────────────────────────────────
 
 export function TrustSignals() {
@@ -15,9 +17,9 @@ export function TrustSignals() {
     <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 animate-fade-up">
       {items.map((text) => (
         <span key={text} className="flex items-center gap-2 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors cursor-default group">
-          <div className="w-5 h-5 rounded-full bg-brand-light flex items-center justify-center group-hover:scale-110 transition-transform">
+          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-light to-brand-vibrant flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:shadow-md transition-all">
             <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-              <path d="M4.5 7l1.8 1.8 3-3.6" stroke="hsl(var(--brand))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M4.5 7l1.8 1.8 3-3.6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
           {text}

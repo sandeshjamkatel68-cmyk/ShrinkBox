@@ -23,7 +23,7 @@ export default function CompressionOptions({
 }: CompressionOptionsProps) {
   if (showForPdf) {
     return (
-      <div className="text-sm text-[var(--text-muted)] bg-[var(--surface-muted)] rounded-xl px-4 py-3">
+      <div className="text-sm text-muted bg-surface-muted rounded-xl px-4 py-3">
         PDF compression automatically strips metadata and optimizes structure.
       </div>
     );
@@ -31,7 +31,7 @@ export default function CompressionOptions({
 
   return (
     <div>
-      <p className="text-sm font-medium text-[var(--text-muted)] mb-2">Compression level</p>
+      <p className="text-sm font-medium text-muted mb-2">Compression level</p>
       <div className="flex gap-2">
         {LEVELS.map((level) => (
           <button
@@ -41,8 +41,8 @@ export default function CompressionOptions({
             className={[
               "flex-1 rounded-xl border px-3 py-2.5 text-sm transition-all duration-150 text-left",
               value === level.value
-                ? "border-[var(--brand)] bg-[rgba(34,197,94,0.08)] text-[var(--brand)]"
-                : "border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--brand)]/30",
+                ? "border-brand bg-[rgba(34,197,94,0.08)] text-brand"
+                : "border-border bg-surface text-muted hover:border-brand/30",
               disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
             ].join(" ")}
           >

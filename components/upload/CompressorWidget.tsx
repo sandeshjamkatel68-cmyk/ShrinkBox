@@ -47,19 +47,19 @@ export default function CompressorWidget() {
 
           {/* Show selected file info + options before compression starts */}
           {state.file && state.status === "idle" && (
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4 flex flex-col gap-4">
+            <div className="rounded-2xl border border-border bg-surface px-5 py-4 flex flex-col gap-4">
               {/* File preview row */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[var(--surface-muted)] flex items-center justify-center text-lg">
+                <div className="w-10 h-10 rounded-xl bg-surface-muted flex items-center justify-center text-lg">
                   {isPdf ? "📄" : "🖼"}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium truncate">{state.file.name}</p>
-                  <p className="text-xs text-[var(--text-muted)]">{formatBytes(state.file.size)}</p>
+                  <p className="text-xs text-muted">{formatBytes(state.file.size)}</p>
                 </div>
                 <button
                   onClick={reset}
-                  className="text-xs text-[var(--text-muted)] hover:text-red-400 transition-colors px-2 py-1"
+                  className="text-xs text-muted hover:text-red-400 transition-colors px-2 py-1"
                 >
                   Remove
                 </button>
@@ -75,7 +75,7 @@ export default function CompressorWidget() {
               {/* Compress button */}
               <button
                 onClick={() => state.file && compress(state.file, level)}
-                className="w-full bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors duration-150"
+                className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors duration-150"
               >
                 Compress now
               </button>
@@ -104,7 +104,7 @@ export default function CompressorWidget() {
             </div>
             <button
               onClick={reset}
-              className="text-xs text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+              className="text-xs text-muted hover:text-foreground transition-colors"
             >
               Try again
             </button>

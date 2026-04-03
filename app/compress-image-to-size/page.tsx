@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
+import { TrustSignals, FAQ, ToolHero, SEOContent } from "@/components/seo";
+import { ToolSchema, TOOL_META, BreadcrumbSchema } from "@/lib/seo";
 import CompressSizeWidget from "./CompressSizeWidget";
-import { TrustSignals, FAQ, ToolHero } from "@/components/seo";
-import { ToolSchema, TOOL_META } from "@/lib/seo";
 import RelatedGuides from "@/components/seo/RelatedGuides";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 
 export const metadata: Metadata = {
   title:       TOOL_META["compress-image-to-size"].title,
@@ -22,14 +23,15 @@ export const metadata: Metadata = {
     description: TOOL_META["compress-image-to-size"].description,
   },
   alternates: {
-    canonical: `https://shrink-box.com/compress-image-to-size`,
+    canonical: "/compress-image-to-size",
   },
 };
 
 const FAQ_ITEMS = [
-  { q: "How do I compress an image to exactly 50KB?", a: "Simply upload your image, enter '50' in the target size field, and click compress. Our tool will automatically adjust the quality to stay under 50KB while maintaining the best possible clarity." },
-  { q: "What images can I compress to a specific size?", a: "We support JPG, JPEG, and WebP formats for exact-size compression. PNG files are lossless and generally don't support target-size compression as effectively, so we recommend converting them to JPG first." },
-  { q: "Is there a limit to how small I can compress?", a: "If you set a target size that is too low (e.g., 5KB for a high-res photo), the image may become pixelated. We recommend balancing size and quality for the best results." },
+  { q: "How do I compress an image to exactly 50KB or 100KB?", a: "Simply upload your image, enter your target size (e.g., '50' or '100') in the KB field, and click compress. Our system will automatically iterate through quality levels to find the perfect balance that stays just under your limit." },
+  { q: "What image formats are supported for exact sizing?", a: "We support JPG, JPEG, and WebP for exact-size compression. PNG files are lossless and don't support target-size optimization as effectively; for PNGs, we recommend converting to JPG first if you have a strict limit." },
+  { q: "Why is my resulting file a few KB smaller than the target?", a: "To ensure your upload is never rejected by strict automated systems, we aim for the highest quality that is *at or below* your target. We include a small safety margin to account for metadata variations." },
+  { q: "Is my private data secure during the compression process?", a: "Yes. Unlike other tools that require an upload, ShrinkBox performs the binary-search optimization **locally in your browser**. Your sensitive documents and photos never leave your computer." },
 ];
 
 export default function CompressToSizePage() {
@@ -41,12 +43,19 @@ export default function CompressToSizePage() {
         url={TOOL_META["compress-image-to-size"].url}
         category={TOOL_META["compress-image-to-size"].category}
       />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Compress to Size", url: "/compress-image-to-size" },
+        ]}
+      />
       <section className="max-w-2xl mx-auto px-4 pt-14 pb-8">
+        <Breadcrumbs items={[{ name: "Compress to Size", url: "/compress-image-to-size" }]} />
         <ToolHero 
           icon="📉" 
-          title="Compress Image to KB" 
-          description="Perfect for government forms, job applications, and student portals. Set your target file size in KB and we'll handle the rest." 
-          badge="Exact Size · Free" 
+          title="Compress Image to Exact KB Size Online Free" 
+          description="The professional solution for government forms, visa applications, and student portals. Set your target file size in KB and our engine will find the perfect quality match instantly." 
+          badge="Exact Size · Free · Private" 
         />
         <CompressSizeWidget />
         <div className="mt-8"><TrustSignals /></div>
@@ -56,16 +65,40 @@ export default function CompressToSizePage() {
         <FAQ items={FAQ_ITEMS} />
       </section>
 
-      <section className="max-w-2xl mx-auto px-4 pb-16 text-sm text-[var(--text-muted)] leading-relaxed space-y-4">
-        <h2 className="text-xl font-bold text-[var(--text)]">Why use Exact Size Compression?</h2>
-        <p>
-          Many online applications—especially for government services, visas, and educational portals—have strict file size limits (often 50KB, 100KB, or 200KB). Manual compression is a game of trial and error that can take forever. 
-        </p>
-        <p>
-          ShrinkBox automates this process using a binary-search optimization algorithm. By repeatedly testing different quality levels in your browser's memory, we find the highest possible quality that still falls below your specified byte limit. No uploads, no waiting, and no guesswork.
-        </p>
-      </section>
+      <SEOContent
+        toolName="Compress Image to Size"
+        title="Compress Image to Exact KB Online Free — No More Guesswork"
+        description="Stop wasting time with trial-and-error compression. ShrinkBox uses an automated binary-search algorithm to hit your target file size with mathematical precision while preserving maximum clarity."
+        howToSteps={[
+          "Select or drag & drop your image (JPG, JPEG, or WebP) into the secure optimizer.",
+          "Enter your required target file size in Kilobytes (e.g., 50 or 200).",
+          "Our system will instantly run multiple local tests to find the ideal quality level.",
+          "Download your perfectly sized, high-clarity image instantly with zero wait time."
+        ]}
+      >
+        <div className="mt-12 space-y-8 text-muted-foreground leading-relaxed">
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-4">Why automated 'Exact Size' compression is essential</h3>
+            <p>
+              Most online portals for government services, job applications, and universities have strict automated filters that reject any file over a specific limit (often 50KB or 100KB). Manually adjusting quality sliders is frustrating and time-consuming. ShrinkBox automates this by testing dozens of quality combinations in milliseconds, ensuring you get the sharpest possible image that still fits within the portal's requirements.
+            </p>
+          </div>
 
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-4">100% Secure: Local Binary-Search Optimization</h3>
+            <p>
+              Your sensitive documents and personal photos should never be 'uploaded' to a random server just to be resized. ShrinkBox performs all optimization **directly on your computer** using your browser's processing power. This provides the ultimate level of security for your private data and bypasses the slow upload times of traditional tools.
+            </p>
+          </div>
+
+          <div className="bg-brand-light/20 p-6 rounded-2xl border border-brand/10">
+            <h3 className="text-lg font-bold text-brand mb-2">Pro Tip: Use for Passports and Visas</h3>
+            <p className="text-sm">
+              If your application requires a photo under 50KB with specific dimensions, use our 'Resize Image' tool first to set the pixel dimensions, then use this 'Compress to Size' tool to nail the file weight requirement on the first try.
+            </p>
+          </div>
+        </div>
+      </SEOContent>
       <RelatedGuides tags={["Images", "Tools"]} />
     </>
   );

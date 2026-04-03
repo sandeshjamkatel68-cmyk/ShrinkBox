@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { BLOG_POSTS } from "@/lib/content/blogPosts";
-import { ArticleSchema } from "@/lib/seo";
+import { ArticleSchema, BreadcrumbSchema } from "@/lib/seo";
 
 // ── Full article content keyed by slug ───────────────────────────────────────
 const ARTICLES: Record<string, { intro: string; sections: { h2: string; body: string }[]; cta: { label: string; href: string } }> = {
@@ -816,43 +816,50 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         url={`https://shrink-box.com/blog/${slug}`} 
         datePublished={post.date} 
       />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" },
+          { name: post.title, url: `/blog/${slug}` },
+        ]}
+      />
       {/* Back */}
-      <Link href="/blog" className="text-sm text-[var(--text-muted)] hover:text-[var(--brand)] transition-colors mb-8 inline-block">
+      <Link href="/blog" className="text-sm text-muted hover:text-brand transition-colors mb-8 inline-block">
         ← All articles
       </Link>
 
       {/* Header */}
       <div className="mb-10">
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs font-medium text-[var(--brand)] bg-[var(--brand-light)] rounded-full px-2.5 py-0.5">{post.tag}</span>
-          <span className="text-xs text-[var(--text-subtle)]">
+          <span className="text-xs font-medium text-brand bg-[var(--brand-light)] rounded-full px-2.5 py-0.5">{post.tag}</span>
+          <span className="text-xs text-subtle">
             {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
           </span>
-          <span className="text-xs text-[var(--text-subtle)]">· {post.readMin} min read</span>
+          <span className="text-xs text-subtle">· {post.readMin} min read</span>
         </div>
         <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">{post.title}</h1>
       </div>
 
       {/* Article body */}
-      <div className="prose prose-sm max-w-none space-y-8 text-[var(--text-muted)] leading-relaxed">
+      <div className="prose prose-sm max-w-none space-y-8 text-muted leading-relaxed">
         {/* Intro */}
         <p className="text-base leading-relaxed whitespace-pre-line">{article.intro}</p>
 
         {/* Sections */}
         {article.sections.map((section) => (
           <section key={section.h2}>
-            <h2 className="text-xl font-semibold text-[var(--text)] mb-3">{section.h2}</h2>
+            <h2 className="text-xl font-semibold text-foreground mb-3">{section.h2}</h2>
             <p className="whitespace-pre-line">{section.body}</p>
           </section>
         ))}
       </div>
 
       {/* CTA */}
-      <div className="mt-12 rounded-2xl border border-[var(--brand)]/30 bg-[var(--brand-light)] px-6 py-6 text-center">
-        <p className="font-semibold text-[var(--text)] mb-3">Ready to try it yourself?</p>
+      <div className="mt-12 rounded-2xl border border-brand/30 bg-[var(--brand-light)] px-6 py-6 text-center">
+        <p className="font-semibold text-foreground mb-3">Ready to try it yourself?</p>
         <Link
           href={article.cta.href}
-          className="inline-block bg-[var(--brand)] hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors"
+          className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors"
         >
           {article.cta.label} →
         </Link>
@@ -860,12 +867,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Related posts */}
       <div className="mt-12">
-        <h3 className="text-sm font-semibold text-[var(--text-muted)] mb-4">More articles</h3>
+        <h3 className="text-sm font-semibold text-muted mb-4">More articles</h3>
         <div className="flex flex-col gap-3">
           {BLOG_POSTS.filter((p) => p.slug !== slug).slice(0, 3).map((p) => (
             <Link key={p.slug} href={`/blog/${p.slug}`}
-              className="flex items-start gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 hover:border-[var(--brand)]/40 transition-colors">
-              <span className="text-xs font-medium text-[var(--brand)] bg-[var(--brand-light)] rounded-full px-2 py-0.5 shrink-0 mt-0.5">{p.tag}</span>
+              className="flex items-start gap-3 rounded-xl border border-border bg-surface px-4 py-3 hover:border-brand/40 transition-colors">
+              <span className="text-xs font-medium text-brand bg-[var(--brand-light)] rounded-full px-2 py-0.5 shrink-0 mt-0.5">{p.tag}</span>
               <span className="text-sm font-medium">{p.title}</span>
             </Link>
           ))}

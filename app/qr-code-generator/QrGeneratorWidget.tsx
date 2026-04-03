@@ -25,41 +25,41 @@ export default function QrGeneratorWidget() {
 
   return (
     <div className="mt-8 space-y-6">
-      <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 space-y-5">
+      <div className="bg-surface border border-border rounded-2xl p-6 space-y-5">
         <div>
-          <label className="block text-xs font-bold text-[var(--text-subtle)] uppercase tracking-wider mb-2">Website URL or Text</label>
+          <label className="block text-xs font-bold text-subtle uppercase tracking-wider mb-2">Website URL or Text</label>
           <input 
             type="text" 
             value={data}
             onChange={(e) => setData(e.target.value)}
-            className="w-full h-11 px-4 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] text-sm font-medium focus:outline-none focus:border-[var(--brand)] transition-colors"
+            className="w-full h-11 px-4 rounded-xl border border-border bg-surface-muted text-sm font-medium focus:outline-none focus:border-brand transition-colors"
             placeholder="https://example.com"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-[var(--text-subtle)] uppercase tracking-wider mb-2">QR Color</label>
+            <label className="block text-xs font-bold text-subtle uppercase tracking-wider mb-2">QR Color</label>
             <input 
               type="color" 
               value={fgColor}
               onChange={(e) => setFgColor(e.target.value)}
-              className="w-full h-11 px-1 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] cursor-pointer"
+              className="w-full h-11 px-1 rounded-xl border border-border bg-surface-muted cursor-pointer"
             />
           </div>
           <div>
-            <label className="block text-xs font-bold text-[var(--text-subtle)] uppercase tracking-wider mb-2">Background</label>
+            <label className="block text-xs font-bold text-subtle uppercase tracking-wider mb-2">Background</label>
             <input 
               type="color" 
               value={bgColor}
               onChange={(e) => setBgColor(e.target.value)}
-              className="w-full h-11 px-1 rounded-xl border border-[var(--border)] bg-[var(--surface-muted)] cursor-pointer"
+              className="w-full h-11 px-1 rounded-xl border border-border bg-surface-muted cursor-pointer"
             />
           </div>
         </div>
 
         <div className="flex flex-col items-center py-6 gap-6">
-          <div ref={qrRef} className="p-4 bg-white rounded-xl shadow-sm border border-[var(--border)]">
+          <div ref={qrRef} className="p-4 bg-white rounded-xl shadow-sm border border-border">
             <QRCodeCanvas 
               value={data || " "}
               size={size}
@@ -72,7 +72,7 @@ export default function QrGeneratorWidget() {
 
           <button 
             onClick={downloadQr}
-            className="w-full h-11 rounded-xl bg-[var(--brand)] text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all"
+            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all"
           >
             Download PNG
           </button>

@@ -21,20 +21,20 @@ export default function ProgressBar({ status, progress, fileName }: ProgressBarP
   if (status === "idle" || status === "done" || status === "error") return null;
 
   return (
-    <div className="w-full rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-5 animate-fade-up">
+    <div className="w-full rounded-2xl border border-border bg-surface px-6 py-5 animate-fade-up">
       <div className="flex items-center justify-between mb-3">
         <div>
           <p className="text-sm font-medium">{STATUS_LABELS[status]}</p>
-          <p className="text-xs text-[var(--text-muted)] mt-0.5 truncate max-w-[240px]">{fileName}</p>
+          <p className="text-xs text-muted mt-0.5 truncate max-w-[240px]">{fileName}</p>
         </div>
-        <span className="text-sm font-mono text-[var(--brand)]">{progress}%</span>
+        <span className="text-sm font-mono text-brand">{progress}%</span>
       </div>
 
-      <div className="h-1.5 rounded-full bg-[var(--surface-muted)] overflow-hidden">
+      <div className="h-1.5 rounded-full bg-surface-muted overflow-hidden">
         <div
           className={[
             "h-full rounded-full transition-all duration-500",
-            progress < 100 ? "shimmer" : "bg-[var(--brand)]",
+            progress < 100 ? "shimmer" : "bg-brand",
           ].join(" ")}
           style={{ width: `${progress}%` }}
         />

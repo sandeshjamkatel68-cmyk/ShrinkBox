@@ -97,17 +97,17 @@ If you have any questions regarding our terms, please contact us at ${email}.
   return (
     <div className="mt-8 space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start animate-in fade-in duration-500">
-        <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 space-y-5">
-          <div className="flex gap-2 p-1 bg-[var(--surface-muted)] rounded-xl border border-[var(--border)] mb-4">
+        <div className="bg-surface border border-border rounded-2xl p-6 space-y-5">
+          <div className="flex gap-2 p-1 bg-surface-muted rounded-xl border border-border mb-4">
             <button 
               onClick={() => setDocType("privacy")}
-              className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all ${docType === "privacy" ? 'bg-white text-[var(--text)] shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text)]'}`}
+              className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all ${docType === "privacy" ? 'bg-white text-foreground shadow-sm' : 'text-muted hover:text-foreground'}`}
             >
               Privacy Policy
             </button>
             <button 
               onClick={() => setDocType("terms")}
-              className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all ${docType === "terms" ? 'bg-white text-[var(--text)] shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text)]'}`}
+              className={`flex-1 h-9 rounded-lg text-xs font-bold transition-all ${docType === "terms" ? 'bg-white text-foreground shadow-sm' : 'text-muted hover:text-foreground'}`}
             >
               Terms of Service
             </button>
@@ -115,62 +115,62 @@ If you have any questions regarding our terms, please contact us at ${email}.
 
           <div className="space-y-4">
             <div>
-              <label className="block text-[10px] font-bold text-[var(--text-subtle)] uppercase tracking-widest mb-1.5">Website Name</label>
+              <label className="block text-[10px] font-bold text-subtle uppercase tracking-widest mb-1.5">Website Name</label>
               <input 
                 type="text" 
                 value={siteName} 
                 onChange={(e) => setSiteName(e.target.value)}
-                className="w-full h-10 px-3 rounded-lg border border-[var(--border)] bg-[var(--surface-muted)] text-sm focus:outline-none focus:border-[var(--brand)]"
+                className="w-full h-10 px-3 rounded-lg border border-border bg-surface-muted text-sm focus:outline-none focus:border-brand"
               />
             </div>
             <div>
-              <label className="block text-[10px] font-bold text-[var(--text-subtle)] uppercase tracking-widest mb-1.5">Website URL</label>
+              <label className="block text-[10px] font-bold text-subtle uppercase tracking-widest mb-1.5">Website URL</label>
               <input 
                 type="text" 
                 value={siteUrl} 
                 onChange={(e) => setSiteUrl(e.target.value)}
-                className="w-full h-10 px-3 rounded-lg border border-[var(--border)] bg-[var(--surface-muted)] text-sm focus:outline-none focus:border-[var(--brand)]"
+                className="w-full h-10 px-3 rounded-lg border border-border bg-surface-muted text-sm focus:outline-none focus:border-brand"
               />
             </div>
             <div>
-              <label className="block text-[10px] font-bold text-[var(--text-subtle)] uppercase tracking-widest mb-1.5">Contact Email</label>
+              <label className="block text-[10px] font-bold text-subtle uppercase tracking-widest mb-1.5">Contact Email</label>
               <input 
                 type="email" 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-10 px-3 rounded-lg border border-[var(--border)] bg-[var(--surface-muted)] text-sm focus:outline-none focus:border-[var(--brand)]"
+                className="w-full h-10 px-3 rounded-lg border border-border bg-surface-muted text-sm focus:outline-none focus:border-brand"
               />
             </div>
           </div>
 
           <div className="pt-4 space-y-3">
-            <p className="text-[10px] font-bold text-[var(--text-subtle)] uppercase tracking-widest">Options</p>
+            <p className="text-[10px] font-bold text-subtle uppercase tracking-widest">Options</p>
             <label className="flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" checked={useCookies} onChange={(e) => setUseCookies(e.target.checked)} className="w-4 h-4 rounded border-[var(--border)] text-[var(--brand)] focus:ring-[var(--brand)]" />
-              <span className="text-xs font-medium text-[var(--text-muted)] group-hover:text-[var(--text)] transition-colors">We use cookies</span>
+              <input type="checkbox" checked={useCookies} onChange={(e) => setUseCookies(e.target.checked)} className="w-4 h-4 rounded border-border text-brand focus:ring-[var(--brand)]" />
+              <span className="text-xs font-medium text-muted group-hover:text-foreground transition-colors">We use cookies</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" checked={useAnalytics} onChange={(e) => setUseAnalytics(e.target.checked)} className="w-4 h-4 rounded border-[var(--border)] text-[var(--brand)] focus:ring-[var(--brand)]" />
-              <span className="text-xs font-medium text-[var(--text-muted)] group-hover:text-[var(--text)] transition-colors">We use analytics</span>
+              <input type="checkbox" checked={useAnalytics} onChange={(e) => setUseAnalytics(e.target.checked)} className="w-4 h-4 rounded border-border text-brand focus:ring-[var(--brand)]" />
+              <span className="text-xs font-medium text-muted group-hover:text-foreground transition-colors">We use analytics</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" checked={useAds} onChange={(e) => setUseAds(e.target.checked)} className="w-4 h-4 rounded border-[var(--border)] text-[var(--brand)] focus:ring-[var(--brand)]" />
-              <span className="text-xs font-medium text-[var(--text-muted)] group-hover:text-[var(--text)] transition-colors">We show ads</span>
+              <input type="checkbox" checked={useAds} onChange={(e) => setUseAds(e.target.checked)} className="w-4 h-4 rounded border-border text-brand focus:ring-[var(--brand)]" />
+              <span className="text-xs font-medium text-muted group-hover:text-foreground transition-colors">We show ads</span>
             </label>
           </div>
 
           <button 
             onClick={copyToClipboard}
-            className="w-full h-11 rounded-xl bg-[var(--brand)] text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all mt-2"
+            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all mt-2"
           >
             {copied ? "Copied Correct!" : `Copy ${docType === "privacy" ? "Privacy Policy" : "Terms"}`}
           </button>
         </div>
 
-        <div className="bg-[var(--surface-muted)] border border-[var(--border)] rounded-2xl p-6 min-h-[400px] overflow-hidden">
-          <p className="text-[10px] font-bold text-[var(--text-subtle)] uppercase tracking-widest mb-4">Live Preview</p>
+        <div className="bg-surface-muted border border-border rounded-2xl p-6 min-h-[400px] overflow-hidden">
+          <p className="text-[10px] font-bold text-subtle uppercase tracking-widest mb-4">Live Preview</p>
           <div className="prose prose-sm max-h-[450px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-[var(--border)]">
-            <div className="text-[11px] text-[var(--text-muted)] font-serif leading-relaxed whitespace-pre-wrap">
+            <div className="text-[11px] text-muted font-serif leading-relaxed whitespace-pre-wrap">
               {generatedDoc}
             </div>
           </div>
