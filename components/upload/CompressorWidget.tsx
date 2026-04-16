@@ -75,7 +75,7 @@ export default function CompressorWidget() {
               {/* Compress button */}
               <button
                 onClick={() => state.file && compress(state.file, level)}
-                className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors duration-150"
+                className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors duration-150"
               >
                 Compress now
               </button>

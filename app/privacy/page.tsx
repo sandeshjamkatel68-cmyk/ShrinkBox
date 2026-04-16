@@ -57,240 +57,102 @@ export default function PrivacyPage() {
 
       <div className="space-y-10 text-muted leading-relaxed">
         <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Overview</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">1. Overview</h2>
           <p>
-            ShrinkBox ("we", "our", or "us") is committed to protecting your privacy. This
-            Privacy Policy explains what information we may collect, how we use it, and how
-            we handle files uploaded to our tools. By using ShrinkBox, you agree to this
-            policy.
+            ShrinkBox ("we", "our", or "us") is a free online platform providing file optimization tools. We are committed to digital transparency and the protection of your personal data. This policy outlines how we handle files, analytics, and advertising data.
           </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">
-            Files you upload
+            2. File Privacy & Security
           </h2>
           <p>
-            When you upload a file for compression, conversion, merging, or other supported
-            processing, the file is transmitted to our systems over a secure connection and
-            processed temporarily in order to provide the requested result.
+            ShrinkBox uses a "Browser-First" architecture. Many of our tools process files entirely within your web browser using client-side JavaScript, meaning your files never leave your device.
           </p>
 
-          <ul className="mt-3 space-y-2">
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>Your file is sent securely using HTTPS.</span>
+          <ul className="mt-4 space-y-3">
+            <li className="flex gap-3">
+              <span className="text-brand shrink-0 font-bold">✓</span>
+              <span><strong className="text-foreground">Zero Retention:</strong> For tools requiring server-side processing, files are moved via encrypted HTTPS and automatically deleted from our servers within 60 minutes of processing.</span>
             </li>
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                Files are processed only for the purpose of completing the requested tool
-                action.
-              </span>
+            <li className="flex gap-3">
+              <span className="text-brand shrink-0 font-bold">✓</span>
+              <span><strong className="text-foreground">No File Access:</strong> We do not manually review, index, or share your file contents with any third party.</span>
             </li>
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                Uploaded files and generated outputs are stored only temporarily and are
-                automatically removed after processing or after a limited retention period.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                We do not use your files to train models, build profiles, or analyze file
-                contents for advertising purposes.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                We do not intentionally share uploaded file contents with third parties
-                except where needed to operate the service, comply with law, or protect the
-                service from abuse.
-              </span>
-            </li>
-          </ul>
-
-          <p className="mt-3">
-            If you want the policy to state an exact deletion time such as “within 10
-            minutes,” only include that if your infrastructure reliably follows that rule in
-            practice.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">
-            Information we collect automatically
-          </h2>
-          <p>
-            Like most websites, ShrinkBox may collect limited technical information
-            automatically when you visit or use the service.
-          </p>
-
-          <ul className="mt-3 space-y-2">
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                <strong className="text-foreground">IP address</strong> — used for
-                security, rate limiting, abuse prevention, and basic operational logging.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                <strong className="text-foreground">Browser and device data</strong> —
-                such as browser type, operating system, screen size, and device category.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                <strong className="text-foreground">Usage data</strong> — such as pages
-                visited, tools used, and general interaction events.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                <strong className="text-foreground">Referral data</strong> — such as the
-                page or source that led you to ShrinkBox.
-              </span>
+            <li className="flex gap-3">
+              <span className="text-brand shrink-0 font-bold">✓</span>
+              <span><strong className="text-foreground">No Model Training:</strong> Your files are never used to train AI or machine learning models.</span>
             </li>
           </ul>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Cookies and local storage</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">
+            3. Information We Collect
+          </h2>
           <p>
-            ShrinkBox may use a limited number of cookies or browser storage technologies to
-            keep the service working properly and improve user experience.
+            We do not require user accounts. However, we collect limited technical data to maintain site performance and security:
           </p>
-
-          <ul className="mt-3 space-y-2">
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                <strong className="text-foreground">Preference storage</strong> — such as
-                theme selection or interface preferences.
-              </span>
+          <ul className="mt-4 space-y-3">
+            <li className="flex gap-3">
+              <span className="text-brand shrink-0 font-bold">→</span>
+              <span><strong className="text-foreground">Log Data:</strong> IP addresses (anonymized), browser types, and timestamps are logged for security and rate-limiting purposes.</span>
             </li>
-            <li className="flex gap-2">
-              <span className="text-brand shrink-0">→</span>
-              <span>
-                <strong className="text-foreground">Analytics technologies</strong> — if
-                enabled, these help us understand how the website is used and which tools are
-                most useful.
-              </span>
+            <li className="flex gap-3">
+              <span className="text-brand shrink-0 font-bold">→</span>
+              <span><strong className="text-foreground">Usage Analytics:</strong> We use Google Analytics 4 (GA4) to understand which tools are popular and how users interact with our blog. This data is aggregated and does not identify individuals.</span>
             </li>
           </ul>
+        </section>
 
-          <p className="mt-3">
-            We do not use cookies to read your uploaded files or personal documents.
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">4. Cookie & Advertising Policy</h2>
+          <p>
+            ShrinkBox partners with third-party vendors, including Google, to serve ads based on a user&apos;s prior visits to this website or other websites.
+          </p>
+          <div className="bg-surface-muted/50 p-5 rounded-2xl mt-4 border border-border">
+            <p className="text-sm font-bold text-foreground mb-2 italic">Important for Users:</p>
+            <ul className="text-sm space-y-2">
+              <li>• Google&apos;s use of advertising cookies enables it and its partners to serve ads based on your visit to our sites and/or other sites on the Internet.</li>
+              <li>• Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-brand underline">Ads Settings</a>.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">5. GDPR Compliance (EEA Users)</h2>
+          <p>
+            If you are located in the European Economic Area (EEA), you have certain rights under the General Data Protection Regulation (GDPR), including:
+          </p>
+          <ul className="mt-3 space-y-1 text-sm list-disc pl-5">
+            <li>The right to access, update, or delete the information we have on you.</li>
+            <li>The right of rectification.</li>
+            <li>The right to object to our processing of your personal data.</li>
+            <li>The right of restriction.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-foreground mb-3">6. CCPA Compliance (California Users)</h2>
+          <p>
+            Under the California Consumer Privacy Act (CCPA), California residents have the right to know what personal data is being collected, whether it is sold or disclosed, and to whom. ShrinkBox <strong className="text-foreground">does not sell</strong> personal information.
           </p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Analytics</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">7. Contact Information</h2>
           <p>
-            We may use analytics tools to understand overall traffic, popular pages, tool
-            usage, device types, and general performance of the service. Analytics data helps
-            us improve ShrinkBox, fix issues, and prioritize features.
+            If you have any questions regarding this Privacy Policy or our data handling practices, please contact us:
           </p>
-          <p className="mt-3">
-            Analytics information is generally used in aggregated form and is not intended to
-            identify you personally.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Advertising</h2>
-          <p>
-            ShrinkBox may display ads through third-party advertising providers such as
-            Google AdSense or similar services. These providers may use cookies or related
-            technologies to deliver ads, measure ad performance, or personalize content based
-            on their own policies.
-          </p>
-          <p className="mt-3">
-            You can manage ad personalization settings through your Google ad settings or the
-            relevant controls provided by the advertising platform you use.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Data security</h2>
-          <p>
-            We use reasonable technical and organizational measures to protect ShrinkBox and
-            the data processed through it. This includes HTTPS encryption and access controls
-            designed to reduce unauthorized access, misuse, or abuse.
-          </p>
-          <p className="mt-3">
-            No system can guarantee absolute security, but we work to keep the service as
-            safe and reliable as possible.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Third-party services</h2>
-          <p>
-            ShrinkBox may rely on third-party infrastructure or service providers for
-            hosting, analytics, advertising, monitoring, or other operational needs. These
-            providers may process limited technical data as necessary to operate the service.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">
-            Children&apos;s privacy
-          </h2>
-          <p>
-            ShrinkBox is not intended for children under 13, and we do not knowingly collect
-            personal information from children. If you believe a child has provided personal
-            information through the service, please contact us so we can review and address
-            the issue.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Your choices</h2>
-          <p>
-            You can stop using the service at any time, avoid uploading sensitive files if
-            you are uncomfortable, and control certain browser-level settings such as cookies,
-            storage, and ad personalization.
-          </p>
-          <p className="mt-3">
-            If you contact us with a privacy concern, we will review it and respond within a
-            reasonable time.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">
-            Changes to this policy
-          </h2>
-          <p>
-            We may update this Privacy Policy from time to time. When we do, we will revise
-            the “Last updated” date at the top of this page. Continued use of ShrinkBox after
-            changes take effect means you accept the updated policy.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Contact</h2>
-          <p>
-            If you have questions about this Privacy Policy, you can contact us by email at{" "}
-            <a
-              href="mailto:privacy@shrinkbox.io"
-              className="text-brand hover:underline"
-            >
-              privacy@shrinkbox.io
-            </a>{" "}
-            or through our{" "}
-            <Link href="/contact" className="text-brand hover:underline">
-              contact page
+          <div className="mt-4 flex flex-col gap-2">
+            <a href="mailto:hello@shrink-box.com" className="text-brand font-bold hover:underline">
+              hello@shrink-box.com
+            </a>
+            <Link href="/contact" className="text-muted hover:text-brand underline">
+              Official Contact Form
             </Link>
-            .
-          </p>
+          </div>
         </section>
       </div>
     </main>

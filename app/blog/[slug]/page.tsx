@@ -3,9 +3,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { BLOG_POSTS } from "@/lib/content/blogPosts";
 import { ArticleSchema, BreadcrumbSchema } from "@/lib/seo";
+import { NEW_ARTICLES_1 } from "@/lib/content/newArticles";
+import { NEW_ARTICLES_2 } from "@/lib/content/newArticles2";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 // ── Full article content keyed by slug ───────────────────────────────────────
-const ARTICLES: Record<string, { intro: string; sections: { h2: string; body: string }[]; cta: { label: string; href: string } }> = {
+const EXISTING_ARTICLES: Record<string, { intro: string; sections: { h2: string; body: string }[]; cta: { label: string; href: string } }> = {
   "how-to-compress-images-for-web": {
     intro: `Images are the single biggest contributor to slow page load times. Studies consistently show that pages loading in under 2 seconds have higher conversion rates, lower bounce rates, and rank better on Google. If your images aren't compressed, you're leaving performance on the table — and your visitors feel it, even if they can't name why.
 
@@ -781,6 +784,9 @@ After adding page numbers, consider running the PDF through the compressor at sh
   },
 };
 
+// ── Merge all articles ────────────────────────────────────────────────────────
+const ARTICLES = { ...EXISTING_ARTICLES, ...NEW_ARTICLES_1, ...NEW_ARTICLES_2 };
+
 // ── Metadata ─────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -823,10 +829,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           { name: post.title, url: `/blog/${slug}` },
         ]}
       />
-      {/* Back */}
-      <Link href="/blog" className="text-sm text-muted hover:text-brand transition-colors mb-8 inline-block">
-        ← All articles
-      </Link>
+      <Breadcrumbs 
+        items={[
+          { label: "Blog", href: "/blog" },
+          { label: post.tag || "Guide" },
+        ]} 
+      />
 
       {/* Header */}
       <div className="mb-10">
@@ -855,27 +863,77 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </div>
 
       {/* CTA */}
-      <div className="mt-12 rounded-2xl border border-brand/30 bg-[var(--brand-light)] px-6 py-6 text-center">
-        <p className="font-semibold text-foreground mb-3">Ready to try it yourself?</p>
+      <div className="mt-12 rounded-3xl border-2 border-brand/30 bg-gradient-to-br from-[var(--brand-light)] to-surface px-8 py-8 text-center">
+        <div className="text-3xl mb-3">🔧</div>
+        <p className="font-bold text-foreground text-lg mb-2">Ready to try it yourself?</p>
+        <p className="text-sm text-muted mb-5 max-w-md mx-auto">
+          Use ShrinkBox&apos;s free {article.cta.label} tool — no signup, no watermarks, instant results.
+        </p>
         <Link
           href={article.cta.href}
-          className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors"
+          className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dim text-white font-bold rounded-xl py-3 px-8 text-sm transition-all hover:shadow-xl hover:-translate-y-0.5"
         >
-          {article.cta.label} →
+          {article.cta.label}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </Link>
       </div>
 
-      {/* Related posts */}
+      {/* Author Bio */}
+      <div className="mt-10 rounded-2xl border border-border bg-surface-muted/50 p-6 flex gap-5 items-start">
+        <div className="w-12 h-12 rounded-2xl bg-brand flex items-center justify-center text-white font-black text-lg shrink-0">
+          SJ
+        </div>
+        <div>
+          <p className="text-sm font-bold text-foreground">Written by Sandesh Jamkatel</p>
+          <p className="text-xs text-brand font-medium mb-2">Founder & Developer at ShrinkBox</p>
+          <p className="text-xs text-muted leading-relaxed">
+            Full-stack developer focused on web performance. I write practical guides on image optimization, PDF management, and Core Web Vitals — the things that actually move your SEO needle.
+          </p>
+          <div className="flex flex-wrap gap-1.5 mt-3">
+            {["Web Performance", "Image Optimization", "Next.js", "SEO"].map((skill) => (
+              <span key={skill} className="text-[10px] font-medium bg-[var(--brand-light)] text-brand px-2 py-0.5 rounded-full">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Related posts — smart filter by same tag */}
       <div className="mt-12">
-        <h3 className="text-sm font-semibold text-muted mb-4">More articles</h3>
-        <div className="flex flex-col gap-3">
-          {BLOG_POSTS.filter((p) => p.slug !== slug).slice(0, 3).map((p) => (
+        <h3 className="text-sm font-bold text-muted uppercase tracking-wider mb-4">Related articles</h3>
+        <div className="grid sm:grid-cols-3 gap-3">
+          {BLOG_POSTS
+            .filter((p) => p.slug !== slug)
+            .sort((a, b) => (a.tag === post!.tag ? -1 : 1) - (b.tag === post!.tag ? -1 : 1))
+            .slice(0, 3)
+            .map((p) => (
             <Link key={p.slug} href={`/blog/${p.slug}`}
-              className="flex items-start gap-3 rounded-xl border border-border bg-surface px-4 py-3 hover:border-brand/40 transition-colors">
-              <span className="text-xs font-medium text-brand bg-[var(--brand-light)] rounded-full px-2 py-0.5 shrink-0 mt-0.5">{p.tag}</span>
-              <span className="text-sm font-medium">{p.title}</span>
+              className="group flex flex-col rounded-xl border border-border bg-surface px-4 py-4 hover:border-brand/40 hover:-translate-y-1 transition-all duration-300 hover:shadow-lg">
+              <span className="text-[10px] font-medium text-brand bg-[var(--brand-light)] rounded-full px-2 py-0.5 self-start mb-2">{p.tag}</span>
+              <span className="text-sm font-semibold leading-snug text-foreground group-hover:text-brand transition-colors">{p.title}</span>
+              <span className="text-[11px] text-muted mt-2 line-clamp-2">{p.excerpt}</span>
             </Link>
           ))}
+        </div>
+      </div>
+
+      {/* Newsletter */}
+      <div className="mt-12 rounded-3xl bg-gradient-to-br from-brand to-accent p-8 text-center text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==')] opacity-50" />
+        <div className="relative">
+          <h3 className="text-lg font-extrabold mb-1">Liked this article?</h3>
+          <p className="text-white/70 text-sm mb-5">Get more optimization tips straight to your inbox.</p>
+          <div className="flex gap-3 max-w-sm mx-auto">
+            <input
+              type="email"
+              placeholder="your@email.com"
+              className="flex-1 px-4 py-2.5 rounded-xl bg-white/20 text-white placeholder-white/50 border border-white/20 focus:outline-none focus:border-white/60 text-sm"
+            />
+            <button className="px-5 py-2.5 bg-white text-brand font-bold rounded-xl text-sm hover:bg-white/90 transition-colors cursor-pointer">
+              Subscribe
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "resize image online",
   ],
   verification: {
-    google: "QHiiT1cFLbXp7paWiZbCCOcMRF551Xzn8jPKyGlvsnM",
+    google: "fvxtXiiyxC4FAmF7IKprJdHOBflEpXjwoLgXLYlbPcI",
   },
   metadataBase: new URL("https://shrink-box.com"),
   icons: {

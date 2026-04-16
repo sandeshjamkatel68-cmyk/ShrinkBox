@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const toolPaths = Object.values(TOOL_META).map((tool) => tool.url);
 
   // 2. Static Content
-  const staticPaths = ["/", "/about", "/contact", "/privacy", "/terms", "/blog"];
+  const staticPaths = ["/", "/about", "/contact", "/privacy", "/terms", "/blog", "/tools"];
 
   // 3. Blog Posts
   const blogPaths = BLOG_POSTS.map((p) => `/blog/${p.slug}`);

@@ -1,4 +1,14 @@
-export const BLOG_POSTS = [
+export interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  readMin: number;
+  tag: string;
+}
+
+export const BLOG_POSTS: BlogPost[] = [
+  // ── Existing 18 articles (kept) ──────────────────────────────────────────
   {
     slug:    "how-to-compress-images-for-web",
     title:   "How to Compress Images for the Web Without Losing Quality",
@@ -142,5 +152,192 @@ export const BLOG_POSTS = [
     date:    "2025-04-07",
     readMin: 4,
     tag:     "PDF",
+  },
+
+  // ── 22 NEW articles added ──────────────────────────────────────────────────
+
+  {
+    slug:    "compress-images-for-wordpress",
+    title:   "How to Compress Images for WordPress Without Plugins (Free Guide)",
+    excerpt: "WordPress images that aren't compressed slow down your site and hurt your SEO rankings. Here's how to manually compress images before uploading — no plugins required.",
+    date:    "2025-04-09",
+    readMin: 6,
+    tag:     "WordPress",
+  },
+  {
+    slug:    "compress-pdf-to-1mb",
+    title:   "How to Compress a PDF to 1MB or Less (Free & Fast)",
+    excerpt: "PDF over 1MB? Many upload forms and email clients reject large PDFs. Here are three free methods to get any PDF under 1MB without losing quality.",
+    date:    "2025-04-11",
+    readMin: 5,
+    tag:     "PDF",
+  },
+  {
+    slug:    "instagram-image-size-guide-2026",
+    title:   "Instagram Image Size Guide 2026 (Feed, Story, Reel & Profile)",
+    excerpt: "Posting the wrong image size on Instagram leads to cropping, blurry photos, and lower engagement. Here are the exact dimensions for every Instagram format in 2026.",
+    date:    "2025-04-13",
+    readMin: 5,
+    tag:     "Social",
+  },
+  {
+    slug:    "heic-vs-jpg",
+    title:   "HEIC vs JPG: What's the Difference & How to Convert HEIC Files",
+    excerpt: "iPhones now save photos in HEIC format by default. But most apps and websites don't support HEIC. Here's what HEIC is, how it differs from JPG, and how to convert.",
+    date:    "2025-04-15",
+    readMin: 5,
+    tag:     "Formats",
+  },
+  {
+    slug:    "pdf-too-large-to-email",
+    title:   "PDF Too Large to Email? Here's the Complete Fix (2026)",
+    excerpt: "Hit that 'attachment too large' error again? Here's why PDFs are often so big, and exactly how to shrink them so they go through Gmail, Outlook, and any mail server.",
+    date:    "2025-04-17",
+    readMin: 5,
+    tag:     "PDF",
+  },
+  {
+    slug:    "make-image-under-100kb",
+    title:   "How to Make an Image File Under 100KB (Step-by-Step)",
+    excerpt: "Upload forms, email fields, and web tools often require images under 100KB. Here's how to compress any image to meet strict size requirements without ruining quality.",
+    date:    "2025-04-19",
+    readMin: 5,
+    tag:     "Images",
+  },
+  {
+    slug:    "tinypng-alternative",
+    title:   "Best Free TinyPNG Alternative in 2026 (More Tools, No Limits)",
+    excerpt: "TinyPNG caps you at 20 images per month on the free plan. Here are the best TinyPNG alternatives — including a free tool with no monthly limits and 30+ tools.",
+    date:    "2025-04-21",
+    readMin: 5,
+    tag:     "Tools",
+  },
+  {
+    slug:    "smallpdf-alternative",
+    title:   "Best Free Smallpdf Alternative in 2026 (No Signup, No Limits)",
+    excerpt: "Smallpdf limits free users to 2 tasks per hour. Looking for a better free alternative? Here are top picks that give you unlimited PDF tools with zero registration.",
+    date:    "2025-04-23",
+    readMin: 5,
+    tag:     "Tools",
+  },
+  {
+    slug:    "convert-heic-to-jpg-windows",
+    title:   "How to Convert HEIC to JPG on Windows (Free, No Software Needed)",
+    excerpt: "Windows can't open HEIC files by default. Here are three ways to convert HEIC photos from your iPhone to JPG on a Windows PC — the easiest takes under 10 seconds.",
+    date:    "2025-04-25",
+    readMin: 4,
+    tag:     "Convert",
+  },
+  {
+    slug:    "how-to-merge-pdf-on-phone",
+    title:   "How to Merge PDF Files on Your Phone (Android & iPhone)",
+    excerpt: "Need to combine PDFs and only have your phone? Here's how to merge PDF files on Android and iPhone — free, no app download required.",
+    date:    "2025-04-27",
+    readMin: 4,
+    tag:     "PDF",
+  },
+  {
+    slug:    "create-favicon-for-website",
+    title:   "How to Create a Favicon for Your Website (All Sizes, Free)",
+    excerpt: "A favicon is the small icon that appears in your browser tab. Here's how to create a professional favicon in all required sizes — 16×16, 32×32, 192×192, and 512×512.",
+    date:    "2025-04-29",
+    readMin: 5,
+    tag:     "Developer",
+  },
+  {
+    slug:    "core-web-vitals-images",
+    title:   "How Images Affect Your Core Web Vitals Score (And How to Fix It)",
+    excerpt: "Images are the #1 cause of poor Largest Contentful Paint (LCP) scores. Here's exactly how unoptimized images hurt your Google ranking and what to do about it.",
+    date:    "2025-05-01",
+    readMin: 7,
+    tag:     "Web Performance",
+  },
+  {
+    slug:    "whatsapp-image-compression-guide",
+    title:   "WhatsApp Image Quality: How to Send Photos Without Compression",
+    excerpt: "WhatsApp automatically compresses images you send, making them blurry. Here's how to send full-quality photos on WhatsApp — and what to do when it's not enough.",
+    date:    "2025-05-03",
+    readMin: 4,
+    tag:     "Social",
+  },
+  {
+    slug:    "send-large-pdf-via-email",
+    title:   "How to Send Large PDF Files via Email (5 Methods That Work)",
+    excerpt: "PDF too large to attach to an email? Here are 5 free methods to share large PDF files by email — from compression to cloud links — with pros and cons for each.",
+    date:    "2025-05-05",
+    readMin: 5,
+    tag:     "PDF",
+  },
+  {
+    slug:    "qr-code-for-business-card",
+    title:   "How to Generate a QR Code for Your Business Card (Free)",
+    excerpt: "Adding a QR code to your business card lets people visit your website or LinkedIn profile instantly. Here's how to create a professional QR code in 30 seconds for free.",
+    date:    "2025-05-07",
+    readMin: 4,
+    tag:     "Developer",
+  },
+  {
+    slug:    "batch-convert-images",
+    title:   "How to Batch Convert Images Between Formats (Free, No Software)",
+    excerpt: "Need to convert 10, 20, or 100 images from JPG to WebP, or PNG to JPG? Here's how to batch convert image formats online for free — no Photoshop or software needed.",
+    date:    "2025-05-09",
+    readMin: 5,
+    tag:     "Convert",
+  },
+  {
+    slug:    "how-to-make-meme-online",
+    title:   "How to Make a Meme Online for Free (Step-by-Step Guide)",
+    excerpt: "Want to create a funny meme for social media? Here's how to make a meme online in under a minute — no design skills required, no watermarks, no signup.",
+    date:    "2025-05-11",
+    readMin: 4,
+    tag:     "Tools",
+  },
+  {
+    slug:    "linkedin-image-size-guide-2026",
+    title:   "LinkedIn Profile Photo & Banner Size Guide 2026",
+    excerpt: "LinkedIn images look bad when they're the wrong size. Here are the exact dimensions for LinkedIn profile photos, cover images, company logos, and post images in 2026.",
+    date:    "2025-05-13",
+    readMin: 4,
+    tag:     "Social",
+  },
+  {
+    slug:    "reduce-photo-size-iphone",
+    title:   "How to Reduce Photo Size on iPhone (3 Free Methods)",
+    excerpt: "iPhone photos are huge — often 3–8MB each. Here are three free ways to reduce photo file size on your iPhone without installing any extra apps.",
+    date:    "2025-05-15",
+    readMin: 4,
+    tag:     "Images",
+  },
+  {
+    slug:    "svg-vs-png",
+    title:   "SVG vs PNG: Which Should You Use? (Designer's Guide 2026)",
+    excerpt: "SVG and PNG are both used for logos and graphics — but they behave very differently. Here's when to use each format, and how to convert between them.",
+    date:    "2025-05-17",
+    readMin: 5,
+    tag:     "Formats",
+  },
+  {
+    slug:    "extract-text-from-image",
+    title:   "How to Extract Text From an Image Online (Free OCR Guide)",
+    excerpt: "Need to copy text from a screenshot, photo, or scanned document? Free OCR tools can extract text from images in seconds. Here's how to do it — no software needed.",
+    date:    "2025-05-19",
+    readMin: 4,
+    tag:     "Developer",
+  },
+  {
+    slug:    "best-image-size-for-website",
+    title:   "Best Image Size for Websites in 2026 (Complete Guide)",
+    excerpt: "What's the ideal image size for a website? Here's the complete guide to image dimensions, file sizes, and formats for web pages, blogs, and e-commerce.",
+    date:    "2025-05-21",
+    readMin: 6,
+    tag:     "Web Performance",
+  },
+  {
+    slug:    "compress-image-without-losing-quality",
+    title:   "How to Compress an Image Without Losing Quality (Quick Guide)",
+    excerpt: "Modern compression algorithms can reduce image size by 40–70% with zero visible quality difference. Here's the exact technique — step by step, free tools only.",
+    date:    "2025-05-23",
+    readMin: 5,
+    tag:     "Images",
   },
 ];

@@ -213,6 +213,96 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* ── NEW: Latest from the Blog ────────────────────────────────── */}
+      <section className="max-w-[1200px] mx-auto px-5 py-20">
+        <div className="flex items-center justify-between mb-10">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight mb-2">Latest from the Blog</h2>
+            <p className="text-muted-foreground font-medium">Learn how to optimize your files like a pro.</p>
+          </div>
+          <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand hover:gap-3 transition-all">
+            All articles
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </Link>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[
+            {
+              slug: "compress-images-for-wordpress",
+              tag: "WordPress",
+              title: "How to Compress Images for WordPress Without Plugins",
+              excerpt: "WordPress images that aren't compressed slow down your site and hurt SEO. Here's how to compress before uploading.",
+              emoji: "🖼️",
+            },
+            {
+              slug: "pdf-too-large-to-email",
+              tag: "PDF",
+              title: "PDF Too Large to Email? Here's the Complete Fix",
+              excerpt: "Hit that 'attachment too large' error again? Here's exactly how to shrink PDFs for Gmail, Outlook, and any mail server.",
+              emoji: "📄",
+            },
+            {
+              slug: "core-web-vitals-images",
+              tag: "Web Performance",
+              title: "How Images Affect Your Core Web Vitals Score",
+              excerpt: "Images are the #1 cause of poor LCP scores. Here's how unoptimized images hurt your ranking and what to do.",
+              emoji: "⚡",
+            },
+          ].map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group flex flex-col rounded-3xl border border-border bg-surface p-6 hover:border-brand/40 hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl"
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-2xl">{post.emoji}</span>
+                <span className="text-[10px] font-bold text-brand bg-brand-light rounded-full px-2.5 py-1 uppercase tracking-wider">{post.tag}</span>
+              </div>
+              <h3 className="text-[15px] font-bold text-foreground group-hover:text-brand transition-colors mb-3 leading-snug">
+                {post.title}
+              </h3>
+              <p className="text-xs text-muted-foreground leading-relaxed flex-1">{post.excerpt}</p>
+              <div className="mt-5 pt-4 border-t border-border/50">
+                <span className="text-xs font-bold text-brand group-hover:translate-x-1 transition-transform inline-block">
+                  Read guide →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="sm:hidden mt-6 text-center">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-bold text-brand">
+            View all {40} articles →
+          </Link>
+        </div>
+      </section>
+
+      {/* ── NEW: Newsletter Signup ────────────────────────────────── */}
+      <section className="max-w-[900px] mx-auto px-5 pb-16">
+        <div className="rounded-3xl bg-gradient-to-br from-brand to-accent p-10 text-center text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==')] opacity-50" />
+          <div className="relative">
+            <h2 className="text-2xl font-extrabold mb-2">🚀 Level up your web performance</h2>
+            <p className="text-white/80 mb-6 max-w-md mx-auto">
+              Get weekly tips on image optimization, PDF tricks, and Core Web Vitals — the stuff that actually grows your traffic.
+            </p>
+            <div className="flex gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                className="flex-1 px-5 py-3 rounded-xl bg-white/20 backdrop-blur-sm text-white placeholder-white/50 border border-white/20 focus:outline-none focus:border-white/60 text-sm font-medium"
+              />
+              <button className="px-6 py-3 bg-white text-brand font-bold rounded-xl text-sm hover:bg-white/90 transition-colors shrink-0 cursor-pointer shadow-lg">
+                Subscribe
+              </button>
+            </div>
+            <p className="text-[11px] text-white/50 mt-3">Trusted by 500+ developers. Unsubscribe anytime.</p>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="max-w-[680px] mx-auto px-5 py-16">
         <FAQ items={HOME_FAQ} />

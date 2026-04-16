@@ -98,6 +98,10 @@ export default function Header() {
             </div>
           ))}
 
+          <Link href="/tools"
+            className="px-3 py-2 rounded-lg text-sm font-medium text-muted hover:text-foreground hover:bg-surface-muted transition-all no-underline">
+            All Tools
+          </Link>
           <Link href="/blog"
             className="px-3 py-2 rounded-lg text-sm font-medium text-muted hover:text-foreground hover:bg-surface-muted transition-all no-underline">
             Blog
@@ -143,7 +147,7 @@ export default function Header() {
             </div>
           ))}
           <div className="px-5 py-4 flex gap-5">
-            {[["Blog", "/blog"], ["About", "/about"], ["Contact", "/contact"]].map(([l, h]) => (
+            {[["All Tools", "/tools"], ["Blog", "/blog"], ["About", "/about"], ["Contact", "/contact"]].map(([l, h]) => (
               <Link key={h} href={h} onClick={() => setMobileOpen(false)}
                 className="text-sm text-muted no-underline hover:text-foreground">
                 {l}
