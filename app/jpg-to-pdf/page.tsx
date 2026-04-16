@@ -37,6 +37,12 @@ const FAQ_ITEMS = [
 export default function JpgToPdfPage() {
   return (
     <>
+      <ToolSchema
+        name={TOOL_META["jpg-to-pdf"].title}
+        description={TOOL_META["jpg-to-pdf"].description}
+        url={TOOL_META["jpg-to-pdf"].url}
+        category={TOOL_META["jpg-to-pdf"].category}
+      />
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },

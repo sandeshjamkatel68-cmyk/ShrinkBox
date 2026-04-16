@@ -24,6 +24,12 @@ const FAQ_ITEMS = [
 export default function PdfToJpgPage() {
   return (
     <>
+      <ToolSchema
+        name={TOOL_META["pdf-to-jpg"].title}
+        description={TOOL_META["pdf-to-jpg"].description}
+        url={TOOL_META["pdf-to-jpg"].url}
+        category={TOOL_META["pdf-to-jpg"].category}
+      />
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },

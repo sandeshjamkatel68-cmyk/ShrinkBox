@@ -37,6 +37,12 @@ const FAQ_ITEMS = [
 export default function CropImagePage() {
   return (
     <>
+      <ToolSchema
+        name={TOOL_META["crop-image"].title}
+        description={TOOL_META["crop-image"].description}
+        url={TOOL_META["crop-image"].url}
+        category={TOOL_META["crop-image"].category}
+      />
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },

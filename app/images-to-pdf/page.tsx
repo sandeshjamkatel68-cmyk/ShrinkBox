@@ -24,6 +24,12 @@ const FAQ_ITEMS = [
 export default function ImagesToPdfPage() {
   return (
     <>
+      <ToolSchema
+        name={TOOL_META["images-to-pdf"].title}
+        description={TOOL_META["images-to-pdf"].description}
+        url={TOOL_META["images-to-pdf"].url}
+        category={TOOL_META["images-to-pdf"].category}
+      />
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },

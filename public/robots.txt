@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://shrink-box.com/sitemap.xml

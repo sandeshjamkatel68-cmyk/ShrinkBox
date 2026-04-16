@@ -37,6 +37,12 @@ const FAQ_ITEMS = [
 export default function ResizeImagePage() {
   return (
     <>
+      <ToolSchema
+        name={TOOL_META["resize-image"].title}
+        description={TOOL_META["resize-image"].description}
+        url={TOOL_META["resize-image"].url}
+        category={TOOL_META["resize-image"].category}
+      />
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
