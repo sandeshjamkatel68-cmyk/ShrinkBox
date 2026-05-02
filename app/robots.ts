@@ -8,6 +8,5 @@ export default function robots(): MetadataRoute.Robots {
       disallow:  ["/api/"],
     },
     sitemap: "https://shrink-box.com/sitemap.xml",
-    host:    "https://shrink-box.com",
   };
 }

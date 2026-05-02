@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import CompressorWidget from "@/components/upload/CompressorWidget";
+import DynamicCompressorWidget from "@/components/upload/DynamicCompressorWidget";
 import { TrustSignals, FAQ, ToolHero, SEOContent } from "@/components/seo";
 import { ToolSchema, TOOL_META, BreadcrumbSchema } from "@/lib/seo";
 import RelatedGuides from "@/components/seo/RelatedGuides";
@@ -63,7 +63,7 @@ export default function ReduceJpgPage() {
           description="Compress JPG and JPEG images online instantly without visible quality loss. ShrinkBox uses smart re-encoding to strip hidden metadata and optimize your photos for the web."
           badge="JPG · JPEG · Free"
         />
-        <CompressorWidget />
+        <DynamicCompressorWidget />
         <div className="mt-8">
           <TrustSignals />
         </div>

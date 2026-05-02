@@ -26,23 +26,23 @@ const FOOTER_LINKS = {
     { href: "/pdf-to-word",          label: "PDF → Word" },
     { href: "/add-page-numbers-pdf", label: "Page Numbers" },
   ],
-  "Top Guides": [
-    { href: "/blog/how-to-compress-images-for-web",     label: "Image Optimization Guide" },
+  "Guides": [
+    { href: "/blog/how-to-compress-images-for-web",     label: "Image Optimization" },
     { href: "/blog/reduce-pdf-file-size",                label: "Reduce PDF Size" },
     { href: "/blog/pdf-too-large-to-email",              label: "PDF Email Fix" },
-    { href: "/blog/instagram-image-size-guide",          label: "Instagram Sizes 2026" },
-    { href: "/blog/heic-vs-jpg",                        label: "HEIC vs JPG Explained" },
-    { href: "/blog/core-web-vitals-images",              label: "Core Web Vitals Guide" },
-    { href: "/blog/whatsapp-image-compression-guide",    label: "WhatsApp Quality Fix" },
-    { href: "/blog/generate-qr-codes-business-cards",    label: "QR Code Guide" },
-    { href: "/blog/svg-vs-png",                         label: "SVG vs PNG Guide" },
-    { href: "/blog/extract-text-from-image",             label: "Image to Text OCR" },
-    { href: "/blog/best-image-size-for-website",         label: "Web Image Sizes" },
-    { href: "/blog/tiny-png-alternative",               label: "TinyPNG Alternative" },
+    { href: "/blog/instagram-image-size-guide-2026",     label: "Instagram Sizes 2026" },
+    { href: "/blog/heic-vs-jpg",                         label: "HEIC vs JPG" },
+    { href: "/blog/core-web-vitals-images",              label: "Core Web Vitals" },
+    { href: "/blog/whatsapp-image-compression-guide",    label: "WhatsApp Quality" },
+    { href: "/blog/qr-code-for-business-card",           label: "QR Code Guide" },
+    { href: "/blog/svg-vs-png",                          label: "SVG vs PNG" },
+    { href: "/blog/extract-text-from-image",             label: "OCR Guide" },
+    { href: "/blog/tinypng-alternative",                 label: "TinyPNG Alternative" },
   ],
-  "Internal": [
+  "Company": [
     { href: "/about",   label: "About" },
     { href: "/blog",    label: "Blog" },
+    { href: "/tools",   label: "All Tools" },
     { href: "/contact", label: "Contact" },
     { href: "/privacy", label: "Privacy Policy" },
     { href: "/terms",   label: "Terms of Service" },
@@ -51,31 +51,32 @@ const FOOTER_LINKS = {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-surface mt-20">
-      <div className="max-w-[1120px] mx-auto px-6 py-14">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+    <footer className="border-t border-border bg-surface mt-16 sm:mt-20">
+      <div className="max-w-[1200px] mx-auto px-5 py-12 sm:py-14">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10">
 
           {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 no-underline mb-4">
-              <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
-                <rect width="28" height="28" rx="8" fill="hsl(var(--brand))"/>
-                <path d="M8.5 10h11M8.5 14h8M12 18.5l2 2.5 4.5-5.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand to-brand-vibrant flex items-center justify-center">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6h8M4 8.5h6M6.5 11l1.5 1.5L11.5 9" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
               <span className="font-bold text-[15px] text-foreground tracking-tight">ShrinkBox</span>
             </Link>
-            <p className="text-sm text-muted leading-relaxed mb-5">
-              Free online tools for compressing, converting, and editing images and PDFs. No signup. Files deleted instantly.
+            <p className="text-xs text-muted leading-relaxed mb-4 max-w-[240px]">
+              Free tools for compressing, converting, and editing images and PDFs. No signup required.
             </p>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1.5">
               {[
-                { dot: true, text: "Files deleted after processing" },
-                { dot: true, text: "No account required" },
-                { dot: true, text: "HTTPS encrypted" },
-              ].map(item => (
-                <div key={item.text} className="flex items-center gap-2 text-xs text-muted">
-                  <div className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
-                  {item.text}
+                "Files deleted after processing",
+                "No account required",
+                "HTTPS encrypted",
+              ].map(text => (
+                <div key={text} className="flex items-center gap-2 text-2xs text-subtle">
+                  <div className="w-1 h-1 rounded-full bg-brand shrink-0" />
+                  {text}
                 </div>
               ))}
             </div>
@@ -84,11 +85,11 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (
             <div key={title}>
-              <p className="text-xs font-semibold uppercase tracking-widest text-subtle mb-4">{title}</p>
-              <ul className="flex flex-col gap-2.5">
+              <p className="text-2xs font-bold uppercase tracking-[0.12em] text-subtle mb-3">{title}</p>
+              <ul className="flex flex-col gap-2">
                 {links.map(link => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-muted hover:text-foreground no-underline transition-colors">
+                    <Link href={link.href} className="text-xs text-muted hover:text-foreground no-underline transition-colors">
                       {link.label}
                     </Link>
                   </li>
@@ -99,7 +100,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-subtle">
+        <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-2xs text-subtle">
           <span>© {new Date().getFullYear()} ShrinkBox. All rights reserved.</span>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="hover:text-muted no-underline transition-colors">Privacy</Link>

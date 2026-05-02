@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import CompressorWidget from "@/components/upload/CompressorWidget";
+import DynamicCompressorWidget from "@/components/upload/DynamicCompressorWidget";
 import { TrustSignals, FAQ, ToolHero, SEOContent } from "@/components/seo";
 import { ToolSchema, TOOL_META, BreadcrumbSchema } from "@/lib/seo";
 import RelatedGuides from "@/components/seo/RelatedGuides";
@@ -63,7 +63,7 @@ export default function ReducePngPage() {
           description="Compress PNG images online instantly without losing transparency or sharpness. Our browser-based engine optimizes internal data structures for the smallest possible file footprint."
           badge="PNG · Free · Instant"
         />
-        <CompressorWidget />
+        <DynamicCompressorWidget />
         <div className="mt-8">
           <TrustSignals />
         </div>

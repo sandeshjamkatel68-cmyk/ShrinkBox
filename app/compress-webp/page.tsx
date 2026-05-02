@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import CompressorWidget from "@/components/upload/CompressorWidget";
+import DynamicCompressorWidget from "@/components/upload/DynamicCompressorWidget";
 import { TrustSignals, FAQ, ToolHero, SEOContent } from "@/components/seo";
 import { ToolSchema, TOOL_META, BreadcrumbSchema } from "@/lib/seo";
 import RelatedGuides from "@/components/seo/RelatedGuides";
@@ -57,7 +57,7 @@ export default function CompressWebpPage() {
           description="Optimize and reduce WebP image file sizes instantly in your browser. Re-encode at professional settings while keeping crystal-clear visual quality and full transparency support." 
           badge="WebP · Free · Private" 
         />
-        <CompressorWidget />
+        <DynamicCompressorWidget />
         <div className="mt-8"><TrustSignals /></div>
       </section>
 

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import CompressorWidget from "@/components/upload/CompressorWidget";
+import DynamicCompressorWidget from "@/components/upload/DynamicCompressorWidget";
 import { TrustSignals, FAQ, ToolHero, SEOContent } from "@/components/seo";
 import { ToolSchema, TOOL_META, BreadcrumbSchema } from "@/lib/seo";
 import RelatedGuides from "@/components/seo/RelatedGuides";
@@ -51,7 +51,7 @@ export default function CompressJpgPage() {
           description="Reduce JPG file size instantly in your browser. Our professional-grade compressor optimizes your JPEG images for faster loading and better web performance."
           badge="Free · Instant · Private"
         />
-        <CompressorWidget />
+        <DynamicCompressorWidget />
         <div className="mt-8"><TrustSignals /></div>
       </section>
       <section className="max-w-4xl mx-auto px-4 pb-16"><FAQ items={FAQ_ITEMS} /></section>

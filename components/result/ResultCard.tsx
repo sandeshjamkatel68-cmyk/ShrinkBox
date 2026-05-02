@@ -21,60 +21,61 @@ export default function ResultCard({ result, fileName, onReset }: ResultCardProp
   }
 
   return (
-    <div className="w-full rounded-2xl border border-border bg-surface overflow-hidden animate-fade-up">
+    <div className="w-full card-base overflow-hidden animate-scale-in">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-border flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className={isAlreadyOptimized ? "text-yellow-400" : "text-brand"}>
-            {isAlreadyOptimized ? "⚠" : "✓"}
-          </span>
-          <span className="font-medium text-sm">
-            {isAlreadyOptimized ? "Already optimized" : "Compression complete"}
+      <div className="px-6 py-4 border-b border-border flex items-center justify-between bg-surface-muted/30">
+        <div className="flex items-center gap-2.5">
+          <div className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs ${
+            isAlreadyOptimized ? "bg-warning/10 text-warning" : "bg-success/10 text-success"
+          }`}>
+            {isAlreadyOptimized ? "⚠️" : "✓"}
+          </div>
+          <span className="font-bold text-sm text-foreground">
+            {isAlreadyOptimized ? "Already Optimized" : "Successfully Compressed"}
           </span>
         </div>
-        <span className="text-xs text-muted">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-subtle bg-surface px-2 py-1 rounded-md border border-border">
           {formatDuration(result.processingTimeMs)}
         </span>
       </div>
 
       {/* Stats */}
-      <div className="px-6 py-5">
+      <div className="px-6 py-7">
         {/* Size comparison */}
-        <div className="grid grid-cols-3 gap-4 mb-5">
-          <div>
-            <div className="text-xs text-muted mb-1">Original</div>
-            <div className="text-xl font-semibold tabular-nums">
+        <div className="flex items-center justify-between gap-4 mb-8">
+          <div className="flex-1">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-subtle mb-1">Original</div>
+            <div className="text-xl font-black tabular-nums text-foreground">
               {formatBytes(result.originalSize)}
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
-            <div className="text-subtle">→</div>
+          <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center bg-surface shrink-0 group">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-subtle group-hover:text-brand transition-colors"><polyline points="13 17 18 12 13 7"/><line x1="6" y1="17" x2="6" y2="7"/></svg>
           </div>
 
-          <div>
-            <div className="text-xs text-muted mb-1">Compressed</div>
-            <div className={[
-              "text-xl font-semibold tabular-nums",
-              isAlreadyOptimized ? "text-muted" : "text-brand",
-            ].join(" ")}>
+          <div className="flex-1 text-right">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-subtle mb-1">Compressed</div>
+            <div className={`text-xl font-black tabular-nums ${
+              isAlreadyOptimized ? "text-muted" : "text-brand"
+            }`}>
               {formatBytes(result.compressedSize)}
             </div>
           </div>
         </div>
 
-        {/* Reduction bar */}
+        {/* Reduction pill & chart */}
         {!isAlreadyOptimized && (
-          <div className="mb-5">
-            <div className="flex justify-between text-xs text-muted mb-1.5">
-              <span>Size reduction</span>
-              <span className="text-brand font-medium">
+          <div className="mb-8">
+            <div className="flex justify-between items-baseline mb-2.5">
+              <span className="text-xs font-bold text-foreground">Optimization Result</span>
+              <span className="text-sm font-black text-brand bg-brand-light px-2 py-0.5 rounded-md border border-brand/10">
                 -{result.reductionPercent}%
               </span>
             </div>
-            <div className="h-2 rounded-full bg-surface-muted overflow-hidden">
+            <div className="h-3 rounded-full bg-surface-muted overflow-hidden p-0.5 border border-border/50">
               <div
-                className="h-full rounded-full bg-brand transition-all duration-700"
+                className="h-full rounded-full bg-gradient-to-r from-brand to-brand-vibrant shadow-brand transition-all duration-1000 ease-out"
                 style={{ width: `${Math.min(result.reductionPercent, 100)}%` }}
               />
             </div>
@@ -83,7 +84,8 @@ export default function ResultCard({ result, fileName, onReset }: ResultCardProp
 
         {/* Warning message for already-optimized */}
         {result.error && (
-          <div className="mb-4 text-xs text-yellow-400/80 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-3 py-2">
+          <div className="mb-6 p-3 rounded-xl border border-warning/20 bg-warning/5 text-xs text-warning leading-relaxed flex gap-2">
+            <span className="shrink-0">⚠️</span>
             {result.error}
           </div>
         )}
@@ -93,16 +95,17 @@ export default function ResultCard({ result, fileName, onReset }: ResultCardProp
           {result.downloadUrl && (
             <button
               onClick={handleDownload}
-              className="flex-1 bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors duration-150"
+              className="flex-[2] btn-primary py-3.5 shadow-brand text-sm"
             >
-              ↓ Download {result.outputFileName ? result.outputFileName.split(".").pop()?.toUpperCase() : "File"}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Result
             </button>
           )}
           <button
             onClick={onReset}
-            className="px-4 py-2.5 rounded-xl border border-border text-sm text-muted hover:text-foreground hover:border-brand/30 transition-colors duration-150"
+            className="flex-1 rounded-xl border border-border bg-surface text-sm font-bold text-muted hover:text-foreground hover:border-brand/30 hover:bg-surface-muted/30 transition-all duration-200"
           >
-            Compress another
+            Reset
           </button>
         </div>
       </div>

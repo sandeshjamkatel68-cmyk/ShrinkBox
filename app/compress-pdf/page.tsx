@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CompressorWidget from "@/components/upload/CompressorWidget";
+import DynamicCompressorWidget from "@/components/upload/DynamicCompressorWidget";
 import { TrustSignals, FAQ, ToolHero, SEOContent } from "@/components/seo";
 import { ToolSchema, FAQSchema, TOOL_META, BreadcrumbSchema } from "@/lib/seo";
 import RelatedGuides from "@/components/seo/RelatedGuides";
@@ -69,7 +69,7 @@ export default function CompressPDFPage() {
           description="Meeting strict upload limits shouldn't be a struggle. ShrinkBox allows you to reduce PDF file size online without installing bulky software. Our browser-based optimizer is fast, free, and completely private."
           badge="Free · No signup · Instant"
         />
-        <CompressorWidget />
+        <DynamicCompressorWidget />
         <div className="mt-12">
           <TrustSignals />
         </div>

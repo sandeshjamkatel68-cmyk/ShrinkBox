@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   icons: {
     icon:     "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple:    "/favicon.ico",
+    apple:    "/apple-icon.png",
   },
   openGraph: {
     type:     "website",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
         url:    "https://shrink-box.com/og-image.png",
         width:  1200,
         height: 630,
-        alt:    "ShrinkBox — Free Image & PDF Tools Online",
+        alt:    "ShrinkBox — Free Image & PDF Tools",
       },
     ],
   },
@@ -67,10 +67,55 @@ export const metadata: Metadata = {
     index:  true,
     follow: true,
   },
-  alternates: {
-    // Each page should define its own canonical to avoid duplicate content flags.
-  },
 };
+
+// ── JSON-LD Structured Data ─────────────────────────────
+function StructuredData() {
+  const organization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ShrinkBox",
+    "url": "https://shrink-box.com",
+    "logo": "https://shrink-box.com/icon-512.png",
+    "description": "Free online tools for compressing, converting, resizing, and editing images and PDFs.",
+    "sameAs": [],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "url": "https://shrink-box.com/contact",
+    },
+  };
+
+  const website = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ShrinkBox",
+    "url": "https://shrink-box.com",
+    "description": "Free online tools for compressing, converting, resizing, and editing images and PDFs.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ShrinkBox",
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://shrink-box.com/tools?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(website) }}
+      />
+    </>
+  );
+}
 
 export default function RootLayout({
   children,
@@ -78,16 +123,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" dir="ltr" className={inter.variable}>
       <head>
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-WR9QK5Q510"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="lazyOnload">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -96,10 +142,9 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Google AdSense */}
+        <meta name="google-adsense-account" content="ca-pub-3220445637759521" />
 
-      
-        <meta name="google-adsense-account" content="ca-pub-3220445637759521"></meta>
+        <StructuredData />
       </head>
 
       <body className="min-h-screen flex flex-col">
