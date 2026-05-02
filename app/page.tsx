@@ -85,6 +85,7 @@ const PDF_TOOLS = [
 ];
 
 const DEV_DESIGN_TOOLS = [
+  { href: "/bulk-image-downloader", label: "Bulk URL Downloader", icon: I.Bulk, badge: "New" },
   { href: "/image-to-text",        label: "Image to Text (OCR)", icon: I.Word },
   { href: "/color-picker",         label: "Color Palette",       icon: I.Dropper },
   { href: "/favicon-generator",    label: "Favicon Generator",   icon: I.Grid },

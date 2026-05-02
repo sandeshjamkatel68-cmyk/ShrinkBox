@@ -146,7 +146,8 @@ body {
 }
 
 .card-interactive:hover {
-  border-color: hsl(var(--brand) / 0.3);
+  background-color: hsl(var(--brand-light));
+  border-color: hsl(var(--brand) / 0.4);
   box-shadow: var(--shadow-brand);
   transform: translateY(-4px);
 }
