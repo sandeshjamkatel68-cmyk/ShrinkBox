@@ -398,6 +398,13 @@ export const TOOL_META: Record<string, ToolMeta> = {
     keywords:    ["privacy policy generator", "free terms and conditions creator", "legal document generator", "website privacy policy"],
     url:         "/privacy-policy-generator",
     category:    "BusinessApplication",
+  },
+  "bulk-image-downloader": {
+    title: "Bulk Image Downloader — Pack multiple URLs into ZIP Online",
+    description: "The fastest way to download a collection of images from a list of URLs. Paste your links and instantly get a professional ZIP file with automatic source credits included.",
+    keywords: ["bulk image downloader", "url to zip", "download list of urls", "bulk file packer", "image extractor online", "ethical downloader"],
+    url: "/bulk-image-downloader",
+    category: "DeveloperApplication",
   }
 };
 
