@@ -56,7 +56,7 @@ export default function SplitPdfWidget() {
               <span className="font-medium text-sm">Split into {result.pages.length} pages</span>
             </div>
             <button onClick={downloadAll}
-              className="text-xs bg-brand hover:bg-[var(--brand-dim)] text-white rounded-lg px-3 py-1.5 transition-colors">
+              className="text-xs bg-brand hover:bg-brand-dim text-white rounded-lg px-3 py-1.5 transition-colors">
               Download all
             </button>
           </div>
@@ -112,7 +112,7 @@ export default function SplitPdfWidget() {
 
       {file && !isProcessing && (
         <button onClick={handleSplit}
-          className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+          className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">
           Split PDF into pages
         </button>
       )}

@@ -92,7 +92,7 @@ export default function ConvertImageWidget({ defaultTarget = "webp", allowedSour
             </div>
           </div>
           <button onClick={handleConvert}
-            className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+            className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">
             Convert to {target.toUpperCase()}
           </button>
         </div>

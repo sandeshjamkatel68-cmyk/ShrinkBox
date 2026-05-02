@@ -19,7 +19,7 @@ export default function RotatePdfWidget() {
   function reset() { setFile(null); setStatus("idle"); setResult(null); setError(null); }
 
   if (status === "done" && result) {
-    return (<div className="rounded-2xl border border-border bg-surface p-6 text-center"><div className="text-4xl mb-3">✅</div><p className="font-semibold mb-1">PDF rotated {angle}°</p><p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="rotated.pdf" className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-muted hover:text-foreground">Try another</button></div>);
+    return (<div className="rounded-2xl border border-border bg-surface p-6 text-center"><div className="text-4xl mb-3">✅</div><p className="font-semibold mb-1">PDF rotated {angle}°</p><p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="rotated.pdf" className="inline-block bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-muted hover:text-foreground">Try another</button></div>);
   }
 
   return (
@@ -38,7 +38,7 @@ export default function RotatePdfWidget() {
               {([90, 180, 270] as const).map(a => (<button key={a} onClick={() => setAngle(a)} className={["flex-1 rounded-xl border py-2.5 text-sm font-medium transition-all", angle === a ? "border-brand bg-[var(--brand-light)] text-brand" : "border-border text-muted hover:border-brand/30"].join(" ")}>{a}°</button>))}
             </div>
           </div>
-          <button onClick={handleRotate} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Rotate PDF {angle}°</button>
+          <button onClick={handleRotate} className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">Rotate PDF {angle}°</button>
         </div>
       )}
       {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Rotating...</p></div>)}

@@ -32,14 +32,14 @@ export default function PdfToWordWidget() {
           <input ref={inputRef} type="file" accept=".pdf" className="sr-only" onChange={e => { const f = e.target.files?.[0]; if (f) setFile(f); e.target.value = ""; }} />
         </div>
       )}
-      {file && status === "idle" && (<button onClick={handleConvert} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Convert PDF to Text</button>)}
+      {file && status === "idle" && (<button onClick={handleConvert} className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">Convert PDF to Text</button>)}
       {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Converting...</p></div>)}
       {status === "done" && result && (
         <div className="rounded-2xl border border-border bg-surface p-5">
           <div className="flex items-center gap-2 mb-3"><span className="text-brand">✓</span><span className="font-medium text-sm">Converted — {result.pageCount} pages</span></div>
           {result.warning && (<p className="text-xs text-yellow-500 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-3 py-2 mb-3">{result.warning}</p>)}
           <div className="flex gap-3">
-            <a href={result.downloadUrl} download={result.outputFileName} className="flex-1 text-center bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors">↓ Download .txt file</a>
+            <a href={result.downloadUrl} download={result.outputFileName} className="flex-1 text-center bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors">↓ Download .txt file</a>
             <button onClick={reset} className="px-4 py-2.5 rounded-xl border border-border text-sm text-muted hover:text-foreground transition-colors">Try another</button>
           </div>
         </div>

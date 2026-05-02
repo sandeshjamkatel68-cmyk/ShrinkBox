@@ -112,7 +112,7 @@ export default function ColorPickerWidget() {
           <button 
             onClick={extractPalette}
             disabled={isProcessing}
-            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] disabled:opacity-50 transition-all"
+            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-sm hover:bg-brand-dim disabled:opacity-50 transition-all"
           >
             {isProcessing ? "Analyzing Colors..." : "Extract Palette"}
           </button>

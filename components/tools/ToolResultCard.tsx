@@ -75,7 +75,7 @@ export default function ToolResultCard({ result, onReset, label = "Done" }: Tool
           {result.downloadUrl && (
             <button
               onClick={handleDownload}
-              className="flex-1 bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors"
+              className="flex-1 bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors"
             >
               ↓ Download {ext}
             </button>

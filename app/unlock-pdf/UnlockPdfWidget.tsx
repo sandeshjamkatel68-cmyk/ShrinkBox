@@ -20,7 +20,7 @@ export default function UnlockPdfWidget() {
   function reset() { setFile(null); setPassword(""); setStatus("idle"); setResult(null); setError(null); }
 
   if (status === "done" && result) {
-    return (<div className="rounded-2xl border border-border bg-surface p-6 text-center"><div className="text-4xl mb-3">🔓</div><p className="font-semibold mb-1">PDF unlocked — {result.pageCount} pages</p><p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="unlocked.pdf" className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download Unlocked PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-muted">Try another</button></div>);
+    return (<div className="rounded-2xl border border-border bg-surface p-6 text-center"><div className="text-4xl mb-3">🔓</div><p className="font-semibold mb-1">PDF unlocked — {result.pageCount} pages</p><p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="unlocked.pdf" className="inline-block bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download Unlocked PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-muted">Try another</button></div>);
   }
 
   return (
@@ -38,7 +38,7 @@ export default function UnlockPdfWidget() {
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Leave blank if no password" className="w-full rounded-xl border border-border bg-surface-muted px-3 py-2.5 text-sm focus:outline-none focus:border-brand" />
             <p className="text-xs text-muted mt-2">Only needed if PDF requires a password to open.</p>
           </div>
-          <button onClick={handleUnlock} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Unlock PDF</button>
+          <button onClick={handleUnlock} className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">Unlock PDF</button>
         </div>
       )}
       {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Unlocking...</p></div>)}

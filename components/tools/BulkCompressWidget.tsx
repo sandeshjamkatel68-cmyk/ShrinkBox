@@ -58,7 +58,7 @@ export default function BulkCompressWidget() {
           <div className="px-5 py-3 border-b border-border flex justify-between items-center">
             <span className="text-sm font-medium">{results.length} files · -{totalReduction}% total</span>
             <button onClick={downloadAll}
-              className="text-xs bg-brand hover:bg-[var(--brand-dim)] text-white rounded-lg px-3 py-1.5 transition-colors">
+              className="text-xs bg-brand hover:bg-brand-dim text-white rounded-lg px-3 py-1.5 transition-colors">
               Download all
             </button>
           </div>
@@ -145,7 +145,7 @@ export default function BulkCompressWidget() {
           </div>
 
           <button onClick={() => run(files, level)}
-            className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+            className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">
             Compress {files.length} file{files.length > 1 ? "s" : ""}
           </button>
         </>

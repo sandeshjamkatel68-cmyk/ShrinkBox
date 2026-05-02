@@ -89,7 +89,7 @@ export default function MergePdfWidget() {
 
       {files.length >= 2 && !isProcessing && (
         <button onClick={handleMerge}
-          className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+          className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">
           Merge {files.length} PDFs into one
         </button>
       )}

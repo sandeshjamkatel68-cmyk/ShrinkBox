@@ -43,7 +43,7 @@ export function ToolCTA({
       </div>
       <Link
         href={toolHref}
-        className={`inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors shrink-0 ${
+        className={`inline-block bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors shrink-0 ${
           variant === "bottom" ? "mt-4" : ""
         }`}
       >

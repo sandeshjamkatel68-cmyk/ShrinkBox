@@ -20,7 +20,7 @@ export default function ImagesToPdfWidget() {
   function reset() { setFiles([]); setStatus("idle"); setResult(null); setError(null); }
 
   if (status === "done" && result) {
-    return (<div className="rounded-2xl border border-border bg-surface p-6 text-center"><div className="text-4xl mb-3">✅</div><p className="font-semibold text-lg mb-1">PDF created — {result.pageCount} pages</p><p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="images.pdf" className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-muted hover:text-foreground">Convert more</button></div>);
+    return (<div className="rounded-2xl border border-border bg-surface p-6 text-center"><div className="text-4xl mb-3">✅</div><p className="font-semibold text-lg mb-1">PDF created — {result.pageCount} pages</p><p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="images.pdf" className="inline-block bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-muted hover:text-foreground">Convert more</button></div>);
   }
 
   return (
@@ -37,7 +37,7 @@ export default function ImagesToPdfWidget() {
             <div className="px-4 py-3 border-b border-border flex justify-between"><span className="text-sm font-medium">{files.length} images selected</span><span className="text-xs text-muted">{formatBytes(files.reduce((s,f)=>s+f.size,0))}</span></div>
             <ul>{files.map((f,i) => (<li key={i} className="flex items-center gap-3 px-4 py-2.5 border-b border-border last:border-0"><span className="text-sm flex-1 truncate">{f.name}</span><span className="text-xs text-muted">{formatBytes(f.size)}</span><button onClick={() => removeFile(i)} className="text-xs text-red-400 hover:text-red-300 px-1">✕</button></li>))}</ul>
           </div>
-          <button onClick={handleConvert} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Create PDF from {files.length} images</button>
+          <button onClick={handleConvert} className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">Create PDF from {files.length} images</button>
         </>
       )}
       {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Creating PDF...</p></div>)}

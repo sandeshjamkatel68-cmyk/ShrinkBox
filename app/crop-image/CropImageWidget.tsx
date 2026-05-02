@@ -59,7 +59,7 @@ export default function CropImageWidget() {
         <p className="font-semibold mb-1">Cropped to {result.outputWidth}×{result.outputHeight}px</p>
         <p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p>
         <a href={result.downloadUrl} download={result.outputFileName}
-          className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">
+          className="inline-block bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">
           ↓ Download Image
         </a>
         <button onClick={reset} className="block mx-auto mt-3 text-sm text-muted hover:text-foreground">Crop another</button>
@@ -112,7 +112,7 @@ export default function CropImageWidget() {
             </p>
           </div>
           <button onClick={handleCrop} disabled={!width || !height}
-            className="w-full bg-brand hover:bg-[var(--brand-dim)] disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+            className="w-full bg-brand hover:bg-brand-dim disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">
             Crop Image
           </button>
           <button onClick={reset} className="text-sm text-center text-muted hover:text-foreground">Choose different image</button>

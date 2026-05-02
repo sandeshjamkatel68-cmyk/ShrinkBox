@@ -161,7 +161,7 @@ If you have any questions regarding our terms, please contact us at ${email}.
 
           <button 
             onClick={copyToClipboard}
-            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all mt-2"
+            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-brand-dim transition-all mt-2"
           >
             {copied ? "Copied Correct!" : `Copy ${docType === "privacy" ? "Privacy Policy" : "Terms"}`}
           </button>

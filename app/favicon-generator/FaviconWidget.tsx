@@ -126,7 +126,7 @@ export default function FaviconWidget() {
           <button 
             onClick={generateIcons}
             disabled={isProcessing}
-            className="w-full h-11 px-8 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] disabled:opacity-50 transition-all"
+            className="w-full h-11 px-8 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-brand-dim disabled:opacity-50 transition-all"
           >
             {isProcessing ? "Building Package..." : "Generate Favicon ZIP"}
           </button>
@@ -140,7 +140,7 @@ export default function FaviconWidget() {
                 </div>
                 <button 
                   onClick={handleDownload}
-                  className="w-full h-10 rounded-lg bg-brand text-white text-xs font-bold hover:bg-[var(--brand-dim)] transition-colors mt-1"
+                  className="w-full h-10 rounded-lg bg-brand text-white text-xs font-bold hover:bg-brand-dim transition-colors mt-1"
                 >
                   Download Favicon ZIP
                 </button>

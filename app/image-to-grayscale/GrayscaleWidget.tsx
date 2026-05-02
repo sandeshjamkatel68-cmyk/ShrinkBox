@@ -62,7 +62,7 @@ export default function GrayscaleWidget() {
             <span className="truncate">{file.name}</span>
             <span className="text-muted ml-3 shrink-0">{formatBytes(file.size)}</span>
           </div>
-          <button onClick={handleConvert} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Convert to Black & White</button>
+          <button onClick={handleConvert} className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">Convert to Black & White</button>
           <button onClick={reset} className="text-sm text-center text-muted hover:text-foreground">Choose different image</button>
         </div>
       )}
@@ -70,7 +70,7 @@ export default function GrayscaleWidget() {
       {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Converting...</p></div>)}
       {status === "done" && result && (
         <div className="flex gap-3 mt-2">
-          <a href={result.downloadUrl} download={result.outputFileName} className="flex-1 text-center bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors">↓ Download B&W Image</a>
+          <a href={result.downloadUrl} download={result.outputFileName} className="flex-1 text-center bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-4 text-sm transition-colors">↓ Download B&W Image</a>
           <button onClick={reset} className="px-4 py-2.5 rounded-xl border border-border text-sm text-muted hover:text-foreground transition-colors">Try another</button>
         </div>
       )}

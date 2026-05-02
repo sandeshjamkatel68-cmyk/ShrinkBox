@@ -30,13 +30,13 @@ export default function PdfToJpgWidget() {
           <input ref={inputRef} type="file" accept=".pdf" className="sr-only" onChange={e => { const f = e.target.files?.[0]; if (f) setFile(f); e.target.value = ""; }} />
         </div>
       )}
-      {file && status === "idle" && (<button onClick={handleConvert} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Extract Pages</button>)}
+      {file && status === "idle" && (<button onClick={handleConvert} className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">Extract Pages</button>)}
       {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Extracting pages...</p></div>)}
       {status === "done" && pages.length > 0 && (
         <div className="flex flex-col gap-4">
           {warning && <p className="text-xs text-yellow-500 bg-yellow-400/5 border border-yellow-400/20 rounded-lg px-3 py-2">{warning}</p>}
           <div className="rounded-2xl border border-border bg-surface overflow-hidden">
-            <div className="px-5 py-3 border-b border-border flex justify-between items-center"><span className="text-sm font-medium">{pages.length} pages extracted</span><button onClick={downloadAll} className="text-xs bg-brand hover:bg-[var(--brand-dim)] text-white rounded-lg px-3 py-1.5">Download all</button></div>
+            <div className="px-5 py-3 border-b border-border flex justify-between items-center"><span className="text-sm font-medium">{pages.length} pages extracted</span><button onClick={downloadAll} className="text-xs bg-brand hover:bg-brand-dim text-white rounded-lg px-3 py-1.5">Download all</button></div>
             <ul className="max-h-72 overflow-y-auto">{pages.map(p => (<li key={p.pageNumber} className="flex items-center gap-3 px-5 py-3 border-b border-border last:border-0"><span className="text-xs font-mono text-muted w-8">p.{p.pageNumber}</span><span className="text-sm flex-1 truncate">{p.fileName}</span><span className="text-xs text-muted">{formatBytes(p.size)}</span><a href={p.downloadUrl} download={p.fileName} className="text-xs text-brand hover:underline">↓</a></li>))}</ul>
           </div>
           <button onClick={reset} className="w-full py-2.5 rounded-xl border border-border text-sm text-muted hover:text-foreground transition-colors">Try another PDF</button>

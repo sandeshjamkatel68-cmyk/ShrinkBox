@@ -143,7 +143,7 @@ export default function CompressSizeWidget() {
             <button 
               onClick={compressToSize}
               disabled={isProcessing}
-              className="h-11 px-8 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] disabled:opacity-50 transition-all mt-6"
+              className="h-11 px-8 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-brand-dim disabled:opacity-50 transition-all mt-6"
             >
               {isProcessing ? "Optimizing..." : "Compress"}
             </button>
@@ -158,7 +158,7 @@ export default function CompressSizeWidget() {
                 </div>
                 <button 
                   onClick={handleDownload}
-                  className="px-6 py-2.5 rounded-lg bg-brand text-white text-xs font-bold hover:bg-[var(--brand-dim)] transition-colors"
+                  className="px-6 py-2.5 rounded-lg bg-brand text-white text-xs font-bold hover:bg-brand-dim transition-colors"
                 >
                   Download Result
                 </button>

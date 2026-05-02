@@ -74,7 +74,7 @@ export default function Base64DecodeWidget() {
             
             <button 
               onClick={handleDownload}
-              className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all"
+              className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-brand-dim transition-all"
             >
               Download Decoded Image
             </button>

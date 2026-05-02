@@ -44,7 +44,7 @@ export default function WatermarkPdfWidget() {
         <div className="text-4xl mb-3">✅</div>
         <p className="font-semibold mb-1">Watermark added — {result.pageCount} pages</p>
         <p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p>
-        <a href={result.downloadUrl} download="watermarked.pdf" className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a>
+        <a href={result.downloadUrl} download="watermarked.pdf" className="inline-block bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a>
         <button onClick={reset} className="block mx-auto mt-3 text-sm text-muted hover:text-foreground">Try another</button>
       </div>
     );
@@ -71,7 +71,7 @@ export default function WatermarkPdfWidget() {
             <div><label className="text-sm font-medium block mb-1.5">Opacity: {Math.round(opacity * 100)}%</label><input type="range" min={5} max={80} value={Math.round(opacity * 100)} onChange={e => setOpacity(Number(e.target.value) / 100)} className="w-full accent-brand" /><div className="flex justify-between text-xs text-muted mt-1"><span>Subtle</span><span>Bold</span></div></div>
             <div><label className="text-sm font-medium block mb-1.5">Angle: {angle}°</label><div className="flex gap-2">{[0, 30, 45, 90].map(a => (<button key={a} onClick={() => setAngle(a)} className={btnClass(angle === a)}>{a}°</button>))}</div></div>
           </div>
-          <button onClick={handleWatermark} disabled={!text.trim()} className="w-full bg-brand hover:bg-[var(--brand-dim)] disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">Add Watermark</button>
+          <button onClick={handleWatermark} disabled={!text.trim()} className="w-full bg-brand hover:bg-brand-dim disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">Add Watermark</button>
         </div>
       )}
       {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Adding watermark...</p></div>)}

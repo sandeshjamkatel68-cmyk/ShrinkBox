@@ -175,7 +175,7 @@ export default function SocialResizerWidget() {
 
             <button 
               onClick={handleDownload}
-              className="w-full h-12 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all mt-2"
+              className="w-full h-12 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-brand-dim transition-all mt-2"
             >
               Download for {selectedPreset.label}
             </button>

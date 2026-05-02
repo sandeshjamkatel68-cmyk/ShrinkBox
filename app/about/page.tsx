@@ -214,7 +214,7 @@ export default function AboutPage() {
           <div className="mt-6 flex flex-wrap gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors"
+              className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors"
             >
               Contact Us →
             </Link>

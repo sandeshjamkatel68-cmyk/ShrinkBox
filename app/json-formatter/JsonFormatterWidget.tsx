@@ -56,7 +56,7 @@ export default function JsonFormatterWidget() {
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <button 
             onClick={handleBeautify}
-            className="w-full sm:flex-1 h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] transition-all"
+            className="w-full sm:flex-1 h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-brand-dim transition-all"
           >
             Beautify (Pretty Print)
           </button>

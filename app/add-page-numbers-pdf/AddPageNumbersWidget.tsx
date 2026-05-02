@@ -26,7 +26,7 @@ export default function AddPageNumbersWidget() {
   function reset() { setFile(null); setStatus("idle"); setResult(null); setError(null); }
 
   if (status === "done" && result) {
-    return (<div className="rounded-2xl border border-border bg-surface p-6 text-center"><div className="text-4xl mb-3">✅</div><p className="font-semibold mb-1">Page numbers added — {result.pageCount} pages</p><p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="numbered.pdf" className="inline-block bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-muted">Try another</button></div>);
+    return (<div className="rounded-2xl border border-border bg-surface p-6 text-center"><div className="text-4xl mb-3">✅</div><p className="font-semibold mb-1">Page numbers added — {result.pageCount} pages</p><p className="text-sm text-muted mb-5">{formatBytes(result.outputSize)}</p><a href={result.downloadUrl} download="numbered.pdf" className="inline-block bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-2.5 px-6 text-sm transition-colors">↓ Download PDF</a><button onClick={reset} className="block mx-auto mt-3 text-sm text-muted">Try another</button></div>);
   }
 
   return (
@@ -45,7 +45,7 @@ export default function AddPageNumbersWidget() {
             <div><label className="text-sm font-medium block mb-2">Color</label><div className="flex gap-2"><button onClick={() => setColor("black")} className={btnClass(color === "black")}>Black</button><button onClick={() => setColor("gray")} className={btnClass(color === "gray")}>Gray</button></div></div>
             <div><label className="text-sm font-medium block mb-1.5">Start from page number</label><input type="number" value={startFrom} min={1} max={999} onChange={e => setStartFrom(Math.max(1, Number(e.target.value)))} className="w-24 rounded-xl border border-border bg-surface-muted px-3 py-2 text-sm focus:outline-none focus:border-brand" /></div>
           </div>
-          <button onClick={handleAdd} className="w-full bg-brand hover:bg-[var(--brand-dim)] text-white font-semibold rounded-xl py-3 text-sm transition-colors">Add Page Numbers</button>
+          <button onClick={handleAdd} className="w-full bg-brand hover:bg-brand-dim text-white font-semibold rounded-xl py-3 text-sm transition-colors">Add Page Numbers</button>
         </div>
       )}
       {status === "processing" && (<div className="rounded-2xl border border-border bg-surface px-6 py-5 text-center"><p className="text-sm font-medium">Adding page numbers...</p></div>)}

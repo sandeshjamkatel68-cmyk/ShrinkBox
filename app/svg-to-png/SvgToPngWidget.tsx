@@ -148,7 +148,7 @@ export default function SvgToPngWidget() {
           <button 
             onClick={convertSvg}
             disabled={isProcessing}
-            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] disabled:opacity-50 transition-all"
+            className="w-full h-11 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-brand-dim disabled:opacity-50 transition-all"
           >
             {isProcessing ? "Rasterizing..." : "Convert to PNG"}
           </button>
@@ -163,7 +163,7 @@ export default function SvgToPngWidget() {
                 <p className="text-xs font-medium text-subtle truncate w-full px-4">{result.name}</p>
                 <button 
                   onClick={handleDownload}
-                  className="w-full h-10 rounded-lg bg-brand text-white text-xs font-bold hover:bg-[var(--brand-dim)] transition-colors mt-1"
+                  className="w-full h-10 rounded-lg bg-brand text-white text-xs font-bold hover:bg-brand-dim transition-colors mt-1"
                 >
                   Download PNG
                 </button>

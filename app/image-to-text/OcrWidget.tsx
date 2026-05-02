@@ -87,7 +87,7 @@ export default function OcrWidget() {
           <button 
             onClick={runOcr}
             disabled={isProcessing}
-            className="w-full h-11 px-8 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--brand-dim)] disabled:opacity-50 transition-all"
+            className="w-full h-11 px-8 rounded-xl bg-brand text-white text-sm font-bold shadow-[var(--shadow-sm)] hover:bg-brand-dim disabled:opacity-50 transition-all"
           >
             {isProcessing ? `Extracting... ${progress}%` : "Extract Text"}
           </button>

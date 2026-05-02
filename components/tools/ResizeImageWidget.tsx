@@ -124,7 +124,7 @@ export default function ResizeImageWidget() {
           </div>
 
           <button onClick={handleResize} disabled={!width && !height}
-            className="w-full bg-brand hover:bg-[var(--brand-dim)] disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">
+            className="w-full bg-brand hover:bg-brand-dim disabled:opacity-40 text-white font-semibold rounded-xl py-3 text-sm transition-colors">
             Resize Image
           </button>
         </div>
