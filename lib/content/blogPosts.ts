@@ -340,4 +340,12 @@ export const BLOG_POSTS: BlogPost[] = [
     readMin: 5,
     tag:     "Images",
   },
+  {
+    slug:    "bulk-image-downloader-urls-to-zip",
+    title:   "How to Download Multiple Images from URLs to ZIP (Free & Ethical)",
+    excerpt: "Tired of right-clicking and saving dozens of images one by one? Learn how to paste a list of URLs and download them all as a single, credited ZIP file in seconds.",
+    date:    "2026-05-02",
+    readMin: 5,
+    tag:     "Tools",
+  },
 ];

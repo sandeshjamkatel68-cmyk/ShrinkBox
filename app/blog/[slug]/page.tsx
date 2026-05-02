@@ -5,6 +5,7 @@ import { BLOG_POSTS } from "@/lib/content/blogPosts";
 import { ArticleSchema, BreadcrumbSchema } from "@/lib/seo";
 import { NEW_ARTICLES_1 } from "@/lib/content/newArticles";
 import { NEW_ARTICLES_2 } from "@/lib/content/newArticles2";
+import { NEW_ARTICLES_3 } from "@/lib/content/newArticles3";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 // ── Full article content keyed by slug ───────────────────────────────────────
@@ -785,7 +786,7 @@ After adding page numbers, consider running the PDF through the compressor at sh
 };
 
 // ── Merge all articles ────────────────────────────────────────────────────────
-const ARTICLES = { ...EXISTING_ARTICLES, ...NEW_ARTICLES_1, ...NEW_ARTICLES_2 };
+const ARTICLES = { ...EXISTING_ARTICLES, ...NEW_ARTICLES_1, ...NEW_ARTICLES_2, ...NEW_ARTICLES_3 };
 
 // ── Metadata ─────────────────────────────────────────────────────────────────
 
