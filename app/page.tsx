@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import dynamic from "next/dynamic";
+import DynamicCompressorWidget from "@/components/upload/DynamicCompressorWidget";
 import { TrustSignals, FAQ } from "@/components/seo";
 import LazySection from "@/components/ui/LazySection";
-
-// Defer widget — it's not above-the-fold critical render path
-const DynamicCompressorWidget = dynamic(
-  () => import("@/components/upload/DynamicCompressorWidget"),
-  { ssr: false, loading: () => <div className="h-48 rounded-xl bg-[hsl(var(--surface-muted))] animate-pulse" /> }
-);
 
 export const metadata: Metadata = {
   title: "ShrinkBox — Free Image Compressor & PDF Tools Online",
