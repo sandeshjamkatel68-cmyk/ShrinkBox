@@ -4,8 +4,8 @@ import { TOOL_META } from "@/lib/seo";
 
 const BASE_URL = "https://shrink-box.com";
 
-/* Tool pages were last meaningfully updated on this date */
-const TOOL_LAST_UPDATED = "2026-05-02";
+/* Updated when tool content or metadata is significantly changed */
+const TOOL_LAST_UPDATED = "2026-05-13";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolPaths = Object.values(TOOL_META).map((tool) => tool.url);

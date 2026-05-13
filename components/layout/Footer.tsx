@@ -51,21 +51,25 @@ const FOOTER_LINKS = {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-surface mt-16 sm:mt-20">
+    <footer className="border-t border-[hsl(var(--border))] bg-[hsl(var(--surface))] mt-16 sm:mt-20">
       <div className="max-w-[1200px] mx-auto px-5 py-12 sm:py-14">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10">
 
           {/* Brand */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 no-underline mb-4">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand to-brand-vibrant flex items-center justify-center">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <path d="M4 6h8M4 8.5h6M6.5 11l1.5 1.5L11.5 9" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <Link href="/" className="flex items-center gap-2 no-underline mb-4" aria-label="ShrinkBox home">
+              <div
+                className="w-7 h-7 rounded-lg flex items-center justify-center"
+                style={{ background: "hsl(var(--brand))" }}
+                aria-hidden="true"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 5h8M3 7.5h5M5 10l2 1.5L10 8" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="font-bold text-[15px] text-foreground tracking-tight">ShrinkBox</span>
+              <span className="font-bold text-[15px] text-[hsl(var(--text))] tracking-tight">ShrinkBox</span>
             </Link>
-            <p className="text-xs text-muted leading-relaxed mb-4 max-w-[240px]">
+            <p className="text-xs text-[hsl(var(--text-muted))] leading-relaxed mb-4 max-w-[240px]">
               Free tools for compressing, converting, and editing images and PDFs. No signup required.
             </p>
             <div className="flex flex-col gap-1.5">
@@ -74,8 +78,8 @@ export default function Footer() {
                 "No account required",
                 "HTTPS encrypted",
               ].map(text => (
-                <div key={text} className="flex items-center gap-2 text-2xs text-subtle">
-                  <div className="w-1 h-1 rounded-full bg-brand shrink-0" />
+                <div key={text} className="flex items-center gap-2 text-[11px] text-[hsl(var(--text-subtle))]">
+                  <div className="w-1 h-1 rounded-full shrink-0" style={{ background: "hsl(var(--brand))" }} aria-hidden="true" />
                   {text}
                 </div>
               ))}
@@ -85,11 +89,14 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (
             <div key={title}>
-              <p className="text-2xs font-bold uppercase tracking-[0.12em] text-subtle mb-3">{title}</p>
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[hsl(var(--text-subtle))] mb-3">{title}</p>
               <ul className="flex flex-col gap-2">
                 {links.map(link => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-xs text-muted hover:text-foreground no-underline transition-colors">
+                    <Link
+                      href={link.href}
+                      className="text-[12px] text-[hsl(var(--text-muted))] hover:text-[hsl(var(--text))] no-underline transition-colors"
+                    >
                       {link.label}
                     </Link>
                   </li>
@@ -100,12 +107,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-2xs text-subtle">
+        <div className="mt-10 pt-6 border-t border-[hsl(var(--border))] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-[hsl(var(--text-subtle))]">
           <span>© {new Date().getFullYear()} ShrinkBox. All rights reserved.</span>
           <div className="flex items-center gap-4">
-            <Link href="/privacy" className="hover:text-muted no-underline transition-colors">Privacy</Link>
-            <Link href="/terms"   className="hover:text-muted no-underline transition-colors">Terms</Link>
-            <Link href="/contact" className="hover:text-muted no-underline transition-colors">Contact</Link>
+            <Link href="/privacy" className="hover:text-[hsl(var(--text-muted))] no-underline transition-colors">Privacy</Link>
+            <Link href="/terms"   className="hover:text-[hsl(var(--text-muted))] no-underline transition-colors">Terms</Link>
+            <Link href="/contact" className="hover:text-[hsl(var(--text-muted))] no-underline transition-colors">Contact</Link>
           </div>
         </div>
       </div>
