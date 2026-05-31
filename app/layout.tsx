@@ -15,11 +15,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default:  "ShrinkBox — Free Image Compressor & PDF Tools",
+    default:  "ShrinkBox — Find Free Alternatives to Expensive SaaS Tools",
     template: "%s | ShrinkBox",
   },
   description:
-    "Free online tools for compressing images, converting formats, merging PDFs, and more. No signup, no watermarks. Files deleted immediately after download.",
+    "Stop overpaying for software. Find free and cheaper alternatives to Notion, Figma, Ahrefs, Slack, and 25+ popular SaaS tools. Save hundreds every month.",
   verification: {
     google: "fvxtXiiyxC4FAmF7IKprJdHOBflEpXjwoLgXLYlbPcI",
   },
