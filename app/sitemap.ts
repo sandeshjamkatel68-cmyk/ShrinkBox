@@ -4,7 +4,7 @@ import { TOOLS, CATEGORIES } from '@/lib/data/tools'
 const BASE = 'https://shrink-box.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date()
+  const now = new Date('2026-06-01')
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: BASE, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
