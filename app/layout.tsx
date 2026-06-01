@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     "Stop overpaying for software. Find free and cheaper alternatives to Notion, Figma, Ahrefs, Slack, and 25+ popular SaaS tools. Save hundreds every month.",
   verification: {
     google: "fvxtXiiyxC4FAmF7IKprJdHOBflEpXjwoLgXLYlbPcI",
+    other: {
+      "msvalidate.01": "B5104EF60CDFF9D0B4CC09A251FF65A7",
+    },
   },
   metadataBase: new URL("https://shrink-box.com"),
   icons: {
