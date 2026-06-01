@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     google: "fvxtXiiyxC4FAmF7IKprJdHOBflEpXjwoLgXLYlbPcI",
     other: {
       "msvalidate.01": "B5104EF60CDFF9D0B4CC09A251FF65A7",
+      "impact-site-verification": "f6570a12-1315-4f95-97ec-924bf7726920",
     },
   },
   metadataBase: new URL("https://shrink-box.com"),
