@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { TOOLS, CATEGORIES, getToolBySlug } from '@/lib/data/tools'
+import { getToolFAQs } from '@/lib/data/faqs'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -15,9 +16,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const tool = getToolBySlug(resolveSlug(slug))
   if (!tool) return {}
+  const freeCount = tool.alternatives.filter(a => a.isFree).length
   return {
-    title: `Best Free Alternatives to ${tool.name} in 2025`,
-    description: `Stop paying ${tool.pricing} for ${tool.name}. Here are ${tool.alternatives.length} free and cheaper alternatives that do the same job.`,
+    title: `${tool.name} Alternatives — ${freeCount} Free Options in 2025`,
+    description: `Stop paying ${tool.pricing} for ${tool.name}. Discover ${freeCount} free alternatives that do the same job. Compare features, pricing, and find the best free ${tool.name} replacement for your needs.`,
+    keywords: [
+      `${tool.name.toLowerCase()} alternatives`,
+      `free ${tool.name.toLowerCase()} alternative`,
+      `${tool.name.toLowerCase()} alternative free`,
+      `cheaper alternative to ${tool.name.toLowerCase()}`,
+      `${tool.name.toLowerCase()} replacement`,
+      `tools like ${tool.name.toLowerCase()}`,
+      `best ${tool.name.toLowerCase()} alternative 2025`,
+    ],
   }
 }
 
@@ -33,9 +44,25 @@ export default async function AlternativesPage({ params }: Props) {
   const category = CATEGORIES.find(c => c.id === tool.category)
   const relatedTools = TOOLS.filter(t => t.category === tool.category && t.id !== tool.id).slice(0, 3)
   const freeCount = tool.alternatives.filter(a => a.isFree).length
+  const faqs = getToolFAQs(resolveSlug(slug))
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
 
   return (
     <div className="max-w-2xl mx-auto px-5 py-12">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-xs text-gray-400 mb-8">
@@ -137,6 +164,20 @@ export default async function AlternativesPage({ params }: Props) {
         </p>
       </div>
 
+      {/* FAQ */}
+      {faqs.length > 0 && (
+        <div className="mb-12">
+          <h2 className="text-lg font-semibold text-gray-900 mb-5">
+            Frequently asked questions
+          </h2>
+          <div className="space-y-2">
+            {faqs.map((item, i) => (
+              <FAQItem key={i} q={item.q} a={item.a} />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Related */}
       {relatedTools.length > 0 && (
         <div>
@@ -161,5 +202,22 @@ export default async function AlternativesPage({ params }: Props) {
         </div>
       )}
     </div>
+  )
+}
+
+function FAQItem({ q, a }: { q: string; a: string }) {
+  return (
+    <details className="group border border-gray-200 rounded-xl bg-white overflow-hidden">
+      <summary className="flex items-center justify-between gap-4 px-4 py-3.5 cursor-pointer list-none">
+        <span className="text-sm font-medium text-gray-900">{q}</span>
+        <svg className="w-4 h-4 text-gray-400 shrink-0 group-open:rotate-180 transition-transform duration-200"
+          fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+      <div className="px-4 pb-4 border-t border-gray-100">
+        <p className="text-sm text-gray-500 leading-relaxed pt-3">{a}</p>
+      </div>
+    </details>
   )
 }

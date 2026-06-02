@@ -24,7 +24,21 @@ export const metadata: Metadata = {
     template: "%s | ShrinkBox",
   },
   description:
-    "Stop overpaying for software. Find free and cheaper alternatives to Notion, Figma, Ahrefs, Slack, and 25+ popular SaaS tools. Save hundreds every month.",
+    "Stop overpaying for software. Find free and cheaper alternatives to Notion, Figma, Ahrefs, Slack, Zoom, Canva and 20+ popular SaaS tools. Save hundreds every month.",
+  keywords: [
+    'free saas alternatives',
+    'notion alternatives',
+    'figma alternatives free',
+    'slack alternatives',
+    'ahrefs alternatives free',
+    'zoom alternatives',
+    'cheaper saas tools',
+    'free software alternatives',
+    'saas alternatives finder',
+    'cancel saas subscriptions',
+    'free alternatives to paid software',
+    'open source saas alternatives',
+  ],
   verification: {
     google: "fvxtXiiyxC4FAmF7IKprJdHOBflEpXjwoLgXLYlbPcI",
     other: {

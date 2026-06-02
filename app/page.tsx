@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { TOOLS, CATEGORIES, searchTools } from '@/lib/data/tools'
+import { GENERAL_FAQS } from '@/lib/data/faqs'
 
 export default function HomePage() {
   const [query, setQuery] = useState('')
@@ -183,6 +184,44 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── FAQ ───────────────────────────────────────────── */}
+      <section className="bg-gray-50 border-t border-gray-100">
+        <div className="max-w-2xl mx-auto px-5 py-16">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Frequently asked questions</h2>
+          <p className="text-sm text-gray-400 mb-8">Everything you need to know about finding free SaaS alternatives</p>
+          <FAQAccordion items={GENERAL_FAQS} />
+        </div>
+      </section>
+
+    </div>
+  )
+}
+
+function FAQAccordion({ items }: { items: { q: string; a: string }[] }) {
+  const [open, setOpen] = useState<number | null>(null)
+  return (
+    <div className="space-y-2">
+      {items.map((item, i) => (
+        <div key={i} className="border border-gray-200 rounded-xl overflow-hidden bg-white">
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="w-full flex items-center justify-between gap-4 px-4 py-3.5 text-left bg-transparent"
+          >
+            <span className="text-sm font-medium text-gray-900">{item.q}</span>
+            <svg
+              className={`w-4 h-4 text-gray-400 shrink-0 transition-transform duration-200 ${open === i ? 'rotate-180' : ''}`}
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {open === i && (
+            <div className="px-4 pb-4 border-t border-gray-100">
+              <p className="text-sm text-gray-500 leading-relaxed pt-3">{item.a}</p>
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   )
 }
