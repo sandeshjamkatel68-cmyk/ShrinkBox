@@ -14,6 +14,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Free Alternatives to ${cat.name} Tools`,
     description: `Find free and cheaper alternatives to popular ${cat.name.toLowerCase()} tools.`,
+    alternates: {
+      canonical: `https://shrink-box.com/category/${cat.id}`,
+    },
   }
 }
 

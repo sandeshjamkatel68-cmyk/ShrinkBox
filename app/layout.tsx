@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   },
   description:
     "Stop overpaying for software. Find free and cheaper alternatives to Notion, Figma, Ahrefs, Slack, Zoom, Canva and 20+ popular SaaS tools. Save hundreds every month.",
+  alternates: {
+    canonical: "https://shrink-box.com",
+  },
   keywords: [
     'free saas alternatives',
     'notion alternatives',

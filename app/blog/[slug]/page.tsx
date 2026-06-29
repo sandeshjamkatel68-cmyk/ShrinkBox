@@ -361,6 +361,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.description,
     keywords: [post.category.toLowerCase(), 'free alternatives', 'saas alternatives', post.title.toLowerCase()],
+    alternates: {
+      canonical: `https://shrink-box.com/blog/${slug}`,
+    },
   }
 }
 

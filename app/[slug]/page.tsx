@@ -29,6 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `tools like ${tool.name.toLowerCase()}`,
       `best ${tool.name.toLowerCase()} alternative 2025`,
     ],
+    alternates: {
+      canonical: `https://shrink-box.com/${tool.slug}-alternatives`,
+    },
   }
 }
 
