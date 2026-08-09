@@ -1,32 +1,25 @@
-import { MetadataRoute } from 'next'
-import { TOOLS, CATEGORIES } from '@/lib/data/tools'
+import { MetadataRoute } from "next";
+import { FILE_TOOLS } from "@/lib/data/fileTools";
 
-const BASE = 'https://shrink-box.com'
+const BASE = "https://shrink-box.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date('2026-06-01')
+  const now = new Date("2026-08-09");
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: BASE, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${BASE}/tools`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${BASE}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.4 },
-    { url: `${BASE}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.3 },
-  ]
+    { url: BASE, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${BASE}/tools`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.5 },
+    { url: `${BASE}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${BASE}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
+  ];
 
-  const toolPages: MetadataRoute.Sitemap = TOOLS.map(tool => ({
-    url: `${BASE}/${tool.slug}-alternatives`,
+  const toolPages: MetadataRoute.Sitemap = FILE_TOOLS.map((tool) => ({
+    url: `${BASE}/${tool.slug}`,
     lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }))
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  }));
 
-  const categoryPages: MetadataRoute.Sitemap = CATEGORIES.map(cat => ({
-    url: `${BASE}/category/${cat.id}`,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
-
-  return [...staticPages, ...toolPages, ...categoryPages]
+  return [...staticPages, ...toolPages];
 }

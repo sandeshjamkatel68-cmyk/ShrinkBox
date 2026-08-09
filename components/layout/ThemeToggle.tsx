@@ -9,7 +9,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-      className="w-9 h-9 rounded-lg flex items-center justify-center border border-[hsl(var(--border))] bg-[hsl(var(--surface))] hover:bg-[hsl(var(--surface-muted))] hover:border-[hsl(var(--border-hover))] transition-all duration-150"
+      className="w-8 h-8 rounded flex items-center justify-center border border-[var(--border)] bg-panel hover:border-signal transition-colors duration-150 text-ink-dim hover:text-ink"
     >
       {theme === "light" ? (
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">

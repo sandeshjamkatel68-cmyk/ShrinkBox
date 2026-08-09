@@ -1,46 +1,52 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Public_Sans, IBM_Plex_Mono } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 
-const geist = Geist({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-geist",
+  weight: ["700", "800"],
+  variable: "--font-display",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const publicSans = Public_Sans({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  weight: ["400", "500"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-data",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default:  "ShrinkBox — Find Free Alternatives to Expensive SaaS Tools",
+    default: "ShrinkBox — File Tools That Never Upload Your Files",
     template: "%s | ShrinkBox",
   },
   description:
-    "Stop overpaying for software. Find free and cheaper alternatives to Notion, Figma, Ahrefs, Slack, Zoom, Canva and 20+ popular SaaS tools. Save hundreds every month.",
+    "Compress, convert, and resize images, PDFs, and video entirely in your browser. Nothing is uploaded to a server — your file never leaves the tab.",
   alternates: {
     canonical: "https://shrink-box.com",
   },
   keywords: [
-    'free saas alternatives',
-    'notion alternatives',
-    'figma alternatives free',
-    'slack alternatives',
-    'ahrefs alternatives free',
-    'zoom alternatives',
-    'cheaper saas tools',
-    'free software alternatives',
-    'saas alternatives finder',
-    'cancel saas subscriptions',
-    'free alternatives to paid software',
-    'open source saas alternatives',
+    "compress image online",
+    "heic to jpg converter",
+    "compress pdf without uploading",
+    "image compressor that doesn't upload",
+    "offline file compressor browser",
+    "resize image online",
+    "webp to png converter",
+    "private file compressor",
   ],
   verification: {
     google: "fvxtXiiyxC4FAmF7IKprJdHOBflEpXjwoLgXLYlbPcI",
@@ -51,68 +57,71 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://shrink-box.com"),
   icons: {
-    icon:     "/favicon.ico",
+    icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple:    "/apple-icon.png",
+    apple: "/apple-icon.png",
   },
   openGraph: {
-    type:     "website",
-    locale:   "en_US",
-    url:      "https://shrink-box.com",
+    type: "website",
+    locale: "en_US",
+    url: "https://shrink-box.com",
     siteName: "ShrinkBox",
-    title:    "ShrinkBox — Free Image & PDF Tools Online",
-    description: "Free online tools for compressing, converting, resizing, and editing images and PDFs. No signup required.",
+    title: "ShrinkBox — File Tools That Never Upload Your Files",
+    description:
+      "Compress, convert, and resize images, PDFs, and video entirely in your browser. Your file never leaves this tab.",
     images: [
       {
-        url:    "https://shrink-box.com/og-image.png",
-        width:  1200,
+        url: "https://shrink-box.com/og-image.png",
+        width: 1200,
         height: 630,
-        alt:    "ShrinkBox — Free Image & PDF Tools",
+        alt: "ShrinkBox — File tools that never upload your files",
       },
     ],
   },
   twitter: {
-    card:        "summary_large_image",
-    title:       "ShrinkBox — Free Image & PDF Tools",
-    description: "Free online tools for compressing and converting images and PDFs. No signup required.",
-    images:      ["https://shrink-box.com/og-image.png"],
+    card: "summary_large_image",
+    title: "ShrinkBox — File Tools That Never Upload Your Files",
+    description:
+      "Compress, convert, and resize images, PDFs, and video entirely in your browser.",
+    images: ["https://shrink-box.com/og-image.png"],
   },
   robots: {
-    index:  true,
+    index: true,
     follow: true,
   },
 };
 
-// ── JSON-LD Structured Data ─────────────────────────────
 function StructuredData() {
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "ShrinkBox",
-    "url": "https://shrink-box.com",
-    "logo": "https://shrink-box.com/icon-512.png",
-    "description": "Free online tools for compressing, converting, resizing, and editing images and PDFs.",
-    "sameAs": [],
-    "contactPoint": {
+    name: "ShrinkBox",
+    url: "https://shrink-box.com",
+    logo: "https://shrink-box.com/icon-512.png",
+    description:
+      "File tools that never upload your files — compress, convert, and resize images, PDFs, and video entirely in the browser.",
+    sameAs: [],
+    contactPoint: {
       "@type": "ContactPoint",
-      "contactType": "customer support",
-      "url": "https://shrink-box.com/contact",
+      contactType: "customer support",
+      url: "https://shrink-box.com/contact",
     },
   };
 
   const website = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "ShrinkBox",
-    "url": "https://shrink-box.com",
-    "description": "Free online tools for compressing, converting, resizing, and editing images and PDFs.",
-    "publisher": {
+    name: "ShrinkBox",
+    url: "https://shrink-box.com",
+    description:
+      "File tools that never upload your files — compress, convert, and resize images, PDFs, and video entirely in the browser.",
+    publisher: {
       "@type": "Organization",
-      "name": "ShrinkBox",
+      name: "ShrinkBox",
     },
-    "potentialAction": {
+    potentialAction: {
       "@type": "SearchAction",
-      "target": "https://shrink-box.com/tools?q={search_term_string}",
+      target: "https://shrink-box.com/tools?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
@@ -137,7 +146,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" dir="ltr" className={`${geist.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      dir="ltr"
+      className={`${archivo.variable} ${publicSans.variable} ${plexMono.variable}`}
+    >
       <head>
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
@@ -161,13 +174,13 @@ export default function RootLayout({
         <StructuredData />
       </head>
 
-      <body className="min-h-screen flex flex-col bg-white">
+      <body className="min-h-screen flex flex-col bg-casing text-ink">
+        <ThemeProvider>
           <Header />
-          <main className="flex-1">
-            {children}
-          </main>
+          <main className="flex-1">{children}</main>
           <Footer />
-          <Analytics />
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
